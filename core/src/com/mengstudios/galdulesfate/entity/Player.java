@@ -45,7 +45,6 @@ public class Player extends Mob {
         maxMana = 100;
 
         canFall = true;
-        hasAnimation = true;
 
         stateTimer = 0;
 

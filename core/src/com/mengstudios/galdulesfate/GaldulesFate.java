@@ -10,8 +10,6 @@ public class GaldulesFate extends Game {
 	public static final int HEIGHT = 720;
 
 	public SpriteBatch batch;
-
-	//Test git commit
 	
 	@Override
 	public void create () {

@@ -58,10 +58,10 @@ public class PlayScreen implements Screen, InputProcessor {
 
         hud.update(delta);
 
+        world.update(delta);
+
         camera.position.set(getPlayer().getX(), getPlayer().getY() + 100, 0);
         camera.update();
-
-        world.update(delta);
     }
 
     @Override

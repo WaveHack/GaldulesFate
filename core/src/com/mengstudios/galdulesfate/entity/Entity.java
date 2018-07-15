@@ -22,7 +22,6 @@ public abstract class Entity extends Sprite {
     protected boolean grounded;
 
     protected boolean active = true;
-    protected boolean hasAnimation;
 
     public Entity(PlayScreen playScreen) {
         this.playScreen = playScreen;
@@ -55,14 +54,12 @@ public abstract class Entity extends Sprite {
             velocityY = 0;
         }
 
-        if(!hasAnimation) {
-            if (velocityX > 0 && direction == Direction.LEFT) {
-                flip(true, false);
-                direction = Direction.RIGHT;
-            } else if (velocityX < 0 && direction == Direction.RIGHT) {
-                flip(true, false);
-                direction = Direction.LEFT;
-            }
+        if (velocityX > 0 && direction == Direction.LEFT) {
+            flip(true, false);
+            direction = Direction.RIGHT;
+        } else if (velocityX < 0 && direction == Direction.RIGHT) {
+            flip(true, false);
+            direction = Direction.LEFT;
         }
 
         translate(velocityX * delta, velocityY * delta);
