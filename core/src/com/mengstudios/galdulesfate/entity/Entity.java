@@ -6,7 +6,7 @@ import com.mengstudios.galdulesfate.screen.PlayScreen;
 import com.mengstudios.galdulesfate.world.World;
 
 public abstract class Entity extends Sprite {
-    protected PlayScreen playScreen;
+    protected World world;
 
     protected float px;
     protected float py;
@@ -23,20 +23,20 @@ public abstract class Entity extends Sprite {
 
     protected boolean active = true;
 
-    public Entity(PlayScreen playScreen) {
-        this.playScreen = playScreen;
+    public Entity(World world) {
+        this.world = world;
     }
 
-    public Entity(PlayScreen playScreen, float x, float y) {
-        this.playScreen = playScreen;
+    public Entity(World world, float x, float y) {
+        this.world = world;
         setPosition(x, y);
     }
 
     public void update(float delta) {
-        if(getX() > playScreen.getCamera().position.x - playScreen.getCamera().viewportWidth &&
-                getX() < playScreen.getCamera().position.x + playScreen.getCamera().viewportWidth &&
-                getY() > playScreen.getCamera().position.y - playScreen.getCamera().viewportHeight &&
-                getY() < playScreen.getCamera().position.y + playScreen.getCamera().viewportHeight) {
+        if(getX() > world.getCamera().position.x - world.getCamera().viewportWidth &&
+                getX() < world.getCamera().position.x + world.getCamera().viewportWidth &&
+                getY() > world.getCamera().position.y - world.getCamera().viewportHeight &&
+                getY() < world.getCamera().position.y + world.getCamera().viewportHeight) {
             active = true;
         } else {
             active = false;

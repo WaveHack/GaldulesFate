@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
+import com.mengstudios.galdulesfate.world.World;
 
 public class Player extends Mob {
     public enum State {STANDING, WALKING, JUMPING}
@@ -25,8 +26,8 @@ public class Player extends Mob {
 
     protected float stateTimer;
 
-    public Player(PlayScreen playScreen, float x, float y) {
-        super(playScreen, x, y);
+    public Player(World world, float x, float y) {
+        super(world, x, y);
 
         Array<TextureRegion> frames = new Array<>();
         for(int i = 0; i < 4; i++) {

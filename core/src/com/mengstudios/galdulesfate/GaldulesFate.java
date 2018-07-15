@@ -1,6 +1,7 @@
 package com.mengstudios.galdulesfate;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mengstudios.galdulesfate.screen.TitleScreen;
 
@@ -10,6 +11,8 @@ public class GaldulesFate extends Game {
 	public static final int HEIGHT = 720;
 
 	public SpriteBatch batch;
+
+	FPSLogger fpsLogger = new FPSLogger();
 	
 	@Override
 	public void create () {
@@ -22,6 +25,7 @@ public class GaldulesFate extends Game {
 	@Override
 	public void render () {
         super.render();
+        fpsLogger.log();
 	}
 	
 	@Override

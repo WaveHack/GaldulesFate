@@ -1,5 +1,6 @@
 package com.mengstudios.galdulesfate.hud;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -46,17 +47,87 @@ public class Hud implements InputProcessor {
         return statusDisplay.getAbilityButtons();
     }
 
+    public StatusDisplay getStatusDisplay() {
+        return statusDisplay;
+    }
+
+    public InventoryDisplay getInventoryDisplay() {
+        return inventoryDisplay;
+    }
+
     public PlayScreen getPlayScreen() {
         return playScreen;
     }
 
     @Override
     public boolean keyDown(int keycode) {
+        if(keycode == Input.Keys.NUM_1) {
+            getAbilityButtons().get(0).press();
+        }
+        if(keycode == Input.Keys.NUM_2) {
+            getAbilityButtons().get(1).press();
+        }
+        if(keycode == Input.Keys.NUM_3) {
+            getAbilityButtons().get(2).press();
+        }
+        if(keycode == Input.Keys.NUM_4) {
+            getAbilityButtons().get(3).press();
+        }
+        if(keycode == Input.Keys.NUM_5) {
+            getAbilityButtons().get(4).press();
+        }
+        if(keycode == Input.Keys.NUM_6) {
+            getAbilityButtons().get(5).press();
+        }
+        if(keycode == Input.Keys.NUM_7) {
+            getAbilityButtons().get(6).press();
+        }
+        if(keycode == Input.Keys.NUM_8) {
+            getAbilityButtons().get(7).press();
+        }
+        if(keycode == Input.Keys.NUM_9) {
+            getAbilityButtons().get(8).press();
+        }
+        if(keycode == Input.Keys.NUM_0) {
+            getAbilityButtons().get(9).press();
+        }
+
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+        if(keycode == Input.Keys.NUM_1) {
+            getAbilityButtons().get(0).release();
+        }
+        if(keycode == Input.Keys.NUM_2) {
+            getAbilityButtons().get(1).release();
+        }
+        if(keycode == Input.Keys.NUM_3) {
+            getAbilityButtons().get(2).release();
+        }
+        if(keycode == Input.Keys.NUM_4) {
+            getAbilityButtons().get(3).release();
+        }
+        if(keycode == Input.Keys.NUM_5) {
+            getAbilityButtons().get(4).release();
+        }
+        if(keycode == Input.Keys.NUM_6) {
+            getAbilityButtons().get(5).release();
+        }
+        if(keycode == Input.Keys.NUM_7) {
+            getAbilityButtons().get(6).release();
+        }
+        if(keycode == Input.Keys.NUM_8) {
+            getAbilityButtons().get(7).release();
+        }
+        if(keycode == Input.Keys.NUM_9) {
+            getAbilityButtons().get(8).release();
+        }
+        if(keycode == Input.Keys.NUM_0) {
+            getAbilityButtons().get(9).release();
+        }
+
         return false;
     }
 

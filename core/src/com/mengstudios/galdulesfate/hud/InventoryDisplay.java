@@ -28,7 +28,9 @@ public class InventoryDisplay {
     }
 
     public void update(float delta) {
-
+        if(selectedItem != null) {
+            selectedItem.update(delta);
+        }
     }
 
     public void draw(SpriteBatch batch) {
@@ -48,7 +50,15 @@ public class InventoryDisplay {
         }
     }
 
+    public Item getSelectedItem() {
+        return selectedItem;
+    }
+
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if(selectedItem != null) {
+            selectedItem.setSwinging(true);
+        }
+
         return false;
     }
 
@@ -71,6 +81,11 @@ public class InventoryDisplay {
                 }
             }
         }
+
+        if(selectedItem != null) {
+            selectedItem.setSwinging(false);
+        }
+
         return false;
     }
 }

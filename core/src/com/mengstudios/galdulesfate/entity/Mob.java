@@ -7,12 +7,12 @@ public abstract class Mob extends Entity {
     protected int maxHealth;
     protected int health;
 
-    public Mob(PlayScreen playScreen) {
-        super(playScreen);
+    public Mob(World world) {
+        super(world);
     }
 
-    public Mob(PlayScreen playScreen, float x, float y) {
-        super(playScreen, x, y);
+    public Mob(World world, float x, float y) {
+        super(world, x, y);
         solid = true;
     }
 
