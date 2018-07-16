@@ -6,25 +6,34 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class Hud implements InputProcessor {
     private PlayScreen playScreen;
 
+    private StretchViewport viewport;
     private OrthographicCamera camera;
 
     private StatusDisplay statusDisplay;
     private InventoryDisplay inventoryDisplay;
 
+    private MobileControls mobileControls;
+
     public Hud(PlayScreen playScreen) {
         this.playScreen = playScreen;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, GaldulesFate.WIDTH, GaldulesFate.HEIGHT);
+        camera.setToOrtho(false);
+        viewport = new StretchViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
 
         statusDisplay = new StatusDisplay(this);
         inventoryDisplay = new InventoryDisplay(this);
+
+        if(GaldulesFate.mobile) {
+            mobileControls = new MobileControls(playScreen, viewport);
+        }
     }
 
     public void update(float delta) {
@@ -32,11 +41,17 @@ public class Hud implements InputProcessor {
 
         statusDisplay.update(delta);
         inventoryDisplay.update(delta);
+        if(GaldulesFate.mobile) {
+            mobileControls.update(delta);
+        }
     }
 
     public void draw(SpriteBatch batch) {
         statusDisplay.draw(batch);
         inventoryDisplay.draw(batch);
+        /*if(GaldulesFate.mobile) {
+            mobileControls.draw(batch);
+        }*/
     }
 
     public OrthographicCamera getCamera() {
@@ -57,6 +72,14 @@ public class Hud implements InputProcessor {
 
     public PlayScreen getPlayScreen() {
         return playScreen;
+    }
+
+    public StretchViewport getViewport() {
+        return viewport;
+    }
+
+    public MobileControls getMobileControls() {
+        return mobileControls;
     }
 
     @Override

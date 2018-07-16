@@ -9,6 +9,7 @@ public class GaldulesFate extends Game {
 	public static final String TITLE = "Galdule's Fate";
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
+	public static boolean mobile;
 
 	public SpriteBatch batch;
 

@@ -12,5 +12,6 @@ public class AndroidLauncher extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new GaldulesFate(), config);
+		GaldulesFate.mobile = true;
 	}
 }

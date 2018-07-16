@@ -10,7 +10,7 @@ import com.mengstudios.galdulesfate.item.Item;
 public class InventoryDisplay {
     private Hud hud;
 
-    private Texture inventoryBackground;
+    private Texture inventoryBackground = Assets.INVENTORY;
 
     private static final float INVENTORY_X = GaldulesFate.WIDTH - Assets.INVENTORY.getWidth() - 20;
     private static final float INVENTORY_Y = GaldulesFate.HEIGHT - Assets.INVENTORY.getHeight() - 20;
@@ -23,8 +23,6 @@ public class InventoryDisplay {
         this.hud = hud;
 
         player = hud.getPlayScreen().getPlayer();
-
-        inventoryBackground = Assets.INVENTORY;
     }
 
     public void update(float delta) {
@@ -36,16 +34,20 @@ public class InventoryDisplay {
     public void draw(SpriteBatch batch) {
         batch.draw(inventoryBackground, INVENTORY_X, INVENTORY_Y);
         drawHighlight(batch);
-        for(int i = 0; i < player.getInventory().getItems().size(); i++) {
-            player.getInventory().getItems().get(i).renderInventory(
+        for(int i = 0; i < player.getInventory().getItems().length; i++) {
+            if(player.getInventory().getItems()[i] == null)
+                continue;
+
+            player.getInventory().getItems()[i].renderInventory(
                     batch, INVENTORY_X, INVENTORY_Y, (27 - i) / 9, i % 9);
         }
     }
 
     public void drawHighlight(SpriteBatch batch) {
-        for(int i = 0; i < player.getInventory().getItems().size(); i++) {
-            if(selectedItem == player.getInventory().getItems().get(i)) {
+        for(int i = 0; i < player.getInventory().getItems().length; i++) {
+            if(selectedItem == player.getInventory().getItems()[i] && selectedItem != null) {
                 batch.draw(Assets.HIGHLIGHT, INVENTORY_X + i % 9 * 64, INVENTORY_Y + (27 - i) / 9 * 64);
+                break;
             }
         }
     }
@@ -70,9 +72,9 @@ public class InventoryDisplay {
                 int column = i % 9;
                 if(screenX > INVENTORY_X + column * 64 && screenX < INVENTORY_X + column * 64 + 64
                         && screenY > INVENTORY_Y + row * 64 && screenY < INVENTORY_Y + row * 64 + 64) {
-                    if((3 - row) * 9 + column >= player.getInventory().getItems().size())
+                    if((3 - row) * 9 + column >= player.getInventory().getItems().length)
                         return false;
-                    Item selectedItemTemp = player.getInventory().getItems().get((3 - row) * 9 + column);
+                    Item selectedItemTemp = player.getInventory().getItems()[((3 - row) * 9 + column)];
                     if(selectedItemTemp == selectedItem) {
                         selectedItem = null;
                     } else {

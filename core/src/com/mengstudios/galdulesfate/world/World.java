@@ -1,34 +1,30 @@
 package com.mengstudios.galdulesfate.world;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.entity.Entity;
 import com.mengstudios.galdulesfate.entity.Player;
-import com.mengstudios.galdulesfate.entity.tile.DirtTile;
-import com.mengstudios.galdulesfate.entity.tile.GrassTile;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class World implements InputProcessor {
     private PlayScreen playScreen;
 
+    private StretchViewport viewport;
     private OrthographicCamera camera;
 
     private Player player;
     private Array<Entity> entities;
 
+    private WorldGenerator generator;
+
     public static final float GRAVITY = 8;
-
-    private final int CHUNK_SIZE = 32;
-
-    private int startX;
-    private int endX;
 
     private static final int TOTAL_KEYS = 255;
     private boolean[] keysHeld = new boolean[TOTAL_KEYS];
@@ -37,7 +33,8 @@ public class World implements InputProcessor {
         this.playScreen = playScreen;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, GaldulesFate.WIDTH, GaldulesFate.HEIGHT);
+        camera.setToOrtho(false);
+        viewport = new StretchViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
 
         player = new Player(this, 16 * 64, 16 * 64 + 64);
         player.setHealth(player.getMaxHealth());
@@ -45,9 +42,7 @@ public class World implements InputProcessor {
 
         entities = new Array<>();
 
-        startX = 0;
-
-        generate(0);
+        generator = new WorldGenerator(this);
     }
 
     public void update(float delta) {
@@ -62,16 +57,9 @@ public class World implements InputProcessor {
             entity.update(delta);
         }
 
-        if(player.getX() < startX + (CHUNK_SIZE / 2) * 64) {
-            generate(startX - CHUNK_SIZE * 64);
-            Gdx.app.log("World", "generating terrain on the left");
-        }
-        if(player.getX() > endX - (CHUNK_SIZE / 2) * 64) {
-            generate(endX);
-            Gdx.app.log("World", "generating terrain on the right");
-        }
-
         checkCollisions();
+
+        generator.update(delta);
 
         camera.position.set(getPlayer().getX(), getPlayer().getY() + 100, 0);
         camera.update();
@@ -88,22 +76,6 @@ public class World implements InputProcessor {
         if(playScreen.getHud().getInventoryDisplay().getSelectedItem() != null) {
             playScreen.getHud().getInventoryDisplay().getSelectedItem().renderWorld(playScreen.getGame().batch,
                     getPlayer().getX() + getPlayer().getWidth() / 2, getPlayer().getY() + getPlayer().getHeight() / 2, getPlayer().isFlipX());
-        }
-    }
-
-    public void generate(int position) {
-        if(position < startX) {
-            startX = position;
-        }
-        if(position + 64 * CHUNK_SIZE > endX) {
-            endX = position + 64 * CHUNK_SIZE;
-        }
-
-        for(int i = 0; i < CHUNK_SIZE; i++) {
-            entities.add(new GrassTile(this, position + 64 * i, 64 * (CHUNK_SIZE / 2 - 1)));
-            for(int j = 0; j < CHUNK_SIZE / 2 - 1; j++) {
-                entities.add(new DirtTile(this, position + 64 * i, 64 * j));
-            }
         }
     }
 
@@ -138,8 +110,16 @@ public class World implements InputProcessor {
         return player;
     }
 
+    public Array<Entity> getEntities() {
+        return entities;
+    }
+
     public OrthographicCamera getCamera() {
         return camera;
+    }
+
+    public StretchViewport getViewport() {
+        return viewport;
     }
 
     @Override

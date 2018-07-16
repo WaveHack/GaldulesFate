@@ -3,17 +3,24 @@ package com.mengstudios.galdulesfate.entity;
 import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.ResourceItem;
 
-import java.util.ArrayList;
-
 public class Inventory {
-    private ArrayList<Item> items = new ArrayList<>(36);
+    private Item[] items = new Item[36];
 
     public void add(Item item) {
-        items.add(item);
+        for(int i = 0; i < items.length; i++) {
+            if(items[i] == null) {
+                items[i] = item;
+            }
+            break;
+        }
     }
 
     public void remove(Item item) {
-        items.remove(item);
+        for(int i = 0; i < items.length; i++) {
+            if(items[i] == item) {
+                items[i] = null;
+            }
+        }
     }
 
     public ResourceItem findResourceItem(ResourceItem resourceItem) {
@@ -37,7 +44,7 @@ public class Inventory {
         }
     }
 
-    public ArrayList<Item> getItems() {
+    public Item[] getItems() {
         return items;
     }
 }

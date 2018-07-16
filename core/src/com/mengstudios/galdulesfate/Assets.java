@@ -27,11 +27,13 @@ public class Assets {
     public static Texture BUTTON_UP;
     public static Texture HEALTH_BAR_BACK;
     public static Texture HEALTH_BAR_FRONT;
+    public static Texture HIGHLIGHT;
     public static Texture INVENTORY;
     public static Texture MANA_BAR_BACK;
     public static Texture MANA_BAR_FRONT;
     public static Texture STATUS_TABLE;
-    public static Texture HIGHLIGHT;
+    public static Texture TOUCHPAD_BACKGROUND;
+    public static Texture TOUCHPAD_KNOB;
 
     public static Music BACKGROUD_MUSIC_1;
 
@@ -57,11 +59,13 @@ public class Assets {
         assetManager.load("ui/button_up.png", Texture.class);
         assetManager.load("ui/health_bar_back.png", Texture.class);
         assetManager.load("ui/health_bar_front.png", Texture.class);
+        assetManager.load("ui/highlight.png", Texture.class);
         assetManager.load("ui/inventory.png", Texture.class);
         assetManager.load("ui/mana_bar_back.png", Texture.class);
         assetManager.load("ui/mana_bar_front.png", Texture.class);
         assetManager.load("ui/status_table.png", Texture.class);
-        assetManager.load("ui/highlight.png", Texture.class);
+        assetManager.load("ui/touchpad_background.png", Texture.class);
+        assetManager.load("ui/touchpad_knob.png", Texture.class);
         assetManager.load("music/background_music_1.mp3", Music.class);
         assetManager.finishLoading();
 
@@ -86,6 +90,8 @@ public class Assets {
         MANA_BAR_BACK = assetManager.get("ui/mana_bar_back.png");
         MANA_BAR_FRONT = assetManager.get("ui/mana_bar_front.png");
         STATUS_TABLE = assetManager.get("ui/status_table.png");
+        TOUCHPAD_BACKGROUND = assetManager.get("ui/touchpad_background.png");
+        TOUCHPAD_KNOB = assetManager.get("ui/touchpad_knob.png");
 
         BACKGROUD_MUSIC_1 = assetManager.get("music/background_music_1.mp3");
 

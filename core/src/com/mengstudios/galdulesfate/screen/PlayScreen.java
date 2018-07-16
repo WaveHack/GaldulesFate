@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.entity.Player;
 import com.mengstudios.galdulesfate.hud.Hud;
@@ -26,6 +27,9 @@ public class PlayScreen implements Screen {
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(world);
         inputMultiplexer.addProcessor(hud);
+        if(GaldulesFate.mobile) {
+            inputMultiplexer.addProcessor(hud.getMobileControls().getStage());
+        }
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
@@ -56,11 +60,15 @@ public class PlayScreen implements Screen {
         game.batch.begin();
         hud.draw(game.batch);
         game.batch.end();
+        if(GaldulesFate.mobile) {
+            hud.getMobileControls().draw(game.batch);
+        }
     }
 
     @Override
     public void resize(int width, int height) {
-
+        world.getViewport().update(width, height);
+        hud.getViewport().update(width, height);
     }
 
     @Override
