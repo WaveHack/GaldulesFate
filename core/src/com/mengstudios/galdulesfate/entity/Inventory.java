@@ -10,8 +10,8 @@ public class Inventory {
         for(int i = 0; i < items.length; i++) {
             if(items[i] == null) {
                 items[i] = item;
+                break;
             }
-            break;
         }
     }
 
@@ -32,6 +32,22 @@ public class Inventory {
             }
         }
         return null;
+    }
+
+    public void addResource(ResourceItem resourceItem) {
+        boolean hasResource = false;
+        for(int i = 0; i < items.length; i++) {
+            if(items[i] == null)
+                continue;
+
+            if(resourceItem.getClass() == items[i].getClass()) {
+                ((ResourceItem) items[i]).changeCount(resourceItem.getCount());
+                hasResource = true;
+            }
+        }
+        if(!hasResource) {
+            add(resourceItem);
+        }
     }
 
     public void removeResource(ResourceItem resourceItem, int count) {

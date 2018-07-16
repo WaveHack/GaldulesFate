@@ -1,6 +1,7 @@
 package com.mengstudios.galdulesfate.world;
 
 import com.badlogic.gdx.Gdx;
+import com.mengstudios.galdulesfate.entity.mineralrock.CopperRock;
 import com.mengstudios.galdulesfate.entity.tile.DirtTile;
 import com.mengstudios.galdulesfate.entity.tile.GrassTile;
 
@@ -45,5 +46,7 @@ public class WorldGenerator {
                 world.getEntities().add(new DirtTile(world, position + 64 * i, 64 * j));
             }
         }
+
+        world.getEntities().add(new CopperRock(world, position + 64, 64 * CHUNK_SIZE / 2));
     }
 }

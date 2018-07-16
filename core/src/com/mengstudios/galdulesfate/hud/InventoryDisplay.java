@@ -39,14 +39,14 @@ public class InventoryDisplay {
                 continue;
 
             player.getInventory().getItems()[i].renderInventory(
-                    batch, INVENTORY_X, INVENTORY_Y, (27 - i) / 9, i % 9);
+                    batch, INVENTORY_X, INVENTORY_Y, (35 - i) / 9, i % 9);
         }
     }
 
     public void drawHighlight(SpriteBatch batch) {
         for(int i = 0; i < player.getInventory().getItems().length; i++) {
             if(selectedItem == player.getInventory().getItems()[i] && selectedItem != null) {
-                batch.draw(Assets.HIGHLIGHT, INVENTORY_X + i % 9 * 64, INVENTORY_Y + (27 - i) / 9 * 64);
+                batch.draw(Assets.HIGHLIGHT, INVENTORY_X + i % 9 * 64, (float) (INVENTORY_Y + Math.floor((35 - i) / 9) * 64));
                 break;
             }
         }

@@ -41,4 +41,8 @@ public class Item {
     public void renderInventory(SpriteBatch batch, float inventoryX, float inventoryY, int row, int column) {
         batch.draw(texture, inventoryX + column * 64, inventoryY + row * 64);
     }
+
+    public Texture getTexture() {
+        return texture;
+    }
 }

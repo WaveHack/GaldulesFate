@@ -14,8 +14,11 @@ public class Assets {
     public static Texture TITLE_SCREEN_BACKGROUND;
     public static Texture SKY;
 
+    public static Texture COPPER_ORE_ROCKS;
+    public static Texture EMPTY_ROCKS;
     public static Texture PLAYER;
 
+    public static Texture COPPER_ORE;
     public static Texture COPPER_PICKAXE;
 
     public static Texture DIRT_TILE;
@@ -44,12 +47,16 @@ public class Assets {
     public static BitmapFont BUTTON_FONT;
     public static BitmapFont ABILITY_BUTTON_FONT;
     public static BitmapFont SLIDER_FONT;
+    public static BitmapFont STACK_FONT;
 
     public Assets() {
         assetManager = new AssetManager();
         assetManager.load("title_screen_background.jpg", Texture.class);
         assetManager.load("sky.png", Texture.class);
+        assetManager.load("entity/copper_ore_rocks.png", Texture.class);
+        assetManager.load("entity/empty_rocks.png", Texture.class);
         assetManager.load("entity/player.png", Texture.class);
+        assetManager.load("item/copper_ore.png", Texture.class);
         assetManager.load("item/copper_pickaxe.png", Texture.class);
         assetManager.load("tile/dirt_tile.png", Texture.class);
         assetManager.load("tile/grass_tile.png", Texture.class);
@@ -72,8 +79,11 @@ public class Assets {
         TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.jpg");
         SKY = assetManager.get("sky.png");
 
+        EMPTY_ROCKS = assetManager.get("entity/empty_rocks.png");
+        COPPER_ORE_ROCKS = assetManager.get("entity/copper_ore_rocks.png");
         PLAYER = assetManager.get("entity/player.png");
 
+        COPPER_ORE = assetManager.get("item/copper_ore.png");
         COPPER_PICKAXE = assetManager.get("item/copper_pickaxe.png");
 
         DIRT_TILE = assetManager.get("tile/dirt_tile.png");
@@ -111,6 +121,7 @@ public class Assets {
         fontParameter.size = 10;
 
         ABILITY_BUTTON_FONT = fontGenerator.generateFont(fontParameter);
+        STACK_FONT = fontGenerator.generateFont(fontParameter);
 
         fontParameter.size = 12;
 

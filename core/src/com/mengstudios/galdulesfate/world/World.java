@@ -10,7 +10,10 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.entity.Entity;
+import com.mengstudios.galdulesfate.entity.ItemEntity;
 import com.mengstudios.galdulesfate.entity.Player;
+import com.mengstudios.galdulesfate.entity.mineralrock.MineralRock;
+import com.mengstudios.galdulesfate.item.tool.Pickaxe;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class World implements InputProcessor {
@@ -21,6 +24,7 @@ public class World implements InputProcessor {
 
     private Player player;
     private Array<Entity> entities;
+    private Array<Entity> entitiesToRemove;
 
     private WorldGenerator generator;
 
@@ -41,6 +45,7 @@ public class World implements InputProcessor {
         player.setMana(player.getMaxMana());
 
         entities = new Array<>();
+        entitiesToRemove = new Array<>();
 
         generator = new WorldGenerator(this);
     }
@@ -55,7 +60,10 @@ public class World implements InputProcessor {
         player.update(delta);
         for(Entity entity: entities) {
             entity.update(delta);
+            if(entity.isRemoved())
+                entitiesToRemove.add(entity);
         }
+        entities.removeAll(entitiesToRemove, true);
 
         checkCollisions();
 
@@ -182,6 +190,22 @@ public class World implements InputProcessor {
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
 
+        for(Entity entity: entities) {
+            if(!entity.isActive())
+                continue;
+
+            if (touching(screenX, screenY, entity)) {
+                if(entity instanceof MineralRock) {
+                    if(playScreen.getHud().getInventoryDisplay().getSelectedItem() instanceof Pickaxe) {
+                        ((Pickaxe) playScreen.getHud().getInventoryDisplay().getSelectedItem()).use(entity);
+                    }
+                }
+                if(entity instanceof ItemEntity) {
+                    ((ItemEntity) entity).onClicked();
+                }
+            }
+        }
+
         return false;
     }
 
@@ -207,5 +231,10 @@ public class World implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+
+    public boolean touching(int screenX, int screenY, Entity entity) {
+        return screenX > entity.getX() && screenX < entity.getX() + entity.getWidth()
+                && screenY > entity.getY() && screenY < entity.getY() + entity.getHeight();
     }
 }

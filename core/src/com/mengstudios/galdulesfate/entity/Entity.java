@@ -2,7 +2,6 @@ package com.mengstudios.galdulesfate.entity;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mengstudios.galdulesfate.screen.PlayScreen;
 import com.mengstudios.galdulesfate.world.World;
 
 public abstract class Entity extends Sprite {
@@ -22,6 +21,7 @@ public abstract class Entity extends Sprite {
     protected boolean grounded;
 
     protected boolean active = true;
+    protected boolean removed;
 
     public Entity(World world) {
         this.world = world;
@@ -67,6 +67,8 @@ public abstract class Entity extends Sprite {
 
     @Override
     public void draw(Batch batch) {
+        if(removed)
+            return;
         if(!active)
             return;
 
@@ -108,5 +110,17 @@ public abstract class Entity extends Sprite {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void remove() {
+        removed = true;
+    }
+
+    public boolean isRemoved() {
+        return removed;
     }
 }
