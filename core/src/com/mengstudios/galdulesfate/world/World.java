@@ -1,5 +1,6 @@
 package com.mengstudios.galdulesfate.world;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -32,6 +33,7 @@ public class World implements InputProcessor {
 
     private static final int TOTAL_KEYS = 255;
     private boolean[] keysHeld = new boolean[TOTAL_KEYS];
+    private boolean touchHeld;
 
     public World(PlayScreen playScreen) {
         this.playScreen = playScreen;
@@ -55,6 +57,9 @@ public class World implements InputProcessor {
             if(keysHeld[i]) {
                 keyHeld(i);
             }
+        }
+        if(touchHeld) {
+            touchHeld(Gdx.input.getX(), Gdx.input.getY(), delta);
         }
 
         player.update(delta);
@@ -195,18 +200,34 @@ public class World implements InputProcessor {
                 continue;
 
             if (touching(screenX, screenY, entity)) {
-                if(entity instanceof MineralRock) {
-                    if(playScreen.getHud().getInventoryDisplay().getSelectedItem() instanceof Pickaxe) {
-                        ((Pickaxe) playScreen.getHud().getInventoryDisplay().getSelectedItem()).use(entity);
-                    }
-                }
                 if(entity instanceof ItemEntity) {
                     ((ItemEntity) entity).onClicked();
                 }
             }
         }
 
+        touchHeld = true;
+
         return false;
+    }
+
+    public void touchHeld(int screenX, int screenY, float delta) {
+        Vector3 screenCoords = camera.unproject(new Vector3(screenX, screenY, 0));
+        screenX = Math.round(screenCoords.x);
+        screenY = Math.round(screenCoords.y);
+
+        for(Entity entity: entities) {
+            if(!entity.isActive())
+                continue;
+
+            if (touching(screenX, screenY, entity)) {
+                if(entity instanceof MineralRock) {
+                    if(playScreen.getHud().getInventoryDisplay().getSelectedItem() instanceof Pickaxe) {
+                        ((Pickaxe) playScreen.getHud().getInventoryDisplay().getSelectedItem()).mine((MineralRock) entity, delta);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -214,6 +235,8 @@ public class World implements InputProcessor {
         Vector3 screenCoords = camera.unproject(new Vector3(screenX, screenY, 0));
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
+
+        touchHeld = false;
 
         return false;
     }

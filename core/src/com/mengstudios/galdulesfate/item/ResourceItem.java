@@ -25,9 +25,11 @@ public class ResourceItem extends Item {
     @Override
     public void renderInventory(SpriteBatch batch, float inventoryX, float inventoryY, int row, int column) {
         super.renderInventory(batch, inventoryX, inventoryY, row, column);
-        text.setText(Integer.toString(count));
-        text.setPosition(inventoryX + column * 64 + 4, inventoryY + row * 64 + text.getHeight() + 4);
-        text.draw(batch);
+        if(count != 1) {
+            text.setText(Integer.toString(count));
+            text.setPosition(inventoryX + column * 64 + 4, inventoryY + row * 64 + text.getHeight() + 4);
+            text.draw(batch);
+        }
     }
 
     public void changeCount(int count) {

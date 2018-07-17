@@ -1,4 +1,4 @@
-package com.mengstudios.galdulesfate.item.tool;
+package com.mengstudios.galdulesfate.item;
 
 import com.mengstudios.galdulesfate.Assets;
 

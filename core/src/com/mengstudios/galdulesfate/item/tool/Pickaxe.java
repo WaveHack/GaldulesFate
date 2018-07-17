@@ -7,12 +7,14 @@ import com.mengstudios.galdulesfate.entity.mineralrock.MineralRock;
 public class Pickaxe extends Tool {
     @Override
     public void use(Entity entity) {
-        if(entity instanceof MineralRock) {
-            if(level >= ((MineralRock) entity).getMinimumLevel()) {
-                ((MineralRock) entity).mine();
-            } else {
-                Gdx.app.log("Pickaxe", "Pickaxe level not high enough!");
-            }
+
+    }
+
+    public void mine(MineralRock mineralRock, float delta) {
+        if(level >= mineralRock.getMinimumLevel()) {
+            mineralRock.mine(delta);
+        } else {
+            Gdx.app.log("Pickaxe", "Pickaxe level not high enough!");
         }
     }
 }

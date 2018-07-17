@@ -3,6 +3,7 @@ package com.mengstudios.galdulesfate;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,6 +19,7 @@ public class Assets {
     public static Texture EMPTY_ROCKS;
     public static Texture PLAYER;
 
+    public static Texture COPPER_BAR;
     public static Texture COPPER_ORE;
     public static Texture COPPER_PICKAXE;
 
@@ -39,6 +41,7 @@ public class Assets {
     public static Texture TOUCHPAD_KNOB;
 
     public static Music BACKGROUD_MUSIC_1;
+    public static Sound PICKAXE_SOUND;
 
     private FreeTypeFontGenerator fontGenerator;
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
@@ -56,6 +59,7 @@ public class Assets {
         assetManager.load("entity/copper_ore_rocks.png", Texture.class);
         assetManager.load("entity/empty_rocks.png", Texture.class);
         assetManager.load("entity/player.png", Texture.class);
+        assetManager.load("item/copper_bar.png", Texture.class);
         assetManager.load("item/copper_ore.png", Texture.class);
         assetManager.load("item/copper_pickaxe.png", Texture.class);
         assetManager.load("tile/dirt_tile.png", Texture.class);
@@ -74,6 +78,7 @@ public class Assets {
         assetManager.load("ui/touchpad_background.png", Texture.class);
         assetManager.load("ui/touchpad_knob.png", Texture.class);
         assetManager.load("music/background_music_1.mp3", Music.class);
+        assetManager.load("sound/pickaxe_sound.wav", Sound.class);
         assetManager.finishLoading();
 
         TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.jpg");
@@ -83,6 +88,7 @@ public class Assets {
         COPPER_ORE_ROCKS = assetManager.get("entity/copper_ore_rocks.png");
         PLAYER = assetManager.get("entity/player.png");
 
+        COPPER_BAR = assetManager.get("item/copper_bar.png");
         COPPER_ORE = assetManager.get("item/copper_ore.png");
         COPPER_PICKAXE = assetManager.get("item/copper_pickaxe.png");
 
@@ -104,6 +110,7 @@ public class Assets {
         TOUCHPAD_KNOB = assetManager.get("ui/touchpad_knob.png");
 
         BACKGROUD_MUSIC_1 = assetManager.get("music/background_music_1.mp3");
+        PICKAXE_SOUND = assetManager.get("sound/pickaxe_sound.wav");
 
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("OldWizard.ttf"));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -121,10 +128,13 @@ public class Assets {
         fontParameter.size = 10;
 
         ABILITY_BUTTON_FONT = fontGenerator.generateFont(fontParameter);
-        STACK_FONT = fontGenerator.generateFont(fontParameter);
 
         fontParameter.size = 12;
 
         SLIDER_FONT = fontGenerator.generateFont(fontParameter);
+
+        fontParameter.size = 14;
+
+        STACK_FONT = fontGenerator.generateFont(fontParameter);
     }
 }

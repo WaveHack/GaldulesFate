@@ -30,7 +30,7 @@ public class Player extends Mob {
 
         Array<TextureRegion> frames = new Array<>();
         for(int i = 0; i < 4; i++) {
-            frames.add(new TextureRegion(Assets.PLAYER, i * 27 * 2, 0, 27 * 2, 48 * 2));
+            frames.add(new TextureRegion(Assets.PLAYER, i * 27 * 2, 0, 27 * 2, 50 * 2));
         }
         walk = new Animation<>(1/10f, frames);
         walk.setPlayMode(Animation.PlayMode.LOOP);
@@ -39,7 +39,7 @@ public class Player extends Mob {
         jumpTexture = frames.get(0);
 
         setRegion(standTexture);
-        setBounds(x, y, 54, 96);
+        setBounds(x, y, 54, 100);
 
         maxHealth = 100;
         maxMana = 100;
