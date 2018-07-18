@@ -40,7 +40,7 @@ public class FurnaceUi extends Ui {
         if(touchIn(screenX, screenY, x, y, backgroundTexture.getWidth(), backgroundTexture.getHeight())) {
             if(touchIn(screenX, screenY, x + backgroundTexture.getWidth() - 64 - 10, y + 16, 64, 64)) {
                 if(bar != null) {
-                    hud.getPlayScreen().getPlayer().getInventory().addResource(bar, bar.getCount());
+                    hud.getPlayScreen().getPlayer().getInventory().addResource(bar);
                     bar = null;
                 }
             }

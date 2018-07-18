@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
@@ -13,7 +14,7 @@ import com.mengstudios.galdulesfate.screen.PlayScreen;
 public class Hud implements InputProcessor {
     private PlayScreen playScreen;
 
-    private StretchViewport viewport;
+    private ExtendViewport viewport;
     private OrthographicCamera camera;
 
     private StatusDisplay statusDisplay;
@@ -29,7 +30,7 @@ public class Hud implements InputProcessor {
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
-        viewport = new StretchViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
+        viewport = new ExtendViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
 
         statusDisplay = new StatusDisplay(this);
         inventoryDisplay = new InventoryDisplay(this);
@@ -100,7 +101,7 @@ public class Hud implements InputProcessor {
         return playScreen;
     }
 
-    public StretchViewport getViewport() {
+    public ExtendViewport getViewport() {
         return viewport;
     }
 

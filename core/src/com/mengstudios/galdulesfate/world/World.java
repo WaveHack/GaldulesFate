@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
@@ -21,7 +22,7 @@ import com.mengstudios.galdulesfate.screen.PlayScreen;
 public class World implements InputProcessor {
     private PlayScreen playScreen;
 
-    private StretchViewport viewport;
+    private ExtendViewport viewport;
     private OrthographicCamera camera;
 
     private Player player;
@@ -41,7 +42,7 @@ public class World implements InputProcessor {
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
-        viewport = new StretchViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
+        viewport = new ExtendViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
 
         player = new Player(this, 16 * 64, 16 * 64 + 64);
         player.setHealth(player.getMaxHealth());
@@ -145,7 +146,7 @@ public class World implements InputProcessor {
         return camera;
     }
 
-    public StretchViewport getViewport() {
+    public ExtendViewport getViewport() {
         return viewport;
     }
 

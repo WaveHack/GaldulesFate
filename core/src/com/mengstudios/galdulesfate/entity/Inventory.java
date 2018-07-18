@@ -45,7 +45,7 @@ public class Inventory {
         return null;
     }
 
-    public void addResource(ResourceItem resourceItem, int count) {
+    public void addResource(ResourceItem resourceItem) {
         boolean hasResource = false;
         for(int i = 0; i < items.length; i++) {
             if(items[i] == null)
