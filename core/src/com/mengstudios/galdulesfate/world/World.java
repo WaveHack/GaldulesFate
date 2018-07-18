@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.entity.Entity;
+import com.mengstudios.galdulesfate.entity.InteractiveEntity;
 import com.mengstudios.galdulesfate.entity.ItemEntity;
 import com.mengstudios.galdulesfate.entity.Player;
 import com.mengstudios.galdulesfate.entity.mineralrock.MineralRock;
@@ -119,6 +120,10 @@ public class World implements InputProcessor {
         }
     }
 
+    public PlayScreen getPlayScreen() {
+        return playScreen;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -200,8 +205,8 @@ public class World implements InputProcessor {
                 continue;
 
             if (touching(screenX, screenY, entity)) {
-                if(entity instanceof ItemEntity) {
-                    ((ItemEntity) entity).onClicked();
+                if(entity instanceof InteractiveEntity) {
+                    ((InteractiveEntity) entity).touchDown();
                 }
             }
         }
@@ -221,10 +226,8 @@ public class World implements InputProcessor {
                 continue;
 
             if (touching(screenX, screenY, entity)) {
-                if(entity instanceof MineralRock) {
-                    if(playScreen.getHud().getInventoryDisplay().getSelectedItem() instanceof Pickaxe) {
-                        ((Pickaxe) playScreen.getHud().getInventoryDisplay().getSelectedItem()).mine((MineralRock) entity, delta);
-                    }
+                if(entity instanceof InteractiveEntity) {
+                    ((InteractiveEntity) entity).touchHeld(delta);
                 }
             }
         }

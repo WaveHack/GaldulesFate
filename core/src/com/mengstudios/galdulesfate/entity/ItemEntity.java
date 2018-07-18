@@ -4,7 +4,7 @@ import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.ResourceItem;
 import com.mengstudios.galdulesfate.world.World;
 
-public class ItemEntity extends Entity {
+public class ItemEntity extends InteractiveEntity {
     Item item;
 
     public ItemEntity(World world, Item item, float x, float y) {
@@ -15,7 +15,8 @@ public class ItemEntity extends Entity {
         setBounds(x, y, item.getTexture().getWidth(), item.getTexture().getHeight());
     }
 
-    public void onClicked() {
+    @Override
+    public void touchDown() {
         if(item instanceof ResourceItem) {
             world.getPlayer().getInventory().addResource((ResourceItem) item);
         } else {
@@ -23,5 +24,4 @@ public class ItemEntity extends Entity {
         }
         remove();
     }
-
 }

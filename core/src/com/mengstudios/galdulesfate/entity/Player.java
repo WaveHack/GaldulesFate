@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
+import com.mengstudios.galdulesfate.item.CopperOre;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
 import com.mengstudios.galdulesfate.world.World;
 
@@ -50,12 +51,15 @@ public class Player extends Mob {
 
         inventory = new Inventory();
         inventory.add(new CopperPickaxe());
+        inventory.addResource(new CopperOre());
     }
 
     @Override
     public void update(float delta) {
         super.update(delta);
         setRegion(getFrame(delta));
+
+        inventory.update(delta);
     }
 
     public TextureRegion getFrame(float delta) {

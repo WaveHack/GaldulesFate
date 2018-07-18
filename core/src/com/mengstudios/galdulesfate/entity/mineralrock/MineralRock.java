@@ -3,12 +3,13 @@ package com.mengstudios.galdulesfate.entity.mineralrock;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Timer;
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.entity.Entity;
+import com.mengstudios.galdulesfate.entity.InteractiveEntity;
 import com.mengstudios.galdulesfate.entity.ItemEntity;
 import com.mengstudios.galdulesfate.item.Ore;
+import com.mengstudios.galdulesfate.item.tool.Pickaxe;
 import com.mengstudios.galdulesfate.world.World;
 
-public class MineralRock extends Entity {
+public class MineralRock extends InteractiveEntity {
     protected Texture texture;
     protected int minimumLevel;
     protected boolean mined;
@@ -20,6 +21,18 @@ public class MineralRock extends Entity {
     public MineralRock(World world, float x, float y) {
         super(world, x, y);
         solid = false;
+    }
+
+    @Override
+    public void touchDown() {
+
+    }
+
+    @Override
+    public void touchHeld(float delta) {
+        if(world.getPlayScreen().getHud().getInventoryDisplay().getSelectedItem() instanceof Pickaxe) {
+            ((Pickaxe) world.getPlayScreen().getHud().getInventoryDisplay().getSelectedItem()).mine(this, delta);
+        }
     }
 
     @Override

@@ -17,6 +17,7 @@ public class Assets {
 
     public static Texture COPPER_ORE_ROCKS;
     public static Texture EMPTY_ROCKS;
+    public static Texture FURNACE;
     public static Texture PLAYER;
 
     public static Texture COPPER_BAR;
@@ -58,6 +59,7 @@ public class Assets {
         assetManager.load("sky.png", Texture.class);
         assetManager.load("entity/copper_ore_rocks.png", Texture.class);
         assetManager.load("entity/empty_rocks.png", Texture.class);
+        assetManager.load("entity/furnace.png", Texture.class);
         assetManager.load("entity/player.png", Texture.class);
         assetManager.load("item/copper_bar.png", Texture.class);
         assetManager.load("item/copper_ore.png", Texture.class);
@@ -84,8 +86,9 @@ public class Assets {
         TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.jpg");
         SKY = assetManager.get("sky.png");
 
-        EMPTY_ROCKS = assetManager.get("entity/empty_rocks.png");
         COPPER_ORE_ROCKS = assetManager.get("entity/copper_ore_rocks.png");
+        EMPTY_ROCKS = assetManager.get("entity/empty_rocks.png");
+        FURNACE = assetManager.get("entity/furnace.png");
         PLAYER = assetManager.get("entity/player.png");
 
         COPPER_BAR = assetManager.get("item/copper_bar.png");
