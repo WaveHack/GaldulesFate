@@ -47,7 +47,10 @@ public class MineralRock extends InteractiveEntity {
 
         if(!mining) {
             timer = 0;
-            soundIsPlaying = false;
+            if(soundIsPlaying) {
+                soundIsPlaying = false;
+                Assets.PICKAXE_SOUND.stop();
+            }
         }
         mining = false;
 
@@ -68,6 +71,7 @@ public class MineralRock extends InteractiveEntity {
                 }
             }, 2f);
             soundIsPlaying = false;
+            Assets.PICKAXE_SOUND.stop();
         }
     }
 
@@ -77,7 +81,7 @@ public class MineralRock extends InteractiveEntity {
 
         mining = true;
         if(!soundIsPlaying) {
-            Assets.PICKAXE_SOUND.play();
+            Assets.PICKAXE_SOUND.loop();
             soundIsPlaying = true;
         }
 

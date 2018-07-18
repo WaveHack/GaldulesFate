@@ -73,7 +73,6 @@ public class Inventory {
         ResourceItem has;
         while((has = findResourceItem(resourceItem)) != null) {
             has.remove(count);
-            Gdx.app.log("Inventory", "resourceItem found: " + has.toString());
             if(has.getCount() != 0) {
                 return;
             }

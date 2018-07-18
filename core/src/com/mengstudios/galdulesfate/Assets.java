@@ -82,7 +82,7 @@ public class Assets {
         assetManager.load("ui/touchpad_background.png", Texture.class);
         assetManager.load("ui/touchpad_knob.png", Texture.class);
         assetManager.load("music/background_music_1.mp3", Music.class);
-        assetManager.load("sound/pickaxe_sound.wav", Sound.class);
+        assetManager.load("sound/pickaxe_sound.ogg", Sound.class);
         assetManager.finishLoading();
 
         TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.jpg");
@@ -116,7 +116,7 @@ public class Assets {
         TOUCHPAD_KNOB = assetManager.get("ui/touchpad_knob.png");
 
         BACKGROUD_MUSIC_1 = assetManager.get("music/background_music_1.mp3");
-        PICKAXE_SOUND = assetManager.get("sound/pickaxe_sound.wav");
+        PICKAXE_SOUND = assetManager.get("sound/pickaxe_sound.ogg");
 
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("OldWizard.ttf"));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
