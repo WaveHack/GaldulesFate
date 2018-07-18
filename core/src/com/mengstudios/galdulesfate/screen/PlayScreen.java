@@ -26,11 +26,11 @@ public class PlayScreen implements Screen {
         world.create();
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(world);
-        inputMultiplexer.addProcessor(hud);
         if(GaldulesFate.mobile) {
             inputMultiplexer.addProcessor(hud.getMobileControls().getStage());
         }
+        inputMultiplexer.addProcessor(world);
+        inputMultiplexer.addProcessor(hud);
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
 

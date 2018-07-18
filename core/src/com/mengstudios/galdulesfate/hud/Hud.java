@@ -20,8 +20,8 @@ public class Hud implements InputProcessor {
     private StatusDisplay statusDisplay;
     private InventoryDisplay inventoryDisplay;
 
-    Array<Ui> uis;
-    Array<Ui> uisToRemove;
+    private Array<Ui> uis;
+    private Array<Ui> uisToRemove;
 
     private MobileControls mobileControls;
 
@@ -191,6 +191,12 @@ public class Hud implements InputProcessor {
         Vector3 screenCoords = camera.unproject(new Vector3(screenX, screenY, 0));
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
+
+        if(GaldulesFate.mobile) {
+            if(mobileControls.isTouched(screenX, screenY)) {
+                return true;
+            }
+        }
 
         statusDisplay.touchDown(screenX, screenY, pointer, button);
         inventoryDisplay.touchDown(screenX, screenY, pointer, button);

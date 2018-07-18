@@ -4,13 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class MobileControls {
@@ -53,5 +48,16 @@ public class MobileControls {
 
     public Stage getStage() {
         return stage;
+    }
+
+    public Touchpad getTouchpad() {
+        return touchpad;
+    }
+
+    public boolean isTouched(int screenX, int screenY) {
+        float xDif = screenX - (playScreen.getHud().getMobileControls().getTouchpad().getX() + Assets.TOUCHPAD_BACKGROUND.getWidth() / 2);
+        float yDif = screenY - (playScreen.getHud().getMobileControls().getTouchpad().getY() + Assets.TOUCHPAD_BACKGROUND.getHeight() / 2);
+        float radius = Assets.TOUCHPAD_BACKGROUND.getWidth() / 2;
+        return xDif * xDif + yDif * yDif < radius * radius;
     }
 }
