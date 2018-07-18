@@ -18,7 +18,7 @@ public class ItemEntity extends InteractiveEntity {
     @Override
     public void touchDown() {
         if(item instanceof ResourceItem) {
-            world.getPlayer().getInventory().addResource((ResourceItem) item);
+            world.getPlayer().getInventory().addResource((ResourceItem) item, ((ResourceItem) item).getCount());
         } else {
             world.getPlayer().getInventory().add(item);
         }

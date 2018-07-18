@@ -31,6 +31,7 @@ public class Assets {
     public static Texture ABILITY_BUTTON_UP;
     public static Texture BUTTON_DOWN;
     public static Texture BUTTON_UP;
+    public static Texture FURNACE_UI;
     public static Texture HEALTH_BAR_BACK;
     public static Texture HEALTH_BAR_FRONT;
     public static Texture HIGHLIGHT;
@@ -70,6 +71,7 @@ public class Assets {
         assetManager.load("ui/ability_button_up.png", Texture.class);
         assetManager.load("ui/button_down.png", Texture.class);
         assetManager.load("ui/button_up.png", Texture.class);
+        assetManager.load("ui/furnace_ui.png", Texture.class);
         assetManager.load("ui/health_bar_back.png", Texture.class);
         assetManager.load("ui/health_bar_front.png", Texture.class);
         assetManager.load("ui/highlight.png", Texture.class);
@@ -102,6 +104,7 @@ public class Assets {
         ABILITY_BUTTON_UP = assetManager.get("ui/ability_button_up.png");
         BUTTON_DOWN = assetManager.get("ui/button_down.png");
         BUTTON_UP = assetManager.get("ui/button_up.png");
+        FURNACE_UI = assetManager.get("ui/furnace_ui.png");
         HEALTH_BAR_BACK = assetManager.get("ui/health_bar_back.png");
         HEALTH_BAR_FRONT = assetManager.get("ui/health_bar_front.png");
         HIGHLIGHT = assetManager.get("ui/highlight.png");

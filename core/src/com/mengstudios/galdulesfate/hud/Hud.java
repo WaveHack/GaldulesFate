@@ -19,6 +19,9 @@ public class Hud implements InputProcessor {
     private StatusDisplay statusDisplay;
     private InventoryDisplay inventoryDisplay;
 
+    Array<Ui> uis;
+    Array<Ui> uisToRemove;
+
     private MobileControls mobileControls;
 
     public Hud(PlayScreen playScreen) {
@@ -30,6 +33,9 @@ public class Hud implements InputProcessor {
 
         statusDisplay = new StatusDisplay(this);
         inventoryDisplay = new InventoryDisplay(this);
+
+        uis = new Array<>();
+        uisToRemove = new Array<>();
 
         if(GaldulesFate.mobile) {
             mobileControls = new MobileControls(playScreen, viewport);
@@ -44,14 +50,34 @@ public class Hud implements InputProcessor {
         if(GaldulesFate.mobile) {
             mobileControls.update(delta);
         }
+
+        for(Ui ui: uis) {
+            if(ui.isRemoved()) {
+                uisToRemove.add(ui);
+            }
+
+            ui.update(delta);
+        }
+        uis.removeAll(uisToRemove, true);
+        uisToRemove.clear();
     }
 
     public void draw(SpriteBatch batch) {
         statusDisplay.draw(batch);
         inventoryDisplay.draw(batch);
+        for(Ui ui: uis) {
+            if(ui.isHidden())
+                continue;
+
+            ui.draw(batch);
+        }
         /*if(GaldulesFate.mobile) {
             mobileControls.draw(batch);
         }*/
+    }
+
+    public void addUi(Ui ui) {
+        uis.add(ui);
     }
 
     public OrthographicCamera getCamera() {
@@ -167,6 +193,12 @@ public class Hud implements InputProcessor {
 
         statusDisplay.touchDown(screenX, screenY, pointer, button);
         inventoryDisplay.touchDown(screenX, screenY, pointer, button);
+        for(Ui ui: uis) {
+            if(ui.isHidden())
+                continue;
+
+            ui.touchDown(screenX, screenY, pointer, button);
+        }
         return false;
     }
 

@@ -38,6 +38,10 @@ public class Item {
         this.swinging = swinging;
     }
 
+    public void renderUi(SpriteBatch batch, float x, float y) {
+        batch.draw(texture, x, y);
+    }
+
     public void renderInventory(SpriteBatch batch, float inventoryX, float inventoryY, int row, int column) {
         batch.draw(texture, inventoryX + column * 64, inventoryY + row * 64);
     }

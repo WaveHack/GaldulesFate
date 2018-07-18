@@ -23,6 +23,16 @@ public class ResourceItem extends Item {
     }
 
     @Override
+    public void renderUi(SpriteBatch batch, float x, float y) {
+        super.renderUi(batch, x, y);
+        if(count != 1) {
+            text.setText(Integer.toString(count));
+            text.setPosition(x + 4, y + text.getHeight() + 4);
+            text.draw(batch);
+        }
+    }
+
+    @Override
     public void renderInventory(SpriteBatch batch, float inventoryX, float inventoryY, int row, int column) {
         super.renderInventory(batch, inventoryX, inventoryY, row, column);
         if(count != 1) {
@@ -30,6 +40,10 @@ public class ResourceItem extends Item {
             text.setPosition(inventoryX + column * 64 + 4, inventoryY + row * 64 + text.getHeight() + 4);
             text.draw(batch);
         }
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public void changeCount(int count) {

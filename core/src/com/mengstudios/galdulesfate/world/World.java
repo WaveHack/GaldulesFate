@@ -53,6 +53,14 @@ public class World implements InputProcessor {
         generator = new WorldGenerator(this);
     }
 
+    public void create() {
+        for(Entity entity: entities) {
+            if(entity instanceof InteractiveEntity) {
+                ((InteractiveEntity) entity).create();
+            }
+        }
+    }
+
     public void update(float delta) {
         for (int i = 0; i < keysHeld.length; i++) {
             if(keysHeld[i]) {
@@ -70,12 +78,13 @@ public class World implements InputProcessor {
                 entitiesToRemove.add(entity);
         }
         entities.removeAll(entitiesToRemove, true);
+        entitiesToRemove.clear();
 
         checkCollisions();
 
         generator.update(delta);
 
-        camera.position.set(getPlayer().getX(), getPlayer().getY() + 100, 0);
+        camera.position.set(getPlayer().getX() + getPlayer().getWidth() / 2, getPlayer().getY() + 100, 0);
         camera.update();
     }
 

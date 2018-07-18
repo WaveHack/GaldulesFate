@@ -24,6 +24,8 @@ public class PlayScreen implements Screen {
 
         hud = new Hud(this);
 
+        world.create();
+
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(world);
         inputMultiplexer.addProcessor(hud);

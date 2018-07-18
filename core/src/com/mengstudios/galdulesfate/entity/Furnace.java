@@ -1,11 +1,14 @@
 package com.mengstudios.galdulesfate.entity;
 
+import com.badlogic.gdx.Gdx;
 import com.mengstudios.galdulesfate.Assets;
+import com.mengstudios.galdulesfate.hud.FurnaceUi;
 import com.mengstudios.galdulesfate.item.CopperBar;
 import com.mengstudios.galdulesfate.item.CopperOre;
 import com.mengstudios.galdulesfate.world.World;
 
 public class Furnace extends InteractiveEntity {
+    FurnaceUi furnaceUi;
 
     public Furnace(World world, float x, float y) {
         super(world, x, y);
@@ -15,8 +18,16 @@ public class Furnace extends InteractiveEntity {
     }
 
     @Override
+    public void create() {
+        furnaceUi = new FurnaceUi(world.getPlayScreen().getHud());
+        furnaceUi.hide();
+        world.getPlayScreen().getHud().addUi(furnaceUi);
+    }
+
+    @Override
     public void touchDown() {
-        if(world.getPlayScreen().getHud().getInventoryDisplay().getSelectedItem() instanceof CopperOre) {
+        furnaceUi.show();
+        /*if(world.getPlayScreen().getHud().getInventoryDisplay().getSelectedItem() instanceof CopperOre) {
             try {
                 world.getPlayer().getInventory().removeResource(CopperOre.class.newInstance(), 1);
                 world.getPlayer().getInventory().addResource(new CopperBar());
@@ -25,6 +36,7 @@ public class Furnace extends InteractiveEntity {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
+
     }
 }

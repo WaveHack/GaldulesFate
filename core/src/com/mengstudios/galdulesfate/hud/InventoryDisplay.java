@@ -12,8 +12,8 @@ public class InventoryDisplay {
 
     private Texture inventoryBackground = Assets.INVENTORY;
 
-    private static final float INVENTORY_X = GaldulesFate.WIDTH - Assets.INVENTORY.getWidth() - 20;
-    private static final float INVENTORY_Y = GaldulesFate.HEIGHT - Assets.INVENTORY.getHeight() - 20;
+    private final float INVENTORY_X = GaldulesFate.WIDTH - Assets.INVENTORY.getWidth() - 20;
+    private final float INVENTORY_Y = GaldulesFate.HEIGHT - Assets.INVENTORY.getHeight() - 20;
 
     private Player player;
 
@@ -56,6 +56,14 @@ public class InventoryDisplay {
         return selectedItem;
     }
 
+    public float getX() {
+        return INVENTORY_X;
+    }
+
+    public float getY() {
+        return INVENTORY_Y;
+    }
+
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if(selectedItem != null) {
             selectedItem.setSwinging(true);
@@ -72,8 +80,6 @@ public class InventoryDisplay {
                 int column = i % 9;
                 if(screenX > INVENTORY_X + column * 64 && screenX < INVENTORY_X + column * 64 + 64
                         && screenY > INVENTORY_Y + row * 64 && screenY < INVENTORY_Y + row * 64 + 64) {
-                    if((3 - row) * 9 + column >= player.getInventory().getItems().length)
-                        return false;
                     Item selectedItemTemp = player.getInventory().getItems()[((3 - row) * 9 + column)];
                     if(selectedItemTemp == selectedItem) {
                         selectedItem = null;

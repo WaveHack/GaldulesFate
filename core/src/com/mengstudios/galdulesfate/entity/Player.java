@@ -51,7 +51,6 @@ public class Player extends Mob {
 
         inventory = new Inventory();
         inventory.add(new CopperPickaxe());
-        inventory.addResource(new CopperOre());
     }
 
     @Override

@@ -8,6 +8,10 @@ public abstract class InteractiveEntity extends Entity {
         super(world, x, y);
     }
 
+    public void create() {
+
+    }
+
     public abstract void touchDown();
 
     public void touchHeld(float delta) {

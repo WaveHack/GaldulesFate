@@ -45,7 +45,7 @@ public class Inventory {
         return null;
     }
 
-    public void addResource(ResourceItem resourceItem) {
+    public void addResource(ResourceItem resourceItem, int count) {
         boolean hasResource = false;
         for(int i = 0; i < items.length; i++) {
             if(items[i] == null)
@@ -57,7 +57,15 @@ public class Inventory {
             }
         }
         if(!hasResource) {
-            add(resourceItem);
+            try {
+                ResourceItem resourceItemTemp = resourceItem.getClass().newInstance();
+                resourceItem.changeCount(resourceItem.getCount());
+                add(resourceItemTemp);
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
     }
 
