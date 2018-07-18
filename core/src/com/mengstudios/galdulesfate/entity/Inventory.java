@@ -34,7 +34,7 @@ public class Inventory {
         }
     }
 
-    public ResourceItem findResourceItem(ResourceItem resourceItem) {
+    private ResourceItem findResourceItem(ResourceItem resourceItem) {
         for(Item item: items) {
             if(item instanceof ResourceItem) {
                 if(item.getClass() == resourceItem.getClass() && ((ResourceItem) item).getCount() > 0) {
@@ -59,7 +59,7 @@ public class Inventory {
         if(!hasResource) {
             try {
                 ResourceItem resourceItemTemp = resourceItem.getClass().newInstance();
-                resourceItem.changeCount(resourceItem.getCount());
+                resourceItemTemp.setCount(resourceItem.getCount());
                 add(resourceItemTemp);
             } catch (InstantiationException e) {
                 e.printStackTrace();
@@ -70,8 +70,8 @@ public class Inventory {
     }
 
     public void removeResource(ResourceItem resourceItem, int count) {
-        while(findResourceItem(resourceItem) != null) {
-            ResourceItem has = findResourceItem(resourceItem);
+        ResourceItem has;
+        while((has = findResourceItem(resourceItem)) != null) {
             has.remove(count);
             Gdx.app.log("Inventory", "resourceItem found: " + has.toString());
             if(has.getCount() != 0) {
