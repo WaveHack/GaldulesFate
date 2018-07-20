@@ -2,15 +2,14 @@ package com.mengstudios.galdulesfate.hud;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 
 public class Ui {
-    protected Hud hud;
-    protected Texture backgroundTexture;
-    protected float x;
-    protected float y;
-    protected boolean hidden;
-    protected boolean removed;
+    Hud hud;
+    Texture backgroundTexture;
+    float x;
+    float y;
+    boolean hidden;
+    boolean removed;
 
     public Ui(Hud hud) {
         this.hud = hud;
@@ -50,5 +49,13 @@ public class Ui {
 
     public void touchDown(int screenX, int screenY, int pointer, int button) {
 
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
     }
 }
