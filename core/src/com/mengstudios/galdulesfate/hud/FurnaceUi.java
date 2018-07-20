@@ -64,8 +64,6 @@ public class FurnaceUi extends Ui {
                 bar.changeCount(1);
             }
         }
-
-        Gdx.app.log("FurnaceUi", "arrow progress value: " + Float.toString(arrowProgress.getValue()));
     }
 
     @Override
