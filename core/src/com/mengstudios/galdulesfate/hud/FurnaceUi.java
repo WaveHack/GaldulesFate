@@ -19,7 +19,6 @@ public class FurnaceUi extends Ui {
     private Bar bar;
 
     private boolean smelting;
-    private float timer;
 
     public FurnaceUi(Hud hud) {
         super(hud);
@@ -56,6 +55,7 @@ public class FurnaceUi extends Ui {
             if(ore.getCount() == 0) {
                 ore = null;
                 smelting = false;
+                Assets.FURNACE_SOUND.stop();
             }
 
             if (bar == null) {
@@ -106,6 +106,7 @@ public class FurnaceUi extends Ui {
                                 ore.changeCount(1);
                             }
                             smelting = true;
+                            Assets.FURNACE_SOUND.loop(1f);
                         } catch (InstantiationException e) {
                             e.printStackTrace();
                         } catch (IllegalAccessException e) {

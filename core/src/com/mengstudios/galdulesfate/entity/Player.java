@@ -11,20 +11,22 @@ import com.mengstudios.galdulesfate.world.World;
 
 public class Player extends Mob {
     public enum State {STANDING, WALKING, JUMPING}
-    protected State previousState = State.STANDING;
-    protected State state = State.STANDING;
+    State previousState = State.STANDING;
+    State state = State.STANDING;
 
-    protected Inventory inventory;
+    Inventory inventory;
 
-    protected Animation<TextureRegion> walk;
-    protected TextureRegion standTexture;
-    protected TextureRegion jumpTexture;
+    Animation<TextureRegion> walk;
+    TextureRegion standTexture;
+    TextureRegion jumpTexture;
 
-    protected float jumpHeight = 500;
-    protected int maxMana;
-    protected int mana;
+    float jumpHeight = 500;
+    int maxMana;
+    int mana;
 
-    protected float stateTimer;
+    float stateTimer;
+
+    boolean footstepsDirtPlaying;
 
     public Player(World world, float x, float y) {
         super(world, x, y);
@@ -59,6 +61,15 @@ public class Player extends Mob {
         setRegion(getFrame(delta));
 
         inventory.update(delta);
+
+        if((velocityX == 0 && footstepsDirtPlaying)/* || (!grounded && footstepsDirtPlaying)*/) {
+            Assets.FOOTSTEP_DIRT_SOUND.stop();
+            footstepsDirtPlaying = false;
+        }
+        if (grounded && !footstepsDirtPlaying) {
+            Assets.FOOTSTEP_DIRT_SOUND.loop();
+            footstepsDirtPlaying = true;
+        }
     }
 
     public TextureRegion getFrame(float delta) {
@@ -134,5 +145,8 @@ public class Player extends Mob {
         }
         velocityY += jumpHeight;
         grounded = false;
+
+        Assets.FOOTSTEP_DIRT_SOUND.stop();
+        footstepsDirtPlaying = false;
     }
 }

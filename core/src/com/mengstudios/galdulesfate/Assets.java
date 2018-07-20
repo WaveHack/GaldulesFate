@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
+import java.util.HashMap;
+
 public class Assets {
     private AssetManager assetManager;
 
@@ -44,6 +46,8 @@ public class Assets {
     public static Texture TOUCHPAD_KNOB;
 
     public static Music BACKGROUD_MUSIC_1;
+    public static Sound FOOTSTEP_DIRT_SOUND;
+    public static Sound FURNACE_SOUND;
     public static Sound PICKAXE_SOUND;
 
     private FreeTypeFontGenerator fontGenerator;
@@ -84,6 +88,8 @@ public class Assets {
         assetManager.load("ui/touchpad_background.png", Texture.class);
         assetManager.load("ui/touchpad_knob.png", Texture.class);
         assetManager.load("music/background_music_1.mp3", Music.class);
+        assetManager.load("sound/footstep_dirt_sound.mp3", Sound.class);
+        assetManager.load("sound/furnace_sound.ogg", Sound.class);
         assetManager.load("sound/pickaxe_sound.ogg", Sound.class);
         assetManager.finishLoading();
 
@@ -119,6 +125,8 @@ public class Assets {
         TOUCHPAD_KNOB = assetManager.get("ui/touchpad_knob.png");
 
         BACKGROUD_MUSIC_1 = assetManager.get("music/background_music_1.mp3");
+        FOOTSTEP_DIRT_SOUND = assetManager.get("sound/footstep_dirt_sound.mp3");
+        FURNACE_SOUND = assetManager.get("sound/furnace_sound.ogg");
         PICKAXE_SOUND = assetManager.get("sound/pickaxe_sound.ogg");
 
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("OldWizard.ttf"));
