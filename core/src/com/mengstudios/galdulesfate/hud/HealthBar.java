@@ -29,7 +29,7 @@ public class HealthBar extends Slider {
         changeValue(value);
     }
 
-    public int getMaxHealth() {
+    public float getMaxHealth() {
         return maxValue;
     }
 }

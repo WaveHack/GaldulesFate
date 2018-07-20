@@ -29,7 +29,7 @@ public class ManaBar extends Slider {
         changeValue(value);
     }
 
-    public int getMaxMana() {
+    public float getMaxMana() {
         return maxValue;
     }
 }

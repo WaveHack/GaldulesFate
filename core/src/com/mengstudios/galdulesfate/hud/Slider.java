@@ -13,8 +13,8 @@ public class Slider {
     protected float x;
     protected float y;
 
-    protected int maxValue;
-    protected int value;
+    protected float maxValue;
+    protected float value;
 
     protected Color sliderColor;
     protected Color minColor;
@@ -26,6 +26,7 @@ public class Slider {
     protected float TEXT_PADDING_Y = 2;
 
     protected boolean init = true;
+    protected boolean showText = true;
 
     public Color lerp(Color color1, Color color2, float t) {
         float red = color1.r * (1 - t) + color2.r * t;
@@ -36,8 +37,8 @@ public class Slider {
     }
 
     public void update(float delta) {
-        if(init) {
-            text.setText(Integer.toString(value) + " / " + Integer.toString(maxValue));
+        if(init && showText) {
+            text.setText(Integer.toString((int) value) + " / " + Integer.toString((int) maxValue));
             text.updateBounds();
             init = false;
         }
@@ -52,26 +53,38 @@ public class Slider {
         sliderColor = lerp(minColor, maxColor, (float) value / (float) maxValue);
         back.setRegionWidth(Math.round(((float) value / (float) maxValue) * backFull.getWidth()));
 
-        text.setText(Integer.toString(value) + " / " + Integer.toString(maxValue));
+        if(text != null) {
+            text.setText(Integer.toString((int) value) + " / " + Integer.toString((int) maxValue));
+        }
     }
 
     public void draw(SpriteBatch batch) {
         batch.setColor(sliderColor);
         batch.draw(back, x, y);
         batch.setColor(Color.WHITE);
-        batch.draw(front, x, y);
+        if(front != null) {
+            batch.draw(front, x, y);
+        }
 
-        text.draw(batch);
+        if(showText) {
+            text.draw(batch);
+        }
     }
 
-    public void setValue(int value) {
+    public void setValue(float value) {
         this.value = value;
 
-        text.setText(Integer.toString(value) + " / " + Integer.toString(maxValue));
+        if(text != null) {
+            text.setText(Integer.toString((int) value) + " / " + Integer.toString((int) maxValue));
+        }
     }
 
-    public void changeValue(int value) {
+    public void changeValue(float value) {
         this.value += value;
+    }
+
+    public float getValue() {
+        return value;
     }
 
     public float getWidth() {
@@ -86,6 +99,34 @@ public class Slider {
         this.x = x;
         this.y = y;
 
-        text.setPosition(x + front.getWidth() + TEXT_PADDING_X, y + front.getHeight() + TEXT_PADDING_Y);
+        if(text != null) {
+            text.setPosition(x + front.getWidth() + TEXT_PADDING_X, y + front.getHeight() + TEXT_PADDING_Y);
+        }
+    }
+
+    public void setShowText(boolean showText) {
+        this.showText = showText;
+    }
+
+    public void setMaxValue(float maxValue) {
+        this.maxValue = maxValue;
+    }
+
+    public float getMaxValue() {
+        return maxValue;
+    }
+
+    public void setMinColor(Color minColor) {
+        this.minColor = minColor;
+    }
+
+    public void setMaxColor(Color maxColor) {
+        this.maxColor = maxColor;
+    }
+
+    public void setBackFull(Texture backFull) {
+        this.backFull = backFull;
+
+        back = new TextureRegion(backFull);
     }
 }

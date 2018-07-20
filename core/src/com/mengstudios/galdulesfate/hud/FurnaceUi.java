@@ -1,35 +1,83 @@
 package com.mengstudios.galdulesfate.hud;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.item.Bar;
 import com.mengstudios.galdulesfate.item.CopperBar;
 import com.mengstudios.galdulesfate.item.CopperOre;
+import com.mengstudios.galdulesfate.item.Ore;
 
 public class FurnaceUi extends Ui {
-    boolean justShown;
-    Bar bar;
+    private Slider arrowProgress;
+
+    private boolean justShown;
+    private Ore ore;
+    private Bar bar;
+
+    private boolean smelting;
+    private float timer;
 
     public FurnaceUi(Hud hud) {
         super(hud);
         backgroundTexture = Assets.FURNACE_UI;
         x = GaldulesFate.WIDTH / 2 - backgroundTexture.getWidth() / 2;
         y = GaldulesFate.HEIGHT / 2;
+
         justShown = true;
+
+        arrowProgress = new Slider();
+        arrowProgress.setShowText(false);
+        arrowProgress.setMinColor(Color.WHITE);
+        arrowProgress.setMaxColor(Color.WHITE);
+        arrowProgress.setBackFull(Assets.FURNACE_ARROW);
+        arrowProgress.setMaxValue(2);
+        arrowProgress.setValue(0);
+        arrowProgress.setPosition(x + 88, y + 40);
     }
 
     @Override
     public void update(float delta) {
+        arrowProgress.update(delta);
+
         justShown = false;
+
+        if(smelting) {
+            arrowProgress.changeValue(delta);
+        }
+
+        if(arrowProgress.getValue() >= arrowProgress.getMaxValue()) {
+            arrowProgress.setValue(0);
+
+            ore.changeCount(-1);
+            if(ore.getCount() == 0) {
+                ore = null;
+                smelting = false;
+            }
+
+            if (bar == null) {
+                bar = new CopperBar();
+            } else {
+                bar.changeCount(1);
+            }
+        }
+
+        Gdx.app.log("FurnaceUi", "arrow progress value: " + Float.toString(arrowProgress.getValue()));
     }
 
     @Override
     public void draw(SpriteBatch batch) {
         super.draw(batch);
+        if(ore != null) {
+            ore.renderUi(batch, x + 10, y + 16);
+        }
         if(bar != null) {
             bar.renderUi(batch, x + backgroundTexture.getWidth() - 64 - 10, y + 16);
         }
+        arrowProgress.draw(batch);
     }
 
     @Override
@@ -54,11 +102,12 @@ public class FurnaceUi extends Ui {
                     if(hud.getPlayScreen().getPlayer().getInventory().getItems()[((3 - row) * 9 + column)] instanceof CopperOre) {
                         try {
                             hud.getPlayScreen().getPlayer().getInventory().removeResource(CopperOre.class.newInstance(), 1);
-                            if(bar == null) {
-                                bar = new CopperBar();
+                            if(ore == null) {
+                                ore = new CopperOre();
                             } else {
-                                bar.changeCount(1);
+                                ore.changeCount(1);
                             }
+                            smelting = true;
                         } catch (InstantiationException e) {
                             e.printStackTrace();
                         } catch (IllegalAccessException e) {
