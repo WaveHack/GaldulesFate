@@ -28,6 +28,7 @@ public class World implements InputProcessor {
     private Player player;
     private Array<Entity> entities;
     private Array<Entity> entitiesToRemove;
+    private Array<Entity> inactiveEntities;
 
     private WorldGenerator generator;
 
@@ -50,6 +51,7 @@ public class World implements InputProcessor {
 
         entities = new Array<>();
         entitiesToRemove = new Array<>();
+        inactiveEntities = new Array<>();
 
         generator = new WorldGenerator(this);
     }
@@ -75,10 +77,24 @@ public class World implements InputProcessor {
         player.update(delta);
         for(Entity entity: entities) {
             entity.update(delta);
+            if(!entity.isActive()) {
+                inactiveEntities.add(entity);
+                entitiesToRemove.add(entity);
+            }
             if(entity.isRemoved())
                 entitiesToRemove.add(entity);
         }
         entities.removeAll(entitiesToRemove, true);
+        entitiesToRemove.clear();
+
+        for(Entity entity: inactiveEntities) {
+            entity.checkIfActive();
+            if(entity.isActive()) {
+                entities.add(entity);
+                entitiesToRemove.add(entity);
+            }
+        }
+        inactiveEntities.removeAll(entitiesToRemove, true);
         entitiesToRemove.clear();
 
         checkCollisions();

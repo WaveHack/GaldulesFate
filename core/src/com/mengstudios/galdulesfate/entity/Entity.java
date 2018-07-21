@@ -1,5 +1,6 @@
 package com.mengstudios.galdulesfate.entity;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mengstudios.galdulesfate.world.World;
@@ -33,15 +34,9 @@ public abstract class Entity extends Sprite {
     }
 
     public void update(float delta) {
-        if(getX() > world.getCamera().position.x - world.getCamera().viewportWidth &&
-                getX() < world.getCamera().position.x + world.getCamera().viewportWidth &&
-                getY() > world.getCamera().position.y - world.getCamera().viewportHeight &&
-                getY() < world.getCamera().position.y + world.getCamera().viewportHeight) {
-            active = true;
-        } else {
-            active = false;
+        checkIfActive();
+        if(!active)
             return;
-        }
 
         px = getX();
         py = getY();
@@ -106,6 +101,17 @@ public abstract class Entity extends Sprite {
 
     public boolean isSolid() {
         return solid;
+    }
+
+    public void checkIfActive() {
+        if(getX() > world.getCamera().position.x - world.getCamera().viewportWidth / 2 - 3 * 64 &&
+                getX() < world.getCamera().position.x + world.getCamera().viewportWidth / 2 + 3 * 64 &&
+                getY() > world.getCamera().position.y - world.getCamera().viewportHeight / 2 - 3 * 64 &&
+                getY() < world.getCamera().position.y + world.getCamera().viewportHeight / 2 + 3 * 64) {
+            active = true;
+        } else {
+            active = false;
+        }
     }
 
     public void setActive(boolean active) {
