@@ -38,6 +38,8 @@ public class World implements InputProcessor {
     private boolean[] keysHeld = new boolean[TOTAL_KEYS];
     private boolean touchHeld;
 
+    private boolean created;
+
     public World(PlayScreen playScreen) {
         this.playScreen = playScreen;
 
@@ -62,6 +64,7 @@ public class World implements InputProcessor {
                 ((InteractiveEntity) entity).create();
             }
         }
+        created = true;
     }
 
     public void update(float delta) {
@@ -144,6 +147,10 @@ public class World implements InputProcessor {
                 player.setGrounded(true);
             }
         }
+    }
+
+    public boolean isCreated() {
+        return created;
     }
 
     public PlayScreen getPlayScreen() {

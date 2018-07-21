@@ -49,6 +49,10 @@ public class WorldGenerator {
         }
 
         world.getEntities().add(new CopperRock(world, position + 64, 64 * CHUNK_SIZE / 2));
-        world.getEntities().add(new Furnace(world, position + 64 * 4, 64 * CHUNK_SIZE / 2));
+        Furnace furnace = new Furnace(world, position + 64 * 4, 64 * CHUNK_SIZE / 2);
+        if(world.isCreated()) {
+            furnace.create();
+        }
+        world.getEntities().add(furnace);
     }
 }

@@ -1,12 +1,11 @@
 package com.mengstudios.galdulesfate.entity;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mengstudios.galdulesfate.world.World;
 
 public abstract class Entity extends Sprite {
-    World world;
+    protected World world;
 
     float px;
     float py;
