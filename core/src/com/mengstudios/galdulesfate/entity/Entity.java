@@ -6,23 +6,23 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mengstudios.galdulesfate.world.World;
 
 public abstract class Entity extends Sprite {
-    protected World world;
+    World world;
 
-    protected float px;
-    protected float py;
+    float px;
+    float py;
 
-    protected float velocityX;
-    protected float velocityY;
+    float velocityX;
+    float velocityY;
 
     public enum Direction {LEFT, RIGHT}
     Direction direction = Direction.RIGHT;
 
-    protected boolean canFall;
+    boolean canFall;
     protected boolean solid = true;
-    protected boolean grounded;
+    boolean grounded;
 
-    protected boolean active = true;
-    protected boolean removed;
+    boolean active = true;
+    boolean removed;
 
     public Entity(World world) {
         this.world = world;
@@ -104,14 +104,10 @@ public abstract class Entity extends Sprite {
     }
 
     public void checkIfActive() {
-        if(getX() > world.getCamera().position.x - world.getCamera().viewportWidth / 2 - 3 * 64 &&
+        active = getX() > world.getCamera().position.x - world.getCamera().viewportWidth / 2 - 3 * 64 &&
                 getX() < world.getCamera().position.x + world.getCamera().viewportWidth / 2 + 3 * 64 &&
                 getY() > world.getCamera().position.y - world.getCamera().viewportHeight / 2 - 3 * 64 &&
-                getY() < world.getCamera().position.y + world.getCamera().viewportHeight / 2 + 3 * 64) {
-            active = true;
-        } else {
-            active = false;
-        }
+                getY() < world.getCamera().position.y + world.getCamera().viewportHeight / 2 + 3 * 64;
     }
 
     public void setActive(boolean active) {

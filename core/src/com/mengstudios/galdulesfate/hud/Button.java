@@ -6,18 +6,18 @@ import com.badlogic.gdx.utils.Disposable;
 import com.mengstudios.galdulesfate.Assets;
 
 public class Button implements Disposable {
-    protected Texture button_up;
-    protected Texture button_down;
+    Texture button_up;
+    Texture button_down;
 
     protected Text text;
-    protected String textString;
+    String textString;
 
     protected float x;
     protected float y;
     protected float width; //@TODO Change width and height definitions
     protected float height;
 
-    protected boolean pressed;
+    boolean pressed;
 
     public interface OnClickListener {
         void onClick();

@@ -1,11 +1,10 @@
 package com.mengstudios.galdulesfate.entity;
 
-import com.mengstudios.galdulesfate.screen.PlayScreen;
 import com.mengstudios.galdulesfate.world.World;
 
 public abstract class Mob extends Entity {
-    protected int maxHealth;
-    protected int health;
+    int maxHealth;
+    int health;
 
     public Mob(World world) {
         super(world);

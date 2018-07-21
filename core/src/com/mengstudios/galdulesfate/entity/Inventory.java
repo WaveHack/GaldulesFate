@@ -1,6 +1,5 @@
 package com.mengstudios.galdulesfate.entity;
 
-import com.badlogic.gdx.Gdx;
 import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.ResourceItem;
 

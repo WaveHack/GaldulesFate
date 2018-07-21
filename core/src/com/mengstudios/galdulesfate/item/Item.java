@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Item {
     protected Texture texture;
 
-    protected boolean swinging;
-    protected float rotation = 0;
+    boolean swinging;
+    float rotation = 0;
 
-    protected final float ROTATION_SPEED = 500;
+    final float ROTATION_SPEED = 500;
 
     public void update(float delta) {
         if(swinging) {

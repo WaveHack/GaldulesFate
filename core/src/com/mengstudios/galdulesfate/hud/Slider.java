@@ -6,27 +6,27 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Slider {
-    protected Texture front;
-    protected Texture backFull;
-    protected TextureRegion back;
+    Texture front;
+    Texture backFull;
+    TextureRegion back;
 
-    protected float x;
-    protected float y;
+    float x;
+    float y;
 
-    protected float maxValue;
-    protected float value;
+    float maxValue;
+    float value;
 
-    protected Color sliderColor;
-    protected Color minColor;
-    protected Color maxColor;
+    Color sliderColor;
+    Color minColor;
+    Color maxColor;
 
-    protected Text text;
+    Text text;
 
-    protected float TEXT_PADDING_X = -50;
-    protected float TEXT_PADDING_Y = 2;
+    float TEXT_PADDING_X = -50;
+    float TEXT_PADDING_Y = 2;
 
-    protected boolean init = true;
-    protected boolean showText = true;
+    boolean init = true;
+    boolean showText = true;
 
     public Color lerp(Color color1, Color color2, float t) {
         float red = color1.r * (1 - t) + color2.r * t;
@@ -50,8 +50,8 @@ public class Slider {
             value = maxValue;
         }
 
-        sliderColor = lerp(minColor, maxColor, (float) value / (float) maxValue);
-        back.setRegionWidth(Math.round(((float) value / (float) maxValue) * backFull.getWidth()));
+        sliderColor = lerp(minColor, maxColor, value / maxValue);
+        back.setRegionWidth(Math.round((value / maxValue) * backFull.getWidth()));
 
         if(text != null) {
             text.setText(Integer.toString((int) value) + " / " + Integer.toString((int) maxValue));
