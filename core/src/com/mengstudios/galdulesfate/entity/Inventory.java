@@ -37,6 +37,24 @@ public class Inventory {
         }
     }
 
+    public boolean isFull() {
+        for(int i = 0; i < items.length; i++) {
+            if(items[i] == null)
+                return false;
+        }
+        return true;
+    }
+
+    public boolean canHold(Item item) {
+        for(int i = 0; i < items.length; i++) {
+            if(items[i] == null)
+                return true;
+            if(items[i].getClass() == item.getClass())
+                return true;
+        }
+        return false;
+    }
+
     private ResourceItem findResourceItem(ResourceItem resourceItem) {
         for(Item item: items) {
             if(item instanceof ResourceItem) {
