@@ -2,6 +2,7 @@ package com.mengstudios.galdulesfate.hud;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.entity.Inventory;
@@ -78,6 +79,18 @@ public class InventoryDisplay extends Ui {
             }
         }
         return null;
+    }
+
+    public int getTouchedIndex(int screenX, int screenY) {
+        for(int i = 0; i < rowCount * columnCount; i++) {
+            int row = i / columnCount;
+            int column = i % columnCount;
+            if (screenX > x + column * 64 && screenX < x + column * 64 + 64
+                    && screenY > y + row * 64 && screenY < y + row * 64 + 64) {
+                return (3 - row) * columnCount + column;
+            }
+        }
+        return 0;
     }
 
     public void touchDown(int screenX, int screenY, int pointer, int button) {

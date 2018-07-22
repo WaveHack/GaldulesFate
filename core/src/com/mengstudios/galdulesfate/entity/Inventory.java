@@ -66,6 +66,17 @@ public class Inventory {
         return null;
     }
 
+    public boolean hasResourceItem(ResourceItem resourceItem, int count) {
+        for(Item item: items) {
+            if(item instanceof ResourceItem) {
+                if(item.getClass() == resourceItem.getClass() && ((ResourceItem) item).getCount() == count) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void addResource(ResourceItem resourceItem) {
         boolean hasResource = false;
         for(int i = 0; i < items.length; i++) {
