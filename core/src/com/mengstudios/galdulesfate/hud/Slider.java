@@ -14,7 +14,10 @@ public class Slider {
     float y;
 
     float maxValue;
+    float pValue;
     float value;
+
+    String maxValueString;
 
     Color sliderColor;
     Color minColor;
@@ -38,7 +41,7 @@ public class Slider {
 
     public void update(float delta) {
         if(init && showText) {
-            text.setText(Integer.toString((int) value) + " / " + Integer.toString((int) maxValue));
+            text.setText(Integer.toString((int) value) + " / " + maxValueString);
             text.updateBounds();
             init = false;
         }
@@ -49,12 +52,13 @@ public class Slider {
         if(value > maxValue) {
             value = maxValue;
         }
+        pValue = value;
 
         sliderColor = lerp(minColor, maxColor, value / maxValue);
         back.setRegionWidth(Math.round((value / maxValue) * backFull.getWidth()));
 
         if(text != null) {
-            text.setText(Integer.toString((int) value) + " / " + Integer.toString((int) maxValue));
+            text.setText(Integer.toString((int) value) + " / " + maxValueString);
         }
     }
 
@@ -74,7 +78,7 @@ public class Slider {
     public void setValue(float value) {
         this.value = value;
 
-        if(text != null) {
+        if(text != null && value != pValue) {
             text.setText(Integer.toString((int) value) + " / " + Integer.toString((int) maxValue));
         }
     }
@@ -110,6 +114,7 @@ public class Slider {
 
     public void setMaxValue(float maxValue) {
         this.maxValue = maxValue;
+        maxValueString = Integer.toString((int) maxValue);
     }
 
     public float getMaxValue() {
