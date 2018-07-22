@@ -1,4 +1,4 @@
-package com.mengstudios.galdulesfate.entity.mineralrock;
+package com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock;
 
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.item.CopperOre;

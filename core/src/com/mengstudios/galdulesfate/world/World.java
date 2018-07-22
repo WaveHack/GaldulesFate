@@ -8,15 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.entity.Entity;
-import com.mengstudios.galdulesfate.entity.InteractiveEntity;
-import com.mengstudios.galdulesfate.entity.ItemEntity;
+import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
 import com.mengstudios.galdulesfate.entity.Player;
-import com.mengstudios.galdulesfate.entity.mineralrock.MineralRock;
-import com.mengstudios.galdulesfate.item.tool.Pickaxe;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class World implements InputProcessor {

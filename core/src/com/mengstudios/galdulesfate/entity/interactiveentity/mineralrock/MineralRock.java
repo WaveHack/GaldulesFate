@@ -1,9 +1,9 @@
-package com.mengstudios.galdulesfate.entity.mineralrock;
+package com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Timer;
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.entity.InteractiveEntity;
+import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
 import com.mengstudios.galdulesfate.entity.ItemEntity;
 import com.mengstudios.galdulesfate.item.Ore;
 import com.mengstudios.galdulesfate.item.tool.Pickaxe;

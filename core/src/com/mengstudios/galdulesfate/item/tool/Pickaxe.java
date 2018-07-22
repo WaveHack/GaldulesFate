@@ -2,7 +2,7 @@ package com.mengstudios.galdulesfate.item.tool;
 
 import com.badlogic.gdx.Gdx;
 import com.mengstudios.galdulesfate.entity.Entity;
-import com.mengstudios.galdulesfate.entity.mineralrock.MineralRock;
+import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.MineralRock;
 
 public class Pickaxe extends Tool {
     @Override

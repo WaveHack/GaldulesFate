@@ -1,5 +1,6 @@
 package com.mengstudios.galdulesfate.entity;
 
+import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
 import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.ResourceItem;
 import com.mengstudios.galdulesfate.world.World;

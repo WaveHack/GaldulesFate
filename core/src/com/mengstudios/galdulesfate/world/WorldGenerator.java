@@ -1,8 +1,8 @@
 package com.mengstudios.galdulesfate.world;
 
 import com.badlogic.gdx.Gdx;
-import com.mengstudios.galdulesfate.entity.Furnace;
-import com.mengstudios.galdulesfate.entity.mineralrock.CopperRock;
+import com.mengstudios.galdulesfate.entity.interactiveentity.Furnace;
+import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.CopperRock;
 import com.mengstudios.galdulesfate.entity.tile.DirtTile;
 import com.mengstudios.galdulesfate.entity.tile.GrassTile;
 

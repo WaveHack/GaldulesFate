@@ -1,10 +1,7 @@
-package com.mengstudios.galdulesfate.entity;
+package com.mengstudios.galdulesfate.entity.interactiveentity;
 
-import com.badlogic.gdx.Gdx;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.hud.FurnaceUi;
-import com.mengstudios.galdulesfate.item.CopperBar;
-import com.mengstudios.galdulesfate.item.CopperOre;
 import com.mengstudios.galdulesfate.world.World;
 
 public class Furnace extends InteractiveEntity {

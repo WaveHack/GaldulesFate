@@ -17,6 +17,7 @@ public class Assets {
     public static Texture TITLE_SCREEN_BACKGROUND;
     public static Texture SKY;
 
+    public static Texture ANVIL;
     public static Texture COPPER_ORE_ROCKS;
     public static Texture EMPTY_ROCKS;
     public static Texture FURNACE;
@@ -64,6 +65,7 @@ public class Assets {
         assetManager.load("title_screen_background.jpg", Texture.class);
         assetManager.load("sky.png", Texture.class);
         assetManager.load("entity/copper_ore_rocks.png", Texture.class);
+        assetManager.load("entity/anvil.png", Texture.class);
         assetManager.load("entity/empty_rocks.png", Texture.class);
         assetManager.load("entity/furnace.png", Texture.class);
         assetManager.load("entity/player.png", Texture.class);
@@ -96,6 +98,7 @@ public class Assets {
         TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.jpg");
         SKY = assetManager.get("sky.png");
 
+        ANVIL = assetManager.get("entity/anvil.png");
         COPPER_ORE_ROCKS = assetManager.get("entity/copper_ore_rocks.png");
         EMPTY_ROCKS = assetManager.get("entity/empty_rocks.png");
         FURNACE = assetManager.get("entity/furnace.png");
