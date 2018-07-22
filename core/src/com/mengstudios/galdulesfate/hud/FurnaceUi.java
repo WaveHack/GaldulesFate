@@ -88,8 +88,7 @@ public class FurnaceUi extends Ui {
                     bar = null;
                 }
             }
-        } else if(touchIn(screenX, screenY, hud.getInventoryDisplay().getX(), hud.getInventoryDisplay().getY(),
-                InventoryDisplay.WIDTH, InventoryDisplay.HEIGHT)) {
+        } else if(hud.getInventoryDisplay().isTouched(screenX, screenY)) {
             if(hud.getInventoryDisplay().getTouchedItem(screenX, screenY) instanceof CopperOre) {
                 try {
                     hud.getPlayScreen().getPlayer().getInventory().removeResource(CopperOre.class.newInstance(), 1);
