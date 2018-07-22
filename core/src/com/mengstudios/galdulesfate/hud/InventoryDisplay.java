@@ -8,23 +8,23 @@ import com.mengstudios.galdulesfate.entity.Inventory;
 import com.mengstudios.galdulesfate.item.Item;
 
 public class InventoryDisplay extends Ui {
-    private Inventory inventory;
+    protected Inventory inventory;
 
     private Item selectedItem;
 
-    private static int rowCount = 4;
-    private static int columnCount = 9;
+    protected int rowCount = 4;
+    protected int columnCount = 9;
 
-    public static int WIDTH = columnCount * 64;
-    public static int HEIGHT = rowCount * 64;
+    protected int width = columnCount * 64;
+    protected int height = rowCount * 64;
 
     public InventoryDisplay(Hud hud, Inventory inventory) {
         super(hud);
         
         backgroundTexture = Assets.BOX;
         
-        x = GaldulesFate.WIDTH - WIDTH - 20;
-        y = GaldulesFate.HEIGHT - HEIGHT - 20;
+        x = GaldulesFate.WIDTH - width - 20;
+        y = GaldulesFate.HEIGHT - height - 20;
 
         this.inventory = inventory;
     }
@@ -87,8 +87,8 @@ public class InventoryDisplay extends Ui {
     }
 
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if(screenX > x && screenX < x + WIDTH
-                && screenY > y && screenY < y + HEIGHT){
+        if(screenX > x && screenX < x + width
+                && screenY > y && screenY < y + height){
             for(int i = 0; i < rowCount * columnCount; i++) {
                 int row = i / columnCount;
                 int column = i % columnCount;
@@ -109,5 +109,10 @@ public class InventoryDisplay extends Ui {
         }
 
         return false;
+    }
+    
+    public boolean isTouched(int screenX, int screenY) {
+        return screenX > x && screenX < x + width
+                && screenY > y && screenY < y + height;
     }
 }

@@ -1,6 +1,7 @@
 package com.mengstudios.galdulesfate.world;
 
 import com.badlogic.gdx.Gdx;
+import com.mengstudios.galdulesfate.entity.interactiveentity.Anvil;
 import com.mengstudios.galdulesfate.entity.interactiveentity.Furnace;
 import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.CopperRock;
 import com.mengstudios.galdulesfate.entity.tile.DirtTile;
@@ -54,5 +55,11 @@ public class WorldGenerator {
             furnace.create();
         }
         world.getEntities().add(furnace);
+
+        Anvil anvil = new Anvil(world, position + 64 * 6, 64 * CHUNK_SIZE / 2);
+        if(world.isCreated()) {
+            anvil.create();
+        }
+        world.getEntities().add(anvil);
     }
 }
