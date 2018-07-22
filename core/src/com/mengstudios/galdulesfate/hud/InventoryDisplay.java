@@ -68,6 +68,18 @@ public class InventoryDisplay extends Ui {
         return selectedItem;
     }
 
+    public Item getTouchedItem(int screenX, int screenY) {
+        for(int i = 0; i < rowCount * columnCount; i++) {
+            int row = i / columnCount;
+            int column = i % columnCount;
+            if (screenX > x + column * 64 && screenX < x + column * 64 + 64
+                    && screenY > y + row * 64 && screenY < y + row * 64 + 64) {
+                return player.getInventory().getItems()[((rowCount - 1 - row) * columnCount + column)];
+            }
+        }
+        return null;
+    }
+
     public void touchDown(int screenX, int screenY, int pointer, int button) {
         if(selectedItem != null) {
             selectedItem.setSwinging(true);
@@ -77,7 +89,7 @@ public class InventoryDisplay extends Ui {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if(screenX > x && screenX < x + WIDTH
                 && screenY > y && screenY < y + HEIGHT){
-            for(int i = 0; i < 36; i++) {
+            for(int i = 0; i < rowCount * columnCount; i++) {
                 int row = i / columnCount;
                 int column = i % columnCount;
                 if(screenX > x + column * 64 && screenX < x + column * 64 + 64

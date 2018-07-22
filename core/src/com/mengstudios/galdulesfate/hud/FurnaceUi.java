@@ -83,34 +83,27 @@ public class FurnaceUi extends Ui {
 
         if(touchIn(screenX, screenY, x, y, backgroundTexture.getWidth(), backgroundTexture.getHeight())) {
             if(touchIn(screenX, screenY, x + backgroundTexture.getWidth() - 64 - 10, y + 16, 64, 64)) {
-                if(bar != null) {
+                if(bar != null && hud.getPlayScreen().getPlayer().getInventory().canHold(bar)) {
                     hud.getPlayScreen().getPlayer().getInventory().addResource(bar);
                     bar = null;
                 }
             }
         } else if(touchIn(screenX, screenY, hud.getInventoryDisplay().getX(), hud.getInventoryDisplay().getY(),
                 InventoryDisplay.WIDTH, InventoryDisplay.HEIGHT)) {
-            for(int i = 0; i < 36; i++) {
-                int row = i / 9;
-                int column = i % 9;
-                if(screenX > hud.getInventoryDisplay().getX() + column * 64 && screenX < hud.getInventoryDisplay().getX() + column * 64 + 64
-                        && screenY > hud.getInventoryDisplay().getY() + row * 64 && screenY < hud.getInventoryDisplay().getY() + row * 64 + 64) {
-                    if(hud.getPlayScreen().getPlayer().getInventory().getItems()[((3 - row) * 9 + column)] instanceof CopperOre) {
-                        try {
-                            hud.getPlayScreen().getPlayer().getInventory().removeResource(CopperOre.class.newInstance(), 1);
-                            if(ore == null) {
-                                ore = new CopperOre();
-                            } else {
-                                ore.changeCount(1);
-                            }
-                            smelting = true;
-                            Assets.FURNACE_SOUND.loop(1f);
-                        } catch (InstantiationException e) {
-                            e.printStackTrace();
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        }
+            if(hud.getInventoryDisplay().getTouchedItem(screenX, screenY) instanceof CopperOre) {
+                try {
+                    hud.getPlayScreen().getPlayer().getInventory().removeResource(CopperOre.class.newInstance(), 1);
+                    if(ore == null) {
+                        ore = new CopperOre();
+                    } else {
+                        ore.changeCount(1);
                     }
+                    smelting = true;
+                    Assets.FURNACE_SOUND.loop(1f);
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
                 }
             }
         } else {
