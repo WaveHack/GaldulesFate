@@ -4,11 +4,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
-import com.mengstudios.galdulesfate.entity.Player;
+import com.mengstudios.galdulesfate.entity.Inventory;
 import com.mengstudios.galdulesfate.item.Item;
 
 public class InventoryDisplay extends Ui {
-    private Player player;
+    private Inventory inventory;
 
     private Item selectedItem;
 
@@ -18,7 +18,7 @@ public class InventoryDisplay extends Ui {
     public static int WIDTH = columnCount * 64;
     public static int HEIGHT = rowCount * 64;
 
-    public InventoryDisplay(Hud hud) {
+    public InventoryDisplay(Hud hud, Inventory inventory) {
         super(hud);
         
         backgroundTexture = Assets.BOX;
@@ -26,7 +26,7 @@ public class InventoryDisplay extends Ui {
         x = GaldulesFate.WIDTH - WIDTH - 20;
         y = GaldulesFate.HEIGHT - HEIGHT - 20;
 
-        player = hud.getPlayScreen().getPlayer();
+        this.inventory = inventory;
     }
 
     @Override
@@ -46,18 +46,18 @@ public class InventoryDisplay extends Ui {
         }
         batch.setColor(Color.WHITE);
         drawHighlight(batch);
-        for(int i = 0; i < player.getInventory().getItems().length; i++) {
-            if(player.getInventory().getItems()[i] == null)
+        for(int i = 0; i < inventory.getItems().length; i++) {
+            if(inventory.getItems()[i] == null)
                 continue;
 
-            player.getInventory().getItems()[i].renderInventory(
+            inventory.getItems()[i].renderInventory(
                     batch, x, y, (rowCount * columnCount - 1 - i) / columnCount, i % columnCount);
         }
     }
 
     public void drawHighlight(SpriteBatch batch) {
-        for(int i = 0; i < player.getInventory().getItems().length; i++) {
-            if(selectedItem == player.getInventory().getItems()[i] && selectedItem != null) {
+        for(int i = 0; i < inventory.getItems().length; i++) {
+            if(selectedItem == inventory.getItems()[i] && selectedItem != null) {
                 batch.draw(Assets.HIGHLIGHT, x + i % columnCount * 64, (float) (y + Math.floor((rowCount * columnCount - 1 - i) / columnCount) * 64));
                 break;
             }
@@ -74,7 +74,7 @@ public class InventoryDisplay extends Ui {
             int column = i % columnCount;
             if (screenX > x + column * 64 && screenX < x + column * 64 + 64
                     && screenY > y + row * 64 && screenY < y + row * 64 + 64) {
-                return player.getInventory().getItems()[((rowCount - 1 - row) * columnCount + column)];
+                return inventory.getItems()[((rowCount - 1 - row) * columnCount + column)];
             }
         }
         return null;
@@ -94,7 +94,7 @@ public class InventoryDisplay extends Ui {
                 int column = i % columnCount;
                 if(screenX > x + column * 64 && screenX < x + column * 64 + 64
                         && screenY > y + row * 64 && screenY < y + row * 64 + 64) {
-                    Item selectedItemTemp = player.getInventory().getItems()[((rowCount - 1 - row) * columnCount + column)];
+                    Item selectedItemTemp = inventory.getItems()[((rowCount - 1 - row) * columnCount + column)];
                     if(selectedItemTemp == selectedItem) {
                         selectedItem = null;
                     } else {

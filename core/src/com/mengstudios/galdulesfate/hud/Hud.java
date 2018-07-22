@@ -33,7 +33,7 @@ public class Hud implements InputProcessor {
         viewport = new ExtendViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
 
         statusDisplay = new StatusDisplay(this);
-        inventoryDisplay = new InventoryDisplay(this);
+        inventoryDisplay = new InventoryDisplay(this, playScreen.getPlayer().getInventory());
 
         uis = new Array<>();
         uisToRemove = new Array<>();
