@@ -67,7 +67,7 @@ public class Player extends Mob {
             Assets.FOOTSTEP_DIRT_SOUND.stop();
             footstepsDirtPlaying = false;
         }
-        if (grounded && !footstepsDirtPlaying) {
+        if (velocityX != 0 && grounded && !footstepsDirtPlaying) {
             Assets.FOOTSTEP_DIRT_SOUND.loop();
             footstepsDirtPlaying = true;
         }
