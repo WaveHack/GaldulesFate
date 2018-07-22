@@ -39,7 +39,7 @@ public class Assets {
     public static Texture HEALTH_BAR_BACK;
     public static Texture HEALTH_BAR_FRONT;
     public static Texture HIGHLIGHT;
-    public static Texture INVENTORY;
+    public static Texture BOX;
     public static Texture MANA_BAR_BACK;
     public static Texture MANA_BAR_FRONT;
     public static Texture STATUS_TABLE;
@@ -76,6 +76,7 @@ public class Assets {
         assetManager.load("tile/grass_tile.png", Texture.class);
         assetManager.load("ui/ability_button_down.png", Texture.class);
         assetManager.load("ui/ability_button_up.png", Texture.class);
+        assetManager.load("ui/ui_box.png", Texture.class);
         assetManager.load("ui/button_down.png", Texture.class);
         assetManager.load("ui/button_up.png", Texture.class);
         assetManager.load("ui/furnace_arrow.png", Texture.class);
@@ -83,7 +84,6 @@ public class Assets {
         assetManager.load("ui/health_bar_back.png", Texture.class);
         assetManager.load("ui/health_bar_front.png", Texture.class);
         assetManager.load("ui/highlight.png", Texture.class);
-        assetManager.load("ui/inventory.png", Texture.class);
         assetManager.load("ui/mana_bar_back.png", Texture.class);
         assetManager.load("ui/mana_bar_front.png", Texture.class);
         assetManager.load("ui/status_table.png", Texture.class);
@@ -113,6 +113,7 @@ public class Assets {
 
         ABILITY_BUTTON_DOWN = assetManager.get("ui/ability_button_down.png");
         ABILITY_BUTTON_UP = assetManager.get("ui/ability_button_up.png");
+        BOX = assetManager.get("ui/ui_box.png");
         BUTTON_DOWN = assetManager.get("ui/button_down.png");
         BUTTON_UP = assetManager.get("ui/button_up.png");
         FURNACE_ARROW = assetManager.get("ui/furnace_arrow.png");
@@ -120,7 +121,6 @@ public class Assets {
         HEALTH_BAR_BACK = assetManager.get("ui/health_bar_back.png");
         HEALTH_BAR_FRONT = assetManager.get("ui/health_bar_front.png");
         HIGHLIGHT = assetManager.get("ui/highlight.png");
-        INVENTORY = assetManager.get("ui/inventory.png");
         MANA_BAR_BACK = assetManager.get("ui/mana_bar_back.png");
         MANA_BAR_FRONT = assetManager.get("ui/mana_bar_front.png");
         STATUS_TABLE = assetManager.get("ui/status_table.png");

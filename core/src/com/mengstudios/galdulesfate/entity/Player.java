@@ -51,7 +51,7 @@ public class Player extends Mob {
 
         stateTimer = 0;
 
-        inventory = new Inventory();
+        inventory = new Inventory(36);
         inventory.add(new CopperPickaxe());
     }
 

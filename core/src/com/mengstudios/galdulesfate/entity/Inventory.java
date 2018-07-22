@@ -4,7 +4,11 @@ import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.ResourceItem;
 
 public class Inventory {
-    private Item[] items = new Item[36];
+    private Item[] items;
+
+    public Inventory(int itemCount) {
+        items = new Item[itemCount];
+    }
 
     public void update(float delta) {
         for(int i = 0; i < items.length; i++) {

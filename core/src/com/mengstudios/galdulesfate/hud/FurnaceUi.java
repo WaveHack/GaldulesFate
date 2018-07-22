@@ -89,7 +89,7 @@ public class FurnaceUi extends Ui {
                 }
             }
         } else if(touchIn(screenX, screenY, hud.getInventoryDisplay().getX(), hud.getInventoryDisplay().getY(),
-                Assets.INVENTORY.getWidth(), Assets.INVENTORY.getHeight())) {
+                InventoryDisplay.WIDTH, InventoryDisplay.HEIGHT)) {
             for(int i = 0; i < 36; i++) {
                 int row = i / 9;
                 int column = i % 9;
