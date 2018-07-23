@@ -9,8 +9,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
-import java.util.HashMap;
-
 public class Assets {
     private AssetManager assetManager;
 
@@ -21,11 +19,15 @@ public class Assets {
     public static Texture COPPER_ORE_ROCKS;
     public static Texture EMPTY_ROCKS;
     public static Texture FURNACE;
+    public static Texture OAK_TREE;
+    public static Texture OAK_TREE_STUMP;
     public static Texture PLAYER;
 
     public static Texture COPPER_BAR;
     public static Texture COPPER_ORE;
+    public static Texture COPPER_AXE;
     public static Texture COPPER_PICKAXE;
+    public static Texture OAK_WOOD;
 
     public static Texture DIRT_TILE;
     public static Texture GRASS_TILE;
@@ -49,6 +51,7 @@ public class Assets {
     public static Music BACKGROUD_MUSIC_1;
     public static Sound FOOTSTEP_DIRT_SOUND;
     public static Sound FURNACE_SOUND;
+    public static Sound AXE_SOUND;
     public static Sound PICKAXE_SOUND;
 
     private FreeTypeFontGenerator fontGenerator;
@@ -68,10 +71,14 @@ public class Assets {
         assetManager.load("entity/anvil.png", Texture.class);
         assetManager.load("entity/empty_rocks.png", Texture.class);
         assetManager.load("entity/furnace.png", Texture.class);
+        assetManager.load("entity/oak_tree.png", Texture.class);
+        assetManager.load("entity/oak_tree_stump.png", Texture.class);
         assetManager.load("entity/player.png", Texture.class);
         assetManager.load("item/copper_bar.png", Texture.class);
         assetManager.load("item/copper_ore.png", Texture.class);
+        assetManager.load("item/copper_axe.png", Texture.class);
         assetManager.load("item/copper_pickaxe.png", Texture.class);
+        assetManager.load("item/oak_wood.png", Texture.class);
         assetManager.load("tile/dirt_tile.png", Texture.class);
         assetManager.load("tile/grass_tile.png", Texture.class);
         assetManager.load("ui/ability_button_down.png", Texture.class);
@@ -92,6 +99,7 @@ public class Assets {
         assetManager.load("music/background_music_1.mp3", Music.class);
         assetManager.load("sound/footstep_dirt_sound.mp3", Sound.class);
         assetManager.load("sound/furnace_sound.ogg", Sound.class);
+        assetManager.load("sound/axe_sound.ogg", Sound.class);
         assetManager.load("sound/pickaxe_sound.ogg", Sound.class);
         assetManager.finishLoading();
 
@@ -102,11 +110,15 @@ public class Assets {
         COPPER_ORE_ROCKS = assetManager.get("entity/copper_ore_rocks.png");
         EMPTY_ROCKS = assetManager.get("entity/empty_rocks.png");
         FURNACE = assetManager.get("entity/furnace.png");
+        OAK_TREE = assetManager.get("entity/oak_tree.png");
+        OAK_TREE_STUMP = assetManager.get("entity/oak_tree_stump.png");
         PLAYER = assetManager.get("entity/player.png");
 
         COPPER_BAR = assetManager.get("item/copper_bar.png");
         COPPER_ORE = assetManager.get("item/copper_ore.png");
+        COPPER_AXE = assetManager.get("item/copper_axe.png");
         COPPER_PICKAXE = assetManager.get("item/copper_pickaxe.png");
+        OAK_WOOD = assetManager.get("item/oak_wood.png");
 
         DIRT_TILE = assetManager.get("tile/dirt_tile.png");
         GRASS_TILE = assetManager.get("tile/grass_tile.png");
@@ -130,6 +142,7 @@ public class Assets {
         BACKGROUD_MUSIC_1 = assetManager.get("music/background_music_1.mp3");
         FOOTSTEP_DIRT_SOUND = assetManager.get("sound/footstep_dirt_sound.mp3");
         FURNACE_SOUND = assetManager.get("sound/furnace_sound.ogg");
+        AXE_SOUND = assetManager.get("sound/axe_sound.ogg");
         PICKAXE_SOUND = assetManager.get("sound/pickaxe_sound.ogg");
 
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("OldWizard.ttf"));

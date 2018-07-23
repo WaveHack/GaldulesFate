@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.item.CopperBar;
 import com.mengstudios.galdulesfate.item.CopperOre;
+import com.mengstudios.galdulesfate.item.tool.CopperAxe;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
 import com.mengstudios.galdulesfate.world.World;
 
@@ -54,6 +55,7 @@ public class Player extends Mob {
 
         inventory = new Inventory(36);
         inventory.add(new CopperPickaxe());
+        inventory.add(new CopperAxe());
     }
 
     @Override
