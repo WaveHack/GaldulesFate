@@ -12,8 +12,8 @@ public class ItemEntity extends InteractiveEntity {
         super(world, x, y);
         solid = false;
         this.item = item;
-        setRegion(item.getTexture());
-        setBounds(x, y, item.getTexture().getWidth(), item.getTexture().getHeight());
+        setRegion(item.getRegion());
+        setBounds(x, y, item.getRegion().getRegionWidth(), item.getRegion().getRegionHeight());
     }
 
     @Override

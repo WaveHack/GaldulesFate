@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.mengstudios.galdulesfate.entity.interactiveentity.Anvil;
 import com.mengstudios.galdulesfate.entity.interactiveentity.Furnace;
 import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.CopperRock;
+import com.mengstudios.galdulesfate.entity.interactiveentity.tree.GiantTree;
 import com.mengstudios.galdulesfate.entity.interactiveentity.tree.OakTree;
 import com.mengstudios.galdulesfate.entity.tile.DirtTile;
 import com.mengstudios.galdulesfate.entity.tile.GrassTile;
@@ -50,7 +51,7 @@ public class WorldGenerator {
             }
         }
 
-        world.getEntities().add(new OakTree(world, position + 64 * 2, 64 * CHUNK_SIZE / 2));
+        world.getEntities().add(new GiantTree(world, position + 64, 64 * CHUNK_SIZE / 2));
         world.getEntities().add(new CopperRock(world, position, 64 * CHUNK_SIZE / 2));
         Furnace furnace = new Furnace(world, position + 64 * 4, 64 * CHUNK_SIZE / 2);
         if(world.isCreated()) {

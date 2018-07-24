@@ -114,7 +114,7 @@ public class World implements InputProcessor {
 
         if(playScreen.getHud().getInventoryDisplay().getSelectedItem() != null) {
             playScreen.getHud().getInventoryDisplay().getSelectedItem().renderWorld(playScreen.getGame().batch,
-                    getPlayer().getX() + getPlayer().getWidth() / 2, getPlayer().getY() + getPlayer().getHeight() / 2, getPlayer().isFlipX());
+                    getPlayer().getX() + getPlayer().getWidth() / 2, getPlayer().getY() + getPlayer().getHeight() / 2, !getPlayer().isFlipX());
         }
     }
 

@@ -19,8 +19,8 @@ public class Assets {
     public static Texture COPPER_ORE_ROCKS;
     public static Texture EMPTY_ROCKS;
     public static Texture FURNACE;
+    public static Texture GIANT_TREE;
     public static Texture OAK_TREE;
-    public static Texture OAK_TREE_STUMP;
     public static Texture PLAYER;
 
     public static Texture COPPER_BAR;
@@ -71,8 +71,8 @@ public class Assets {
         assetManager.load("entity/anvil.png", Texture.class);
         assetManager.load("entity/empty_rocks.png", Texture.class);
         assetManager.load("entity/furnace.png", Texture.class);
+        assetManager.load("entity/giant_tree.png", Texture.class);
         assetManager.load("entity/oak_tree.png", Texture.class);
-        assetManager.load("entity/oak_tree_stump.png", Texture.class);
         assetManager.load("entity/player.png", Texture.class);
         assetManager.load("item/copper_bar.png", Texture.class);
         assetManager.load("item/copper_ore.png", Texture.class);
@@ -110,8 +110,8 @@ public class Assets {
         COPPER_ORE_ROCKS = assetManager.get("entity/copper_ore_rocks.png");
         EMPTY_ROCKS = assetManager.get("entity/empty_rocks.png");
         FURNACE = assetManager.get("entity/furnace.png");
+        GIANT_TREE = assetManager.get("entity/giant_tree.png");
         OAK_TREE = assetManager.get("entity/oak_tree.png");
-        OAK_TREE_STUMP = assetManager.get("entity/oak_tree_stump.png");
         PLAYER = assetManager.get("entity/player.png");
 
         COPPER_BAR = assetManager.get("item/copper_bar.png");
