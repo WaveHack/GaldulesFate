@@ -58,7 +58,7 @@ public class Inventory {
     private ResourceItem findResourceItem(ResourceItem resourceItem) {
         for(Item item: items) {
             if(item instanceof ResourceItem) {
-                if(item.getClass() == resourceItem.getClass() && ((ResourceItem) item).getCount() > 0) {
+                if((item.getClass() == resourceItem.getClass() || resourceItem.getClass().isInstance(item)) && ((ResourceItem) item).getCount() > 0) {
                     return (ResourceItem) item;
                 }
             }
@@ -69,7 +69,7 @@ public class Inventory {
     public boolean hasResourceItem(ResourceItem resourceItem, int count) {
         for(Item item: items) {
             if(item instanceof ResourceItem) {
-                if(item.getClass() == resourceItem.getClass() && ((ResourceItem) item).getCount() == count) {
+                if((item.getClass() == resourceItem.getClass() || resourceItem.getClass().isInstance(item)) && ((ResourceItem) item).getCount() >= count) {
                     return true;
                 }
             }

@@ -6,6 +6,9 @@ import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.crafting.Recipe;
 import com.mengstudios.galdulesfate.entity.Inventory;
 import com.mengstudios.galdulesfate.item.CopperBar;
+import com.mengstudios.galdulesfate.item.OakWood;
+import com.mengstudios.galdulesfate.item.Wood;
+import com.mengstudios.galdulesfate.item.tool.CopperAxe;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
 
 public class AnvilUi extends InventoryDisplay {
@@ -16,11 +19,19 @@ public class AnvilUi extends InventoryDisplay {
         super(hud, new Inventory(32));
 
         inventory.add(new CopperPickaxe());
+        inventory.add(new CopperAxe());
 
         recipes = new Array<>();
         Recipe recipe = new Recipe();
         recipe.addCost(new CopperBar(), 5);
+        recipe.addCost(new Wood(), 3);
         recipe.setOutput(new CopperPickaxe());
+        recipes.add(recipe);
+
+        recipe = new Recipe();
+        recipe.addCost(new CopperBar(), 5);
+        recipe.addCost(new Wood(), 3);
+        recipe.setOutput(new CopperAxe());
         recipes.add(recipe);
 
         rowCount = 4;
