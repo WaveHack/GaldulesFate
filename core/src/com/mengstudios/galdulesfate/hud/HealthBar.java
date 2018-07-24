@@ -7,8 +7,9 @@ import com.mengstudios.galdulesfate.Assets;
 
 public class HealthBar extends Slider {
 
-    public HealthBar(int maxValue) {
-        this.maxValue = maxValue;
+    public HealthBar(float maxValue) {
+        super(maxValue);
+
         value = maxValue;
 
         front = Assets.HEALTH_BAR_FRONT;

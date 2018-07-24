@@ -17,6 +17,7 @@ public class FurnaceUi extends Ui {
     private Bar bar;
 
     private boolean smelting;
+    private boolean soundIsPlaying;
 
     public FurnaceUi(Hud hud) {
         super(hud);
@@ -26,12 +27,11 @@ public class FurnaceUi extends Ui {
 
         justShown = true;
 
-        arrowProgress = new Slider();
+        arrowProgress = new Slider(2);
         arrowProgress.setShowText(false);
         arrowProgress.setMinColor(Color.WHITE);
         arrowProgress.setMaxColor(Color.WHITE);
         arrowProgress.setBackFull(Assets.FURNACE_ARROW);
-        arrowProgress.setMaxValue(2);
         arrowProgress.setValue(0);
         arrowProgress.setPosition(x + 88, y + 40);
     }
@@ -54,6 +54,7 @@ public class FurnaceUi extends Ui {
                 ore = null;
                 smelting = false;
                 Assets.FURNACE_SOUND.stop();
+                soundIsPlaying = false;
             }
 
             if (bar == null) {
@@ -98,7 +99,10 @@ public class FurnaceUi extends Ui {
                         ore.changeCount(1);
                     }
                     smelting = true;
-                    Assets.FURNACE_SOUND.loop(1f);
+                    if(!soundIsPlaying) {
+                        Assets.FURNACE_SOUND.loop(1f);
+                        soundIsPlaying = true;
+                    }
                 } catch (InstantiationException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {

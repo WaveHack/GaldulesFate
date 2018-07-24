@@ -31,6 +31,10 @@ public class Slider {
     boolean init = true;
     boolean showText = true;
 
+    public Slider(float maxValue) {
+        setMaxValue(maxValue);
+    }
+
     public Color lerp(Color color1, Color color2, float t) {
         float red = color1.r * (1 - t) + color2.r * t;
         float green = color1.g * (1 - t) + color2.g * t;

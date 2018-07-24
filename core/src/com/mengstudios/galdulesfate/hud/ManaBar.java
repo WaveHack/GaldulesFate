@@ -7,8 +7,9 @@ import com.mengstudios.galdulesfate.Assets;
 
 public class ManaBar extends Slider {
 
-    public ManaBar(int maxValue) {
-        this.maxValue = maxValue;
+    public ManaBar(float maxValue) {
+        super(maxValue);
+
         value = maxValue;
 
         front = Assets.MANA_BAR_FRONT;

@@ -64,14 +64,7 @@ public class World implements InputProcessor {
     }
 
     public void update(float delta) {
-        for (int i = 0; i < keysHeld.length; i++) {
-            if(keysHeld[i]) {
-                keyHeld(i);
-            }
-        }
-        if(touchHeld) {
-            touchHeld(Gdx.input.getX(), Gdx.input.getY(), delta);
-        }
+        handleHeldInput(delta);
 
         player.update(delta);
         for(Entity entity: entities) {
@@ -100,7 +93,7 @@ public class World implements InputProcessor {
 
         generator.update(delta);
 
-        camera.position.set(getPlayer().getX() + getPlayer().getWidth() / 2, getPlayer().getY() + 100, 0);
+        camera.position.set(player.getX() + player.getWidth() / 2, player.getY() + 100, 0);
         camera.update();
     }
 
@@ -114,7 +107,7 @@ public class World implements InputProcessor {
 
         if(playScreen.getHud().getInventoryDisplay().getSelectedItem() != null) {
             playScreen.getHud().getInventoryDisplay().getSelectedItem().renderWorld(playScreen.getGame().batch,
-                    getPlayer().getX() + getPlayer().getWidth() / 2, getPlayer().getY() + getPlayer().getHeight() / 2, !getPlayer().isFlipX());
+                    player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2, !player.isFlipX());
         }
     }
 
@@ -169,20 +162,36 @@ public class World implements InputProcessor {
         return viewport;
     }
 
+    private void handleHeldInput(float delta) {
+        for (int i = 0; i < keysHeld.length; i++) {
+            if(keysHeld[i]) {
+                keyHeld(i);
+            }
+        }
+        if(touchHeld) {
+            touchHeld(Gdx.input.getX(), Gdx.input.getY(), delta);
+        }
+    }
+
+    public boolean touchingEntity(int screenX, int screenY, Entity entity) {
+        return screenX > entity.getX() && screenX < entity.getX() + entity.getWidth()
+                && screenY > entity.getY() && screenY < entity.getY() + entity.getHeight();
+    }
+
     @Override
     public boolean keyDown(int keycode) {
         float velocityX = 0;
 
         if(keycode == Input.Keys.A || keycode == Input.Keys.LEFT) {
             velocityX -= 200;
-            getPlayer().setVelocityX(velocityX);
+            player.setVelocityX(velocityX);
         }
         if(keycode == Input.Keys.D || keycode == Input.Keys.RIGHT) {
             velocityX += 200;
-            getPlayer().setVelocityX(velocityX);
+            player.setVelocityX(velocityX);
         }
         if(keycode == Input.Keys.W || keycode == Input.Keys.UP) {
-            getPlayer().jump();
+            player.jump();
         }
 
         keysHeld[keycode] = true;
@@ -190,19 +199,19 @@ public class World implements InputProcessor {
         return false;
     }
 
-    public boolean keyHeld(int keycode) {
+    private boolean keyHeld(int keycode) {
         float velocityX = 0;
 
         if(keycode == Input.Keys.A || keycode == Input.Keys.LEFT) {
             velocityX -= 200;
-            getPlayer().setVelocityX(velocityX);
+            player.setVelocityX(velocityX);
         }
         if(keycode == Input.Keys.D || keycode == Input.Keys.RIGHT) {
             velocityX += 200;
-            getPlayer().setVelocityX(velocityX);
+            player.setVelocityX(velocityX);
         }
         if(keycode == Input.Keys.W || keycode == Input.Keys.UP) {
-            getPlayer().jump();
+            player.jump();
         }
         return true;
     }
@@ -210,7 +219,7 @@ public class World implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         if(keycode == Input.Keys.A ||  keycode == Input.Keys.LEFT || keycode == Input.Keys.D || keycode == Input.Keys.RIGHT) {
-            getPlayer().setVelocityX(0);
+            player.setVelocityX(0);
         }
 
         keysHeld[keycode] = false;
@@ -233,7 +242,7 @@ public class World implements InputProcessor {
             if(!entity.isActive())
                 continue;
 
-            if (touching(screenX, screenY, entity)) {
+            if (touchingEntity(screenX, screenY, entity)) {
                 if(entity instanceof InteractiveEntity) {
                     ((InteractiveEntity) entity).touchDown();
                 }
@@ -245,7 +254,7 @@ public class World implements InputProcessor {
         return false;
     }
 
-    public void touchHeld(int screenX, int screenY, float delta) {
+    private void touchHeld(int screenX, int screenY, float delta) {
         Vector3 screenCoords = camera.unproject(new Vector3(screenX, screenY, 0));
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
@@ -254,7 +263,7 @@ public class World implements InputProcessor {
             if(!entity.isActive())
                 continue;
 
-            if (touching(screenX, screenY, entity)) {
+            if (touchingEntity(screenX, screenY, entity)) {
                 if(entity instanceof InteractiveEntity) {
                     ((InteractiveEntity) entity).touchHeld(delta);
                 }
@@ -286,10 +295,5 @@ public class World implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
-    }
-
-    public boolean touching(int screenX, int screenY, Entity entity) {
-        return screenX > entity.getX() && screenX < entity.getX() + entity.getWidth()
-                && screenY > entity.getY() && screenY < entity.getY() + entity.getHeight();
     }
 }

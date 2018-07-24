@@ -3,11 +3,11 @@ package com.mengstudios.galdulesfate.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.hud.Button;
@@ -16,9 +16,8 @@ import com.mengstudios.galdulesfate.hud.Text;
 public class TitleScreen implements Screen, InputProcessor {
     private GaldulesFate game;
 
+    private ExtendViewport viewport;
     private OrthographicCamera camera;
-
-    private final int titleSize = 72;
 
     private Texture backgroundTexture;
 
@@ -31,7 +30,9 @@ public class TitleScreen implements Screen, InputProcessor {
         this.game = game;
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, GaldulesFate.WIDTH, GaldulesFate.HEIGHT);
+        camera.setToOrtho(false);
+        camera.position.set(GaldulesFate.WIDTH / 2, GaldulesFate.HEIGHT / 2, 0);
+        viewport = new ExtendViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
 
         backgroundTexture = Assets.TITLE_SCREEN_BACKGROUND;
 
@@ -104,7 +105,7 @@ public class TitleScreen implements Screen, InputProcessor {
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width, height);
     }
 
     @Override
