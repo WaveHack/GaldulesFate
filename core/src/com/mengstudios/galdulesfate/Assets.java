@@ -65,7 +65,7 @@ public class Assets {
 
     public Assets() {
         assetManager = new AssetManager();
-        assetManager.load("title_screen_background.jpg", Texture.class);
+        assetManager.load("title_screen_background.png", Texture.class);
         assetManager.load("sky.png", Texture.class);
         assetManager.load("entity/copper_ore_rocks.png", Texture.class);
         assetManager.load("entity/anvil.png", Texture.class);
@@ -103,7 +103,7 @@ public class Assets {
         assetManager.load("sound/pickaxe_sound.ogg", Sound.class);
         assetManager.finishLoading();
 
-        TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.jpg");
+        TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.png");
         SKY = assetManager.get("sky.png");
 
         ANVIL = assetManager.get("entity/anvil.png");
