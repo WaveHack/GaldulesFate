@@ -91,26 +91,30 @@ public class FurnaceUi extends Ui {
             }
         } else if(hud.getInventoryDisplay().isTouched(screenX, screenY)) {
             if(hud.getInventoryDisplay().getTouchedItem(screenX, screenY) instanceof CopperOre) {
-                try {
-                    hud.getPlayScreen().getPlayer().getInventory().removeResource(CopperOre.class.newInstance(), 1);
-                    if(ore == null) {
-                        ore = new CopperOre();
-                    } else {
-                        ore.changeCount(1);
-                    }
-                    smelting = true;
-                    if(!soundIsPlaying) {
-                        Assets.FURNACE_SOUND.loop(1f);
-                        soundIsPlaying = true;
-                    }
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+                inputOre();
             }
         } else {
             hide();
+        }
+    }
+
+    public void inputOre() {
+        try {
+            hud.getPlayScreen().getPlayer().getInventory().removeResource(CopperOre.class.newInstance(), 1);
+            if(ore == null) {
+                ore = new CopperOre();
+            } else {
+                ore.changeCount(1);
+            }
+            smelting = true;
+            if(!soundIsPlaying) {
+                Assets.FURNACE_SOUND.loop(1f);
+                soundIsPlaying = true;
+            }
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 

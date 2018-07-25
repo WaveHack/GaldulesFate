@@ -80,7 +80,7 @@ public class Tree extends InteractiveEntity {
 
         chopping = true;
         if(!soundIsPlaying) {
-            Assets.AXE_SOUND.loop();
+            Assets.AXE_SOUND.loop(0.5f);
             soundIsPlaying = true;
         }
 

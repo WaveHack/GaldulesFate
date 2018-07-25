@@ -95,7 +95,7 @@ public class TitleScreen implements Screen, InputProcessor {
 
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        game.batch.draw(backgroundTexture, 0, 0);
+        game.batch.draw(backgroundTexture, camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2);
         titleText.draw(game.batch);
         playButton.draw(game.batch);
         joinServerButton.draw(game.batch);
