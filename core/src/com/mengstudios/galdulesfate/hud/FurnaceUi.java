@@ -108,7 +108,7 @@ public class FurnaceUi extends Ui {
             }
             smelting = true;
             if(!soundIsPlaying) {
-                Assets.FURNACE_SOUND.loop(1f);
+                Assets.FURNACE_SOUND.loop(0.8f);
                 soundIsPlaying = true;
             }
         } catch (InstantiationException e) {

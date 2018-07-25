@@ -45,24 +45,24 @@ public class WorldGenerator {
         }
 
         for(int i = 0; i < CHUNK_SIZE; i++) {
-            world.getEntities().add(new GrassTile(world, position + 64 * i, 64 * (CHUNK_SIZE / 2 - 1)));
+            world.getEntityManager().addEntity(new GrassTile(world, position + 64 * i, 64 * (CHUNK_SIZE / 2 - 1)));
             for(int j = 0; j < CHUNK_SIZE / 2 - 1; j++) {
-                world.getEntities().add(new DirtTile(world, position + 64 * i, 64 * j));
+                world.getEntityManager().addEntity(new DirtTile(world, position + 64 * i, 64 * j));
             }
         }
 
-        world.getEntities().add(new GiantTree(world, position + 64, 64 * CHUNK_SIZE / 2));
-        world.getEntities().add(new CopperRock(world, position, 64 * CHUNK_SIZE / 2));
+        world.getEntityManager().addEntity(new GiantTree(world, position + 64, 64 * CHUNK_SIZE / 2));
+        world.getEntityManager().addEntity(new CopperRock(world, position, 64 * CHUNK_SIZE / 2));
         Furnace furnace = new Furnace(world, position + 64 * 4, 64 * CHUNK_SIZE / 2);
         if(world.isCreated()) {
             furnace.create();
         }
-        world.getEntities().add(furnace);
+        world.getEntityManager().addEntity(furnace);
 
         Anvil anvil = new Anvil(world, position + 64 * 6, 64 * CHUNK_SIZE / 2);
         if(world.isCreated()) {
             anvil.create();
         }
-        world.getEntities().add(anvil);
+        world.getEntityManager().addEntity(anvil);
     }
 }

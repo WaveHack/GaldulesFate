@@ -70,7 +70,7 @@ public class Player extends Mob {
             footstepsDirtPlaying = false;
         }
         if (velocityX != 0 && grounded && !footstepsDirtPlaying) {
-            Assets.FOOTSTEP_DIRT_SOUND.loop();
+            Assets.FOOTSTEP_DIRT_SOUND.loop(0.5f);
             footstepsDirtPlaying = true;
         }
     }

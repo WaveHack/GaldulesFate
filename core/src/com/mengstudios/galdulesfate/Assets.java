@@ -50,6 +50,7 @@ public class Assets {
     public static Texture TOUCHPAD_KNOB;
 
     public static Music BACKGROUD_MUSIC_1;
+    public static Music SOLILOQUY;
     public static Sound FOOTSTEP_DIRT_SOUND;
     public static Sound FURNACE_SOUND;
     public static Sound AXE_SOUND;
@@ -99,6 +100,7 @@ public class Assets {
         assetManager.load("ui/touchpad_background.png", Texture.class);
         assetManager.load("ui/touchpad_knob.png", Texture.class);
         assetManager.load("music/background_music_1.mp3", Music.class);
+        assetManager.load("music/soliloquy.mp3", Music.class);
         assetManager.load("sound/footstep_dirt_sound.mp3", Sound.class);
         assetManager.load("sound/furnace_sound.ogg", Sound.class);
         assetManager.load("sound/axe_sound.ogg", Sound.class);
@@ -143,6 +145,7 @@ public class Assets {
         TOUCHPAD_KNOB = assetManager.get("ui/touchpad_knob.png");
 
         BACKGROUD_MUSIC_1 = assetManager.get("music/background_music_1.mp3");
+        SOLILOQUY = assetManager.get("music/soliloquy.mp3");
         FOOTSTEP_DIRT_SOUND = assetManager.get("sound/footstep_dirt_sound.mp3");
         FURNACE_SOUND = assetManager.get("sound/furnace_sound.ogg");
         AXE_SOUND = assetManager.get("sound/axe_sound.ogg");

@@ -73,8 +73,8 @@ public class TitleScreen implements Screen, InputProcessor {
 
         Gdx.input.setInputProcessor(this);
 
-        Assets.BACKGROUD_MUSIC_1.setVolume(0.1f);
-        Assets.BACKGROUD_MUSIC_1.play();
+        Assets.SOLILOQUY.setVolume(0.5f);
+        Assets.SOLILOQUY.play();
     }
 
     @Override

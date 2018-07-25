@@ -16,7 +16,7 @@ public abstract class Entity extends Sprite {
     public enum Direction {LEFT, RIGHT}
     Direction direction = Direction.RIGHT;
 
-    boolean canFall;
+    protected boolean canFall;
     protected boolean solid = true;
     boolean grounded;
 

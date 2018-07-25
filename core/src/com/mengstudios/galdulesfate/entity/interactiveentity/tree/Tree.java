@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Timer;
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.entity.ItemEntity;
+import com.mengstudios.galdulesfate.entity.interactiveentity.ItemEntity;
 import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
 import com.mengstudios.galdulesfate.item.Wood;
 import com.mengstudios.galdulesfate.item.tool.Axe;
@@ -56,7 +56,7 @@ public class Tree extends InteractiveEntity {
         if(timer > 2 && !chopped) {
             chopped = true;
             try {
-                world.getEntities().add(new ItemEntity(world, dropWood.getClass().newInstance(), getX() + 64, getY()));
+                world.getEntityManager().addEntity(new ItemEntity(world, dropWood.getClass().newInstance(), getX() + 64, getY()));
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
