@@ -27,6 +27,7 @@ public class Assets {
     public static Texture COPPER_ORE;
     public static Texture COPPER_AXE;
     public static Texture COPPER_PICKAXE;
+    public static Texture COPPER_SWORD;
     public static Texture OAK_WOOD;
 
     public static Texture DIRT_TILE;
@@ -78,6 +79,7 @@ public class Assets {
         assetManager.load("item/copper_ore.png", Texture.class);
         assetManager.load("item/copper_axe.png", Texture.class);
         assetManager.load("item/copper_pickaxe.png", Texture.class);
+        assetManager.load("item/copper_sword.png", Texture.class);
         assetManager.load("item/oak_wood.png", Texture.class);
         assetManager.load("tile/dirt_tile.png", Texture.class);
         assetManager.load("tile/grass_tile.png", Texture.class);
@@ -118,6 +120,7 @@ public class Assets {
         COPPER_ORE = assetManager.get("item/copper_ore.png");
         COPPER_AXE = assetManager.get("item/copper_axe.png");
         COPPER_PICKAXE = assetManager.get("item/copper_pickaxe.png");
+        COPPER_SWORD = assetManager.get("item/copper_sword.png");
         OAK_WOOD = assetManager.get("item/oak_wood.png");
 
         DIRT_TILE = assetManager.get("tile/dirt_tile.png");

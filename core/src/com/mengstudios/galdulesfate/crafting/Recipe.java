@@ -57,4 +57,8 @@ public class Recipe {
             player.getInventory().add(output);
         }
     }
+
+    public Array<Item> getCosts() {
+        return costs;
+    }
 }

@@ -11,7 +11,7 @@ import com.mengstudios.galdulesfate.item.Item;
 public class InventoryDisplay extends Ui {
     protected Inventory inventory;
 
-    private Item selectedItem;
+    protected Item selectedItem;
 
     protected int rowCount = 4;
     protected int columnCount = 9;
