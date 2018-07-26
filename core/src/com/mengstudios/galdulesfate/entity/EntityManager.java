@@ -25,7 +25,7 @@ public class EntityManager {
         this.world = world;
         playScreen = world.getPlayScreen();
 
-        player = new Player(world, 16 * 64, 16 * 64 + 64);
+        player = new Player(world, 16 * 64, 16 * 64);
         player.setHealth(player.getMaxHealth());
         player.setMana(player.getMaxMana());
 
@@ -88,13 +88,13 @@ public class EntityManager {
     }
 
     public void render(SpriteBatch batch) {
-        player.draw(batch);
         for(Entity entity: entities) {
             entity.draw(batch);
         }
         for(InteractiveEntity entity: interactiveEntities) {
             entity.draw(batch);
         }
+        player.draw(batch);
 
         if(playScreen.getHud().getInventoryDisplay().getSelectedItem() != null) {
             playScreen.getHud().getInventoryDisplay().getSelectedItem().renderWorld(playScreen.getGame().batch,
@@ -118,6 +118,7 @@ public class EntityManager {
                 player.setX(entity.getX() + entity.getWidth());
             } else if(player.getPy() + player.getHeight() <= entity.getY()) {
                 player.setY(entity.getY() - player.getHeight());
+                player.setVelocityY(0);
             } else if(player.getPy() >= entity.getY() + entity.getHeight()) {
                 player.setY(entity.getY() + entity.getHeight());
                 //player.setVelocity(player.getVelocityX(), 0f);

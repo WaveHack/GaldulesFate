@@ -12,6 +12,23 @@ import com.mengstudios.galdulesfate.entity.tile.GrassTile;
 public class WorldGenerator {
     private World world;
 
+    private int[] tiles = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 5, 5, 0, 6, 0, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                           1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
     private final int CHUNK_SIZE = 32;
 
     private int startX;
@@ -22,7 +39,7 @@ public class WorldGenerator {
 
         startX = 0;
 
-        generate(0);
+        init();
     }
 
     public void update(float delta) {
@@ -36,6 +53,38 @@ public class WorldGenerator {
         }
     }
 
+    public void init() {
+        startX = 0;
+        endX = 64 * CHUNK_SIZE;
+
+        for(int i = 0; i < CHUNK_SIZE; i++) {
+            for(int j = 0; j < tiles.length / CHUNK_SIZE; j++) {
+                switch (tiles[i + j * CHUNK_SIZE]) {
+                    case 0:
+                        break;
+                    case 1:
+                        world.getEntityManager().addEntity(new DirtTile(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                        break;
+                    case 2:
+                        world.getEntityManager().addEntity(new GrassTile(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                        break;
+                    case 3:
+                        world.getEntityManager().addEntity(new Anvil(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                        break;
+                    case 4:
+                        world.getEntityManager().addEntity(new Furnace(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                        break;
+                    case 5:
+                        world.getEntityManager().addEntity(new CopperRock(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                        break;
+                    case 6:
+                        world.getEntityManager().addEntity(new GiantTree(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                        break;
+                }
+            }
+        }
+    }
+
     public void generate(int position) {
         if(position < startX) {
             startX = position;
@@ -45,24 +94,10 @@ public class WorldGenerator {
         }
 
         for(int i = 0; i < CHUNK_SIZE; i++) {
-            world.getEntityManager().addEntity(new GrassTile(world, position + 64 * i, 64 * (CHUNK_SIZE / 2 - 1)));
-            for(int j = 0; j < CHUNK_SIZE / 2 - 1; j++) {
-                world.getEntityManager().addEntity(new DirtTile(world, position + 64 * i, 64 * j));
+            world.getEntityManager().addEntity(new GrassTile(world, position + 64 * i, 64 * (tiles.length / CHUNK_SIZE - 5)));
+            for(int j = 0; j < tiles.length / CHUNK_SIZE; j++) {
+                world.getEntityManager().addEntity(new DirtTile(world, position + 64 * i, 64 * (tiles.length / CHUNK_SIZE - j - 6)));
             }
         }
-
-        world.getEntityManager().addEntity(new GiantTree(world, position + 64, 64 * CHUNK_SIZE / 2));
-        world.getEntityManager().addEntity(new CopperRock(world, position, 64 * CHUNK_SIZE / 2));
-        Furnace furnace = new Furnace(world, position + 64 * 4, 64 * CHUNK_SIZE / 2);
-        if(world.isCreated()) {
-            furnace.create();
-        }
-        world.getEntityManager().addEntity(furnace);
-
-        Anvil anvil = new Anvil(world, position + 64 * 6, 64 * CHUNK_SIZE / 2);
-        if(world.isCreated()) {
-            anvil.create();
-        }
-        world.getEntityManager().addEntity(anvil);
     }
 }
