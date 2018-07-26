@@ -1,32 +1,21 @@
-package com.mengstudios.galdulesfate.entity;
+package com.mengstudios.galdulesfate.entity.mob;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.item.CopperBar;
-import com.mengstudios.galdulesfate.item.CopperOre;
+import com.mengstudios.galdulesfate.entity.Inventory;
 import com.mengstudios.galdulesfate.item.tool.CopperAxe;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
 import com.mengstudios.galdulesfate.world.World;
 
 public class Player extends Mob {
-    public enum State {STANDING, WALKING, JUMPING}
-    State previousState = State.STANDING;
-    State state = State.STANDING;
-
     Inventory inventory;
-
-    Animation<TextureRegion> walk;
-    TextureRegion standTexture;
-    TextureRegion jumpTexture;
 
     float jumpHeight = 500;
     int maxMana;
     int mana;
-
-    float stateTimer;
 
     boolean footstepsDirtPlaying;
 
@@ -61,7 +50,6 @@ public class Player extends Mob {
     @Override
     public void update(float delta) {
         super.update(delta);
-        setRegion(getFrame(delta));
 
         inventory.update(delta);
 
@@ -73,40 +61,6 @@ public class Player extends Mob {
             Assets.FOOTSTEP_DIRT_SOUND.loop(0.5f);
             footstepsDirtPlaying = true;
         }
-    }
-
-    public TextureRegion getFrame(float delta) {
-        state = getState();
-
-        TextureRegion region;
-        switch (state) {
-            case JUMPING:
-                region = jumpTexture;
-                break;
-            case STANDING:
-                region = standTexture;
-                break;
-            case WALKING:
-                region = walk.getKeyFrame(stateTimer);
-                break;
-            default:
-                region = null;
-                Gdx.app.log("Player", "Frame null!");
-                break;
-        }
-
-        if((velocityX < 0 || direction == Direction.LEFT) && !region.isFlipX()) {
-            region.flip(true, false);
-            direction = Direction.LEFT;
-        } else if((velocityX > 0 || direction == Direction.RIGHT) && region.isFlipX()) {
-            region.flip(true, false);
-            direction = Direction.RIGHT;
-        }
-
-        stateTimer = previousState == state ? stateTimer + delta : 0;
-        previousState = state;
-
-        return region;
     }
 
     public int getMana() {
@@ -123,19 +77,6 @@ public class Player extends Mob {
 
     public int getMaxMana() {
         return maxMana;
-    }
-
-    public State getState() {
-        if(velocityY > 0 || (velocityY < 0 && previousState == State.JUMPING)) {
-            return State.JUMPING;
-        } else if(velocityX != 0) {
-            return State.WALKING;
-        }
-        return State.STANDING;
-    }
-
-    public void setState(State state) {
-        this.state = state;
     }
 
     public Inventory getInventory() {

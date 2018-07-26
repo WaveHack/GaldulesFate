@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.entity.EntityManager;
-import com.mengstudios.galdulesfate.entity.Player;
+import com.mengstudios.galdulesfate.entity.mob.Player;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class World implements InputProcessor {

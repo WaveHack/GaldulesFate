@@ -10,15 +10,15 @@ public abstract class Entity extends Sprite {
     float px;
     float py;
 
-    float velocityX;
-    float velocityY;
+    protected float velocityX;
+    protected float velocityY;
 
     public enum Direction {LEFT, RIGHT}
-    Direction direction = Direction.RIGHT;
+    protected Direction direction = Direction.RIGHT;
 
     protected boolean canFall;
     protected boolean solid = true;
-    boolean grounded;
+    protected boolean grounded;
 
     boolean active = true;
     boolean removed;

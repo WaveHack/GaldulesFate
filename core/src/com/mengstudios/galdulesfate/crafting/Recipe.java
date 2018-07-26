@@ -1,7 +1,7 @@
 package com.mengstudios.galdulesfate.crafting;
 
 import com.badlogic.gdx.utils.Array;
-import com.mengstudios.galdulesfate.entity.Player;
+import com.mengstudios.galdulesfate.entity.mob.Player;
 import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.ResourceItem;
 

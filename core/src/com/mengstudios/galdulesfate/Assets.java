@@ -21,6 +21,7 @@ public class Assets {
     public static Texture FURNACE;
     public static Texture GIANT_TREE;
     public static Texture OAK_TREE;
+    public static Texture PIG;
     public static Texture PLAYER;
 
     public static Texture COPPER_BAR;
@@ -75,6 +76,7 @@ public class Assets {
         assetManager.load("entity/furnace.png", Texture.class);
         assetManager.load("entity/giant_tree.png", Texture.class);
         assetManager.load("entity/oak_tree.png", Texture.class);
+        assetManager.load("entity/pig.png", Texture.class);
         assetManager.load("entity/player.png", Texture.class);
         assetManager.load("item/copper_bar.png", Texture.class);
         assetManager.load("item/copper_ore.png", Texture.class);
@@ -116,6 +118,7 @@ public class Assets {
         FURNACE = assetManager.get("entity/furnace.png");
         GIANT_TREE = assetManager.get("entity/giant_tree.png");
         OAK_TREE = assetManager.get("entity/oak_tree.png");
+        PIG = assetManager.get("entity/pig.png");
         PLAYER = assetManager.get("entity/player.png");
 
         COPPER_BAR = assetManager.get("item/copper_bar.png");

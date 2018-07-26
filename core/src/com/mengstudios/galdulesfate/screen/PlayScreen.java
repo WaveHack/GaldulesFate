@@ -4,9 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mengstudios.galdulesfate.GaldulesFate;
-import com.mengstudios.galdulesfate.entity.Player;
+import com.mengstudios.galdulesfate.entity.mob.Player;
 import com.mengstudios.galdulesfate.hud.Hud;
 import com.mengstudios.galdulesfate.world.World;
 
