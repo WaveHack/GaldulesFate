@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
+import com.mengstudios.galdulesfate.MathExtended;
 import com.mengstudios.galdulesfate.world.World;
 
 import java.util.Random;
@@ -44,11 +45,11 @@ public class Pig extends Mob {
                 } else {
                     setVelocityX(-100);
                 }
-                timerMax = getFloatBetween(0.1f, 1) * 5;
+                timerMax = MathExtended.getFloatBetween(0.1f, 1) * 5;
             } else {
                 state = State.STANDING;
                 setVelocityX(0);
-                timerMax = getFloatBetween(0.1f, 1) * 5;
+                timerMax = MathExtended.getFloatBetween(0.1f, 1) * 5;
             }
         }
     }

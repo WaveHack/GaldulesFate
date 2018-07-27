@@ -57,7 +57,7 @@ public class MineralRock extends InteractiveEntity {
         if(timer > 2 && !mined) {
             mined = true;
             try {
-                world.getEntityManager().addEntity(new ItemEntity(world, dropOre.getClass().newInstance(), getX() + 64, getY()));
+                world.getEntityManager().addEntity(new ItemEntity(world, dropOre.getClass().newInstance(), getX(), getY()));
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {

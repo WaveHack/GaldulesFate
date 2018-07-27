@@ -4,6 +4,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
+import com.mengstudios.galdulesfate.entity.interactiveentity.ItemEntity;
 import com.mengstudios.galdulesfate.entity.mob.Mob;
 import com.mengstudios.galdulesfate.entity.mob.Player;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
@@ -161,6 +162,28 @@ public class EntityManager {
                     mob.setY(entity.getY() + entity.getHeight());
                     //mob.setVelocity(player.getVelocityX(), 0f);
                     mob.setGrounded(true);
+                }
+            }
+
+            for(InteractiveEntity interactiveEntity: interactiveEntities) {
+                if(!(interactiveEntity instanceof ItemEntity))
+                    continue;
+                if(!interactiveEntity.isActive())
+                    continue;
+                if(!collides(interactiveEntity, entity) || !entity.isSolid())
+                    continue;
+
+                if(interactiveEntity.getPx() + interactiveEntity.getWidth() <= entity.getX()) {
+                    interactiveEntity.setX(entity.getX() - interactiveEntity.getWidth());
+                } else if(interactiveEntity.getPx() >= entity.getX() + entity.getWidth()) {
+                    interactiveEntity.setX(entity.getX() + entity.getWidth());
+                } else if(interactiveEntity.getPy() + interactiveEntity.getHeight() <= entity.getY()) {
+                    interactiveEntity.setY(entity.getY() - interactiveEntity.getHeight());
+                    interactiveEntity.setVelocityY(0);
+                } else if(interactiveEntity.getPy() >= entity.getY() + entity.getHeight()) {
+                    interactiveEntity.setY(entity.getY() + entity.getHeight());
+                    //interactiveEntity.setVelocity(player.getVelocityX(), 0f);
+                    ((ItemEntity) interactiveEntity).setGrounded(true);
                 }
             }
         }

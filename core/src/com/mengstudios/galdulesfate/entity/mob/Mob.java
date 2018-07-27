@@ -105,8 +105,4 @@ public abstract class Mob extends Entity {
     public void setGrounded(boolean grounded) {
         this.grounded = grounded;
     }
-
-    public float getFloatBetween(float min, float max) {
-        return (float)(min + Math.random() * (max - min));
-    }
 }

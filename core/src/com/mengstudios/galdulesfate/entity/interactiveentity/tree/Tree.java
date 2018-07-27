@@ -56,7 +56,7 @@ public class Tree extends InteractiveEntity {
         if(timer > 2 && !chopped) {
             chopped = true;
             try {
-                world.getEntityManager().addEntity(new ItemEntity(world, dropWood.getClass().newInstance(), getX() + 64, getY()));
+                world.getEntityManager().addEntity(new ItemEntity(world, dropWood.getClass().newInstance(), getX(), getY()));
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
