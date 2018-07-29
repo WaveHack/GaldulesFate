@@ -1,19 +1,12 @@
 package com.mengstudios.galdulesfate.entity.mob;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.MathExtended;
 import com.mengstudios.galdulesfate.world.World;
 
-import java.util.Random;
-
 public class Pig extends Mob {
-    Random random = new Random();
-    float timerMax;
-
     public Pig(World world, float x, float y) {
         super(world, x, y);
 
@@ -33,24 +26,5 @@ public class Pig extends Mob {
         canFall = true;
 
         stateTimer = 0;
-    }
-
-    @Override
-    public void update(float delta) {
-        super.update(delta);
-        if(stateTimer > timerMax) {
-            if(state == State.STANDING) {
-                if(Math.random() < 0.5f) {
-                    setVelocityX(100);
-                } else {
-                    setVelocityX(-100);
-                }
-                timerMax = MathExtended.getFloatBetween(0.1f, 1) * 5;
-            } else {
-                state = State.STANDING;
-                setVelocityX(0);
-                timerMax = MathExtended.getFloatBetween(0.1f, 1) * 5;
-            }
-        }
     }
 }

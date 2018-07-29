@@ -11,6 +11,8 @@ public abstract class Mob extends Entity {
     State previousState = State.STANDING;
     State state = State.STANDING;
 
+    Ai ai;
+
     float stateTimer;
 
     Animation<TextureRegion> walk;
@@ -27,12 +29,16 @@ public abstract class Mob extends Entity {
     public Mob(World world, float x, float y) {
         super(world, x, y);
         solid = true;
+        ai = new Ai(this);
     }
 
     @Override
     public void update(float delta) {
         super.update(delta);
         setRegion(getFrame(delta));
+        if(ai != null) {
+            ai.update(delta);
+        }
     }
 
     public State getState() {
