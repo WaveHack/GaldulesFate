@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
+import com.mengstudios.galdulesfate.MathExtended;
 import com.mengstudios.galdulesfate.world.World;
 
 public class Pig extends Mob {
@@ -22,9 +23,37 @@ public class Pig extends Mob {
 
         setRegion(standTexture);
         setBounds(x, y, Assets.PIG.getWidth() / 4, Assets.PIG.getHeight());
+        setBoundingPolygon(getBoundingRectangle());
+
+        maxHealth = 80;
+        health = maxHealth;
 
         canFall = true;
 
         stateTimer = 0;
+    }
+
+    @Override
+    public void takeDamage(int damage) {
+        if(hurt || state == State.DYING) {
+            return;
+        }
+
+        if(Math.random() < 0.5) {
+            Assets.PIG_HURT_1_SOUND.play();
+        } else {
+            Assets.PIG_HURT_2_SOUND.play();
+        }
+        super.takeDamage(damage);
+    }
+
+    @Override
+    public void die() {
+        if(state == State.DYING) {
+            return;
+        }
+
+        super.die();
+        Assets.PIG_DEATH_SOUND.play(0.5f);
     }
 }

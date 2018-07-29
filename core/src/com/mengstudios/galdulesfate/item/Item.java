@@ -6,8 +6,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Item {
     protected TextureRegion region;
 
-    boolean swinging;
-    float rotation = 0;
+    protected boolean swinging;
+    protected float rotation = 0;
+
+    protected float x;
+    protected float y;
 
     final float ROTATION_SPEED = 500;
 
@@ -20,6 +23,9 @@ public class Item {
     }
 
     public void renderWorld(SpriteBatch batch, float x, float y, boolean clockwise) {
+        this.x = x;
+        this.y = y;
+
         if(swinging) {
             if(clockwise && region.isFlipX()) {
                 region.flip(true, false);

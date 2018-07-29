@@ -56,6 +56,9 @@ public class Assets {
     public static Sound FURNACE_SOUND;
     public static Sound AXE_SOUND;
     public static Sound PICKAXE_SOUND;
+    public static Sound PIG_DEATH_SOUND;
+    public static Sound PIG_HURT_1_SOUND;
+    public static Sound PIG_HURT_2_SOUND;
 
     private FreeTypeFontGenerator fontGenerator;
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
@@ -107,6 +110,9 @@ public class Assets {
         assetManager.load("sound/furnace_sound.ogg", Sound.class);
         assetManager.load("sound/axe_sound.ogg", Sound.class);
         assetManager.load("sound/pickaxe_sound.ogg", Sound.class);
+        assetManager.load("sound/pig_death.ogg", Sound.class);
+        assetManager.load("sound/pig_hurt_1.ogg", Sound.class);
+        assetManager.load("sound/pig_hurt_2.ogg", Sound.class);
         assetManager.finishLoading();
 
         TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.png");
@@ -153,6 +159,9 @@ public class Assets {
         FURNACE_SOUND = assetManager.get("sound/furnace_sound.ogg");
         AXE_SOUND = assetManager.get("sound/axe_sound.ogg");
         PICKAXE_SOUND = assetManager.get("sound/pickaxe_sound.ogg");
+        PIG_DEATH_SOUND = assetManager.get("sound/pig_death.ogg");
+        PIG_HURT_1_SOUND = assetManager.get("sound/pig_hurt_1.ogg");
+        PIG_HURT_2_SOUND = assetManager.get("sound/pig_hurt_2.ogg");
 
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("OldWizard.ttf"));
         fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

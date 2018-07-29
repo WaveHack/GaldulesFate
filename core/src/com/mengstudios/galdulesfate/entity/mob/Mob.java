@@ -1,13 +1,18 @@
 package com.mengstudios.galdulesfate.entity.mob;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Timer;
 import com.mengstudios.galdulesfate.entity.Entity;
 import com.mengstudios.galdulesfate.world.World;
 
 public abstract class Mob extends Entity {
-    public enum State {STANDING, WALKING, JUMPING}
+    public enum State {STANDING, WALKING, JUMPING, DYING}
     State previousState = State.STANDING;
     State state = State.STANDING;
 
@@ -19,12 +24,12 @@ public abstract class Mob extends Entity {
     TextureRegion standTexture;
     TextureRegion jumpTexture;
 
+    Polygon boundingPolygon;
+
     int maxHealth;
     int health;
 
-    public Mob(World world) {
-        super(world);
-    }
+    boolean hurt;
 
     public Mob(World world, float x, float y) {
         super(world, x, y);
@@ -39,10 +44,27 @@ public abstract class Mob extends Entity {
         if(ai != null) {
             ai.update(delta);
         }
+        boundingPolygon.setPosition(getX(), getY());
+
+        if(health <= 0 && !isRemoved()) {
+            die();
+        }
+    }
+
+    @Override
+    public void draw(Batch batch) {
+        if(hurt) {
+            setColor(new Color(Color.RED));
+        } else {
+            setColor(new Color(Color.WHITE));
+        }
+        super.draw(batch);
     }
 
     public State getState() {
-        if(velocityY > 0 || (velocityY < 0 && previousState == State.JUMPING)) {
+        if(state == State.DYING) {
+            return State.DYING;
+        } else if(velocityY > 0 || (velocityY < 0 && previousState == State.JUMPING)) {
             return State.JUMPING;
         } else if(velocityX != 0) {
             return State.WALKING;
@@ -58,6 +80,7 @@ public abstract class Mob extends Entity {
             case JUMPING:
                 region = jumpTexture;
                 break;
+            case DYING:
             case STANDING:
                 region = standTexture;
                 break;
@@ -100,6 +123,36 @@ public abstract class Mob extends Entity {
         this.health += health;
     }
 
+    public void takeDamage(int damage) {
+        if(hurt) {
+            return;
+        }
+
+        this.health -= damage;
+        hurt = true;
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                hurt = false;
+            }
+        }, 0.5f);
+    }
+
+    public void die() {
+        if(state == State.DYING) {
+            return;
+        }
+
+        state = State.DYING;
+
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                remove();
+            }
+        }, 1f);
+    }
+
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -110,5 +163,14 @@ public abstract class Mob extends Entity {
 
     public void setGrounded(boolean grounded) {
         this.grounded = grounded;
+    }
+
+    public Polygon getBoundingPolygon() {
+        return boundingPolygon;
+    }
+
+    public void setBoundingPolygon(Rectangle rectangle) {
+        boundingPolygon = new Polygon(new float[]{0, 0, rectangle.width, 0, rectangle.width, rectangle.height, 0, rectangle.height});
+        boundingPolygon.setPosition(rectangle.getX(), rectangle.getY());
     }
 }

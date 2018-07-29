@@ -5,6 +5,9 @@ import com.mengstudios.galdulesfate.Assets;
 
 public class CopperSword extends Sword {
     public CopperSword() {
+        damage = 10;
+
         region = new TextureRegion(Assets.COPPER_SWORD);
+        initBoundingPolygon();
     }
 }

@@ -7,7 +7,7 @@ import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.Mineral
 public class Pickaxe extends Tool {
     @Override
     public void use(Entity entity) {
-
+        super.use(entity);
     }
 
     public void mine(MineralRock mineralRock, float delta) {

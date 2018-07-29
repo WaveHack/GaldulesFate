@@ -2,11 +2,14 @@ package com.mengstudios.galdulesfate.entity;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
 import com.mengstudios.galdulesfate.entity.interactiveentity.ItemEntity;
 import com.mengstudios.galdulesfate.entity.mob.Mob;
 import com.mengstudios.galdulesfate.entity.mob.Player;
+import com.mengstudios.galdulesfate.item.Item;
+import com.mengstudios.galdulesfate.item.tool.Tool;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 import com.mengstudios.galdulesfate.world.World;
 
@@ -202,6 +205,24 @@ public class EntityManager {
                 player.setY(entity.getY() + entity.getHeight());
                 //player.setVelocity(player.getVelocityX(), 0f);
                 player.setGrounded(true);
+            }
+        }
+
+        checkItemCollisions();
+    }
+
+    public void checkItemCollisions() {
+        Item selectedItem = playScreen.getHud().getInventoryDisplay().getSelectedItem();
+        if(selectedItem != null) {
+            if(selectedItem.isSwinging()) {
+                if(selectedItem instanceof Tool) {
+                    Tool selectedTool = (Tool) selectedItem;
+                    for(Mob mob: mobs) {
+                        if(Intersector.overlapConvexPolygons(selectedTool.getBoundingPolygon(), mob.getBoundingPolygon())) {
+                            selectedTool.use(mob);
+                        }
+                    }
+                }
             }
         }
     }

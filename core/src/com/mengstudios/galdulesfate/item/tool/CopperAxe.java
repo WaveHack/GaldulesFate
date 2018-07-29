@@ -5,6 +5,9 @@ import com.mengstudios.galdulesfate.Assets;
 
 public class CopperAxe extends Axe {
     public CopperAxe() {
+        damage = 6;
+
         region = new TextureRegion(Assets.COPPER_AXE);
+        initBoundingPolygon();
     }
 }

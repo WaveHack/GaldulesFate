@@ -1,6 +1,5 @@
 package com.mengstudios.galdulesfate.entity.mob;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
@@ -34,6 +33,7 @@ public class Player extends Mob {
 
         setRegion(standTexture);
         setBounds(x, y, 54, 100);
+        setBoundingPolygon(getBoundingRectangle());
 
         maxHealth = 100;
         maxMana = 100;
