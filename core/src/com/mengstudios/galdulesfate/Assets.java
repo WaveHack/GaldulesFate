@@ -17,6 +17,7 @@ public class Assets {
 
     public static Texture ANVIL;
     public static Texture COPPER_ORE_ROCKS;
+    public static Texture COW;
     public static Texture EMPTY_ROCKS;
     public static Texture FURNACE;
     public static Texture GIANT_TREE;
@@ -52,6 +53,7 @@ public class Assets {
 
     public static Music BACKGROUD_MUSIC_1;
     public static Music SOLILOQUY;
+    public static Sound COW_HURT_SOUND;
     public static Sound FOOTSTEP_DIRT_SOUND;
     public static Sound FURNACE_SOUND;
     public static Sound AXE_SOUND;
@@ -74,6 +76,7 @@ public class Assets {
         assetManager.load("title_screen_background.png", Texture.class);
         assetManager.load("sky.png", Texture.class);
         assetManager.load("entity/copper_ore_rocks.png", Texture.class);
+        assetManager.load("entity/cow.png", Texture.class);
         assetManager.load("entity/anvil.png", Texture.class);
         assetManager.load("entity/empty_rocks.png", Texture.class);
         assetManager.load("entity/furnace.png", Texture.class);
@@ -106,6 +109,7 @@ public class Assets {
         assetManager.load("ui/touchpad_knob.png", Texture.class);
         assetManager.load("music/background_music_1.mp3", Music.class);
         assetManager.load("music/soliloquy.mp3", Music.class);
+        assetManager.load("sound/cow_hurt.ogg", Sound.class);
         assetManager.load("sound/footstep_dirt_sound.mp3", Sound.class);
         assetManager.load("sound/furnace_sound.ogg", Sound.class);
         assetManager.load("sound/axe_sound.ogg", Sound.class);
@@ -120,6 +124,7 @@ public class Assets {
 
         ANVIL = assetManager.get("entity/anvil.png");
         COPPER_ORE_ROCKS = assetManager.get("entity/copper_ore_rocks.png");
+        COW = assetManager.get("entity/cow.png");
         EMPTY_ROCKS = assetManager.get("entity/empty_rocks.png");
         FURNACE = assetManager.get("entity/furnace.png");
         GIANT_TREE = assetManager.get("entity/giant_tree.png");
@@ -155,6 +160,7 @@ public class Assets {
 
         BACKGROUD_MUSIC_1 = assetManager.get("music/background_music_1.mp3");
         SOLILOQUY = assetManager.get("music/soliloquy.mp3");
+        COW_HURT_SOUND = assetManager.get("sound/cow_hurt.ogg");
         FOOTSTEP_DIRT_SOUND = assetManager.get("sound/footstep_dirt_sound.mp3");
         FURNACE_SOUND = assetManager.get("sound/furnace_sound.ogg");
         AXE_SOUND = assetManager.get("sound/axe_sound.ogg");

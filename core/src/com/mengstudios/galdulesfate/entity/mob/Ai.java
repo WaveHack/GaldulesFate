@@ -11,7 +11,7 @@ public class Ai {
     public Ai(Mob mob) {
         this.mob = mob;
 
-        if(mob instanceof Pig) {
+        if(mob instanceof Pig || mob instanceof Cow) {
             id = 1;
         }
     }

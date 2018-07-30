@@ -6,6 +6,7 @@ import com.mengstudios.galdulesfate.entity.interactiveentity.Furnace;
 import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.CopperRock;
 import com.mengstudios.galdulesfate.entity.interactiveentity.tree.GiantTree;
 import com.mengstudios.galdulesfate.entity.interactiveentity.tree.OakTree;
+import com.mengstudios.galdulesfate.entity.mob.Cow;
 import com.mengstudios.galdulesfate.entity.mob.Pig;
 import com.mengstudios.galdulesfate.entity.tile.DirtTile;
 import com.mengstudios.galdulesfate.entity.tile.GrassTile;
@@ -17,7 +18,7 @@ public class WorldGenerator {
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 5, 5, 0, 6, 0, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 5, 5, 0, 6, 0, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 10, 0, 0, 0, 0, 0, 0, 0, 0,
                            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -83,6 +84,9 @@ public class WorldGenerator {
                         break;
                     case 10:
                         world.getEntityManager().addEntity(new Pig(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j) + 64));
+                        break;
+                    case 11:
+                        world.getEntityManager().addEntity(new Cow(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j) + 64));
                         break;
                 }
             }

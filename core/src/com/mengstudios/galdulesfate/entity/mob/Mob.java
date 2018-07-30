@@ -54,7 +54,7 @@ public abstract class Mob extends Entity {
     @Override
     public void draw(Batch batch) {
         if(hurt) {
-            setColor(new Color(Color.RED));
+            setColor(new Color().set(1, 0.3f, 0.3f, 1));
         } else {
             setColor(new Color(Color.WHITE));
         }
