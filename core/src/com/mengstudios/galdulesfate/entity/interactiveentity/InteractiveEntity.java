@@ -1,7 +1,7 @@
 package com.mengstudios.galdulesfate.entity.interactiveentity;
 
 import com.mengstudios.galdulesfate.entity.Entity;
-import com.mengstudios.galdulesfate.hud.Ui;
+import com.mengstudios.galdulesfate.hud.ui.Ui;
 import com.mengstudios.galdulesfate.world.World;
 
 public abstract class InteractiveEntity extends Entity {

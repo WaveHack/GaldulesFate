@@ -6,7 +6,6 @@ import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.hud.Hud;
 import com.mengstudios.galdulesfate.hud.Slider;
-import com.mengstudios.galdulesfate.hud.Ui;
 import com.mengstudios.galdulesfate.item.resourceitem.Bar;
 import com.mengstudios.galdulesfate.item.resourceitem.CopperBar;
 import com.mengstudios.galdulesfate.item.resourceitem.CopperOre;

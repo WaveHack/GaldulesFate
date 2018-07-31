@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mengstudios.galdulesfate.GaldulesFate;
+import com.mengstudios.galdulesfate.hud.ui.InventoryDisplay;
+import com.mengstudios.galdulesfate.hud.ui.StatusDisplay;
+import com.mengstudios.galdulesfate.hud.ui.Ui;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class Hud implements InputProcessor {
