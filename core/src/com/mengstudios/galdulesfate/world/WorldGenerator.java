@@ -2,6 +2,7 @@ package com.mengstudios.galdulesfate.world;
 
 import com.badlogic.gdx.Gdx;
 import com.mengstudios.galdulesfate.entity.interactiveentity.Anvil;
+import com.mengstudios.galdulesfate.entity.interactiveentity.Campfire;
 import com.mengstudios.galdulesfate.entity.interactiveentity.Furnace;
 import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.CopperRock;
 import com.mengstudios.galdulesfate.entity.interactiveentity.tree.GiantTree;
@@ -18,7 +19,7 @@ public class WorldGenerator {
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 5, 5, 0, 6, 0, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 10, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 5, 5, 0, 6, 0, 0, 4, 0, 3, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 10, 0, 0, 0, 0, 0, 0, 0, 0,
                            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -87,6 +88,9 @@ public class WorldGenerator {
                         break;
                     case 11:
                         world.getEntityManager().addEntity(new Cow(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j) + 64));
+                        break;
+                    case 12:
+                        world.getEntityManager().addEntity(new Campfire(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
                         break;
                 }
             }

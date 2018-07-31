@@ -1,4 +1,4 @@
-package com.mengstudios.galdulesfate.item;
+package com.mengstudios.galdulesfate.item.resourceitem;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mengstudios.galdulesfate.Assets;

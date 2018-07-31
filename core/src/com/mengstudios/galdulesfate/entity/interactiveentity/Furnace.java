@@ -1,7 +1,7 @@
 package com.mengstudios.galdulesfate.entity.interactiveentity;
 
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.hud.FurnaceUi;
+import com.mengstudios.galdulesfate.hud.ui.FurnaceUi;
 import com.mengstudios.galdulesfate.world.World;
 
 public class Furnace extends InteractiveEntity {
@@ -9,7 +9,6 @@ public class Furnace extends InteractiveEntity {
 
     public Furnace(World world, float x, float y) {
         super(world, x, y);
-        solid = false;
         setRegion(Assets.FURNACE);
         setBounds(x, y, Assets.FURNACE.getWidth(), Assets.FURNACE.getHeight());
     }

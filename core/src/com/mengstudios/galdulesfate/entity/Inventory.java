@@ -1,7 +1,7 @@
 package com.mengstudios.galdulesfate.entity;
 
 import com.mengstudios.galdulesfate.item.Item;
-import com.mengstudios.galdulesfate.item.ResourceItem;
+import com.mengstudios.galdulesfate.item.resourceitem.ResourceItem;
 
 public class Inventory {
     private Item[] items;

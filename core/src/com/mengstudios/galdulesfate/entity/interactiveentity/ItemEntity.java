@@ -2,7 +2,7 @@ package com.mengstudios.galdulesfate.entity.interactiveentity;
 
 import com.mengstudios.galdulesfate.MathExtended;
 import com.mengstudios.galdulesfate.item.Item;
-import com.mengstudios.galdulesfate.item.ResourceItem;
+import com.mengstudios.galdulesfate.item.resourceitem.ResourceItem;
 import com.mengstudios.galdulesfate.world.World;
 
 public class ItemEntity extends InteractiveEntity {

@@ -1,8 +1,9 @@
-package com.mengstudios.galdulesfate.item;
+package com.mengstudios.galdulesfate.item.resourceitem;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.hud.Text;
+import com.mengstudios.galdulesfate.item.Item;
 
 public class ResourceItem extends Item {
     private Text text;

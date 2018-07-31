@@ -3,10 +3,13 @@ package com.mengstudios.galdulesfate.entity.mob;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.world.World;
 
 public class Pig extends Mob {
+    boolean hurtSoundIsPlaying;
+
     public Pig(World world, float x, float y) {
         super(world, x, y);
 
@@ -38,10 +41,19 @@ public class Pig extends Mob {
             return;
         }
 
-        if(Math.random() < 0.5) {
-            Assets.PIG_HURT_1_SOUND.play();
-        } else {
-            Assets.PIG_HURT_2_SOUND.play();
+        if(!hurtSoundIsPlaying) {
+            //if(Math.random() < 0.5) {
+                Assets.PIG_HURT_1_SOUND.play();
+            //} else {
+            //    Assets.PIG_HURT_2_SOUND.play();
+            //}
+            hurtSoundIsPlaying = true;
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    hurtSoundIsPlaying = false;
+                }
+            }, 0.6f);
         }
         super.takeDamage(damage);
     }

@@ -1,13 +1,16 @@
-package com.mengstudios.galdulesfate.hud;
+package com.mengstudios.galdulesfate.hud.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
-import com.mengstudios.galdulesfate.item.Bar;
-import com.mengstudios.galdulesfate.item.CopperBar;
-import com.mengstudios.galdulesfate.item.CopperOre;
-import com.mengstudios.galdulesfate.item.Ore;
+import com.mengstudios.galdulesfate.hud.Hud;
+import com.mengstudios.galdulesfate.hud.Slider;
+import com.mengstudios.galdulesfate.hud.Ui;
+import com.mengstudios.galdulesfate.item.resourceitem.Bar;
+import com.mengstudios.galdulesfate.item.resourceitem.CopperBar;
+import com.mengstudios.galdulesfate.item.resourceitem.CopperOre;
+import com.mengstudios.galdulesfate.item.resourceitem.Ore;
 
 public class FurnaceUi extends Ui {
     private Slider arrowProgress;

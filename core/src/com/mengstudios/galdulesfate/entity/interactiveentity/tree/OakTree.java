@@ -2,7 +2,7 @@ package com.mengstudios.galdulesfate.entity.interactiveentity.tree;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.item.OakWood;
+import com.mengstudios.galdulesfate.item.resourceitem.OakWood;
 import com.mengstudios.galdulesfate.world.World;
 
 public class OakTree extends Tree {

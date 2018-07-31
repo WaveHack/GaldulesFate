@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
 import com.mengstudios.galdulesfate.entity.interactiveentity.ItemEntity;
-import com.mengstudios.galdulesfate.item.Ore;
+import com.mengstudios.galdulesfate.item.resourceitem.Ore;
 import com.mengstudios.galdulesfate.item.tool.Pickaxe;
 import com.mengstudios.galdulesfate.world.World;
 
@@ -20,7 +20,6 @@ public class MineralRock extends InteractiveEntity {
 
     public MineralRock(World world, float x, float y) {
         super(world, x, y);
-        solid = false;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.mengstudios.galdulesfate.crafting;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.entity.mob.Player;
 import com.mengstudios.galdulesfate.item.Item;
-import com.mengstudios.galdulesfate.item.ResourceItem;
+import com.mengstudios.galdulesfate.item.resourceitem.ResourceItem;
 
 public class Recipe {
     Array<Item> costs = new Array<>();

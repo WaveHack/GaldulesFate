@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.entity.interactiveentity.ItemEntity;
 import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
-import com.mengstudios.galdulesfate.item.Wood;
+import com.mengstudios.galdulesfate.item.resourceitem.Wood;
 import com.mengstudios.galdulesfate.item.tool.Axe;
 import com.mengstudios.galdulesfate.world.World;
 
@@ -22,7 +22,6 @@ public class Tree extends InteractiveEntity {
     
     public Tree(World world, float x, float y) {
         super(world, x, y);
-        solid = false;
     }
 
     @Override

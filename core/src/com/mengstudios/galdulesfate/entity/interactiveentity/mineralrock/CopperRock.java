@@ -1,7 +1,7 @@
 package com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock;
 
 import com.mengstudios.galdulesfate.Assets;
-import com.mengstudios.galdulesfate.item.CopperOre;
+import com.mengstudios.galdulesfate.item.resourceitem.CopperOre;
 import com.mengstudios.galdulesfate.world.World;
 
 public class CopperRock extends MineralRock {

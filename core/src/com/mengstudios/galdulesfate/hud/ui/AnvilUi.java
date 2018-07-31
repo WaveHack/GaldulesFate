@@ -1,14 +1,15 @@
-package com.mengstudios.galdulesfate.hud;
+package com.mengstudios.galdulesfate.hud.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.crafting.Recipe;
 import com.mengstudios.galdulesfate.entity.Inventory;
-import com.mengstudios.galdulesfate.item.CopperBar;
+import com.mengstudios.galdulesfate.hud.Hud;
+import com.mengstudios.galdulesfate.hud.InventoryDisplay;
+import com.mengstudios.galdulesfate.item.resourceitem.CopperBar;
 import com.mengstudios.galdulesfate.item.Item;
-import com.mengstudios.galdulesfate.item.Wood;
+import com.mengstudios.galdulesfate.item.resourceitem.Wood;
 import com.mengstudios.galdulesfate.item.tool.CopperAxe;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
 import com.mengstudios.galdulesfate.item.tool.CopperSword;

@@ -1,4 +1,4 @@
-package com.mengstudios.galdulesfate.item;
+package com.mengstudios.galdulesfate.item.resourceitem;
 
 
 public class Ore extends ResourceItem {

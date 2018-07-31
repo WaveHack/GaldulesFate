@@ -4,12 +4,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Ui {
-    Hud hud;
-    Texture backgroundTexture;
-    float x;
-    float y;
-    boolean hidden;
-    boolean removed;
+    protected Hud hud;
+    protected Texture backgroundTexture;
+    protected float x;
+    protected float y;
+    protected boolean hidden;
+    protected boolean removed;
 
     public Ui(Hud hud) {
         this.hud = hud;
