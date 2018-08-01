@@ -144,6 +144,8 @@ public class World implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        entityManager.touchDown(screenX, screenY, pointer, button);
+
         Vector3 screenCoords = camera.unproject(new Vector3(screenX, screenY, 0));
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
@@ -151,8 +153,6 @@ public class World implements InputProcessor {
         touchHeld = true;
         touchHeldX = screenX;
         touchHeldY = screenY;
-
-        entityManager.touchDown(screenX, screenY, pointer, button);
 
         return false;
     }

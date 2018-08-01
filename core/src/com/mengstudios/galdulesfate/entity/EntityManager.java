@@ -3,6 +3,7 @@ package com.mengstudios.galdulesfate.entity;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.MathExtended;
 import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
@@ -354,6 +355,16 @@ public class EntityManager {
     }
 
     public void touchDown(int screenX, int screenY, int pointer, int button) {
+        Vector3 hudScreenCoords = world.getPlayScreen().getHud().getCamera().unproject(new Vector3(screenX, screenY, 0));
+
+        if(world.getPlayScreen().getHud().getInventoryDisplay().isTouched((int) hudScreenCoords.x, (int) hudScreenCoords.y)) {
+            return;
+        }
+
+        Vector3 screenCoords = world.getCamera().unproject(new Vector3(screenX, screenY, 0));
+        screenX = Math.round(screenCoords.x);
+        screenY = Math.round(screenCoords.y);
+
         for(InteractiveEntity entity: interactiveEntities) {
             if(!entity.isActive())
                 continue;

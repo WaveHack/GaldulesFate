@@ -99,7 +99,7 @@ public class InventoryDisplay extends Ui {
         }
     }
 
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public void touchUp(int screenX, int screenY, int pointer, int button) {
         if(screenX > x && screenX < x + width
                 && screenY > y && screenY < y + height){
             for(int i = 0; i < rowCount * columnCount; i++) {
@@ -120,8 +120,6 @@ public class InventoryDisplay extends Ui {
         if(selectedItem != null) {
             selectedItem.setSwinging(false);
         }
-
-        return false;
     }
     
     public boolean isTouched(int screenX, int screenY) {
