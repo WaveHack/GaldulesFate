@@ -1,5 +1,6 @@
 package com.mengstudios.galdulesfate.hud.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
@@ -54,6 +55,7 @@ public class StatusDisplay extends Ui {
 
     @Override
     public void draw(SpriteBatch batch) {
+        batch.setColor(new Color().set(1f, 1f, 1f, 0.5f));
         super.draw(batch);
         healthBar.draw(batch);
         manaBar.draw(batch);
@@ -61,6 +63,7 @@ public class StatusDisplay extends Ui {
         for(int i = 0; i < 10; i++) {
             abilityButtons.get(i).draw(batch);
         }
+        batch.setColor(Color.WHITE);
     }
 
     public Array<AbilityButton> getAbilityButtons() {
