@@ -26,6 +26,7 @@ public class Assets {
     public static Texture PIG;
     public static Texture PLAYER;
 
+    public static Texture BOW;
     public static Texture COOKED_MEAT;
     public static Texture COPPER_BAR;
     public static Texture COPPER_ORE;
@@ -34,6 +35,7 @@ public class Assets {
     public static Texture COPPER_SWORD;
     public static Texture OAK_WOOD;
     public static Texture RAW_BEEF;
+    public static Texture WOODEN_ARROW;
 
     public static Texture DIRT_TILE;
     public static Texture GRASS_TILE;
@@ -91,6 +93,7 @@ public class Assets {
         assetManager.load("entity/pig.png", Texture.class);
         assetManager.load("entity/player.png", Texture.class);
 
+        assetManager.load("item/bow.png", Texture.class);
         assetManager.load("item/cooked_meat.png", Texture.class);
         assetManager.load("item/copper_bar.png", Texture.class);
         assetManager.load("item/copper_ore.png", Texture.class);
@@ -99,6 +102,7 @@ public class Assets {
         assetManager.load("item/copper_sword.png", Texture.class);
         assetManager.load("item/oak_wood.png", Texture.class);
         assetManager.load("item/raw_beef.png", Texture.class);
+        assetManager.load("item/wooden_arrow.png", Texture.class);
 
         assetManager.load("tile/dirt_tile.png", Texture.class);
         assetManager.load("tile/grass_tile.png", Texture.class);
@@ -146,6 +150,7 @@ public class Assets {
         PIG = assetManager.get("entity/pig.png");
         PLAYER = assetManager.get("entity/player.png");
 
+        BOW = assetManager.get("item/bow.png");
         COOKED_MEAT = assetManager.get("item/cooked_meat.png");
         COPPER_BAR = assetManager.get("item/copper_bar.png");
         COPPER_ORE = assetManager.get("item/copper_ore.png");
@@ -154,6 +159,7 @@ public class Assets {
         COPPER_SWORD = assetManager.get("item/copper_sword.png");
         OAK_WOOD = assetManager.get("item/oak_wood.png");
         RAW_BEEF = assetManager.get("item/raw_beef.png");
+        WOODEN_ARROW = assetManager.get("item/wooden_arrow.png");
 
         DIRT_TILE = assetManager.get("tile/dirt_tile.png");
         GRASS_TILE = assetManager.get("tile/grass_tile.png");

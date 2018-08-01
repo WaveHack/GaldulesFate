@@ -55,7 +55,7 @@ public class Inventory {
         return false;
     }
 
-    private ResourceItem findResourceItem(ResourceItem resourceItem) {
+    public ResourceItem findResourceItem(ResourceItem resourceItem) {
         for(Item item: items) {
             if(item instanceof ResourceItem) {
                 if((item.getClass() == resourceItem.getClass() || resourceItem.getClass().isInstance(item)) && ((ResourceItem) item).getCount() > 0) {

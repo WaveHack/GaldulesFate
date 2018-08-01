@@ -27,6 +27,8 @@ public class World implements InputProcessor {
     private static final int TOTAL_KEYS = 255;
     private boolean[] keysHeld = new boolean[TOTAL_KEYS];
     private boolean touchHeld;
+    private int touchHeldX;
+    private int touchHeldY;
 
     private boolean created;
 
@@ -54,7 +56,7 @@ public class World implements InputProcessor {
 
         generator.update(delta);
 
-        camera.position.set(getPlayer().getX() + getPlayer().getWidth() / 2, getPlayer().getY() + 100, 0);
+        camera.position.set(getPlayer().getX() + getPlayer().getWidth() / 2, getPlayer().getY() + getPlayer().getHeight() / 2 + 50, 0);
         camera.update();
     }
 
@@ -86,6 +88,18 @@ public class World implements InputProcessor {
 
     public ExtendViewport getViewport() {
         return viewport;
+    }
+
+    public boolean isTouchHeld() {
+        return touchHeld;
+    }
+
+    public int getTouchHeldX() {
+        return touchHeldX;
+    }
+
+    public int getTouchHeldY() {
+        return touchHeldY;
     }
 
     private void handleHeldInput(float delta) {
@@ -134,9 +148,11 @@ public class World implements InputProcessor {
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
 
-        entityManager.touchDown(screenX, screenY, pointer, button);
-
         touchHeld = true;
+        touchHeldX = screenX;
+        touchHeldY = screenY;
+
+        entityManager.touchDown(screenX, screenY, pointer, button);
 
         return false;
     }
@@ -145,6 +161,9 @@ public class World implements InputProcessor {
         Vector3 screenCoords = camera.unproject(new Vector3(screenX, screenY, 0));
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
+
+        touchHeldX = screenX;
+        touchHeldY = screenY;
 
         entityManager.touchHeld(screenX, screenY, delta);
     }

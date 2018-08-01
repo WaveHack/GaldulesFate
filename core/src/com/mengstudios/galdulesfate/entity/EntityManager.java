@@ -10,6 +10,8 @@ import com.mengstudios.galdulesfate.entity.mob.Mob;
 import com.mengstudios.galdulesfate.entity.mob.Player;
 import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.tool.Tool;
+import com.mengstudios.galdulesfate.item.tool.weapon.RangedWeapon;
+import com.mengstudios.galdulesfate.item.tool.weapon.projectile.Projectile;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
 import com.mengstudios.galdulesfate.world.World;
 
@@ -49,8 +51,7 @@ public class EntityManager {
         }
     }
 
-    public void update(float delta) {
-        player.update(delta);
+    public void updateEntities(float delta) {
         for(Entity entity: entities) {
             entity.update(delta);
             if(!entity.isActive()) {
@@ -62,7 +63,9 @@ public class EntityManager {
         }
         entities.removeAll(entitiesToRemove, true);
         entitiesToRemove.clear();
+    }
 
+    public void updateInteractiveEntities(float delta) {
         for(InteractiveEntity interactiveEntity: interactiveEntities) {
             interactiveEntity.update(delta);
             if(!interactiveEntity.isActive()) {
@@ -75,7 +78,9 @@ public class EntityManager {
         }
         interactiveEntities.removeAll(interactiveEntitiesToRemove, true);
         interactiveEntitiesToRemove.clear();
+    }
 
+    public void updateMobs(float delta) {
         for(Mob mob: mobs) {
             mob.update(delta);
             if(!mob.isActive()) {
@@ -88,6 +93,14 @@ public class EntityManager {
         }
         mobs.removeAll(mobsToRemove, true);
         mobsToRemove.clear();
+    }
+
+    public void update(float delta) {
+        player.update(delta);
+
+        updateEntities(delta);
+        updateInteractiveEntities(delta);
+        updateMobs(delta);
 
         for(Entity entity: inactiveEntities) {
             entity.checkIfActive();
@@ -133,7 +146,7 @@ public class EntityManager {
     public void checkCollisions() {
         player.setGrounded(false);
         for (Entity entity: entities) {
-            if(collides(player, entity) || !entity.isSolid()) {
+            if(collides(player, entity) && entity.isSolid()) {
                 if (player.getPx() + player.getWidth() <= entity.getX()) {
                     player.setX(entity.getX() - player.getWidth());
                 } else if (player.getPx() >= entity.getX() + entity.getWidth()) {
@@ -151,6 +164,12 @@ public class EntityManager {
             for(Mob mob: mobs) {
                 if(!mob.isActive())
                     continue;
+                if(entity instanceof ProjectileEntity) {
+                    if(collides(mob, entity)) {
+                        ((ProjectileEntity) entity).hurt(mob);
+                        entity.remove();
+                    }
+                }
                 if(!collides(mob, entity) || !entity.isSolid())
                     continue;
 
@@ -277,6 +296,13 @@ public class EntityManager {
 
             if (touchingEntity(screenX, screenY, entity)) {
                 entity.touchDown();
+            }
+        }
+
+        Item selectedItem = playScreen.getHud().getInventoryDisplay().getSelectedItem();
+        if(selectedItem != null) {
+            if(selectedItem instanceof RangedWeapon) {
+                ((RangedWeapon) selectedItem).shoot();
             }
         }
     }

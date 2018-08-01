@@ -2,8 +2,11 @@ package com.mengstudios.galdulesfate.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class Item {
+    protected PlayScreen playScreen;
+
     protected TextureRegion region;
 
     protected boolean swinging;
@@ -13,6 +16,14 @@ public class Item {
     protected float y;
 
     final float ROTATION_SPEED = 500;
+
+    public Item(PlayScreen playScreen) {
+        this.playScreen = playScreen;
+    }
+
+    public Item() {
+
+    }
 
     public void update(float delta) {
         if(swinging) {

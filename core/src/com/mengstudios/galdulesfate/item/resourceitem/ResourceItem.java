@@ -7,12 +7,20 @@ import com.mengstudios.galdulesfate.item.Item;
 
 public class ResourceItem extends Item {
     private Text text;
-    private int count = 1;
+    protected int count = 1;
 
     public ResourceItem() {
         text = new Text(Assets.STACK_FONT);
         text.setText("1");
         text.updateBounds();
+    }
+
+    public ResourceItem(int count) {
+        text = new Text(Assets.STACK_FONT);
+        text.setText(Integer.toString(count));
+        text.updateBounds();
+
+        this.count = count;
     }
 
     public void remove(int count) {

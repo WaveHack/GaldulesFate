@@ -1,43 +1,41 @@
 package com.mengstudios.galdulesfate.hud.ui;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.crafting.Recipe;
 import com.mengstudios.galdulesfate.entity.Inventory;
 import com.mengstudios.galdulesfate.hud.Hud;
 import com.mengstudios.galdulesfate.item.resourceitem.CopperBar;
-import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.resourceitem.Wood;
 import com.mengstudios.galdulesfate.item.tool.CopperAxe;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
-import com.mengstudios.galdulesfate.item.tool.CopperSword;
+import com.mengstudios.galdulesfate.item.tool.weapon.CopperSword;
 
 public class AnvilUi extends RecipeUi {
 
     public AnvilUi(Hud hud) {
         super(hud, new Inventory(32));
 
-        inventory.add(new CopperPickaxe());
-        inventory.add(new CopperAxe());
-        inventory.add(new CopperSword());
+        inventory.add(new CopperPickaxe(hud.getPlayScreen()));
+        inventory.add(new CopperAxe(hud.getPlayScreen()));
+        inventory.add(new CopperSword(hud.getPlayScreen()));
 
         recipes = new Array<>();
         Recipe recipe = new Recipe();
         recipe.addCost(new CopperBar(), 5);
         recipe.addCost(new Wood(), 3);
-        recipe.setOutput(new CopperPickaxe());
+        recipe.setOutput(new CopperPickaxe(hud.getPlayScreen()));
         recipes.add(recipe);
 
         recipe = new Recipe();
         recipe.addCost(new CopperBar(), 5);
         recipe.addCost(new Wood(), 3);
-        recipe.setOutput(new CopperAxe());
+        recipe.setOutput(new CopperAxe(hud.getPlayScreen()));
         recipes.add(recipe);
 
         recipe = new Recipe();
         recipe.addCost(new CopperBar(), 8);
-        recipe.setOutput(new CopperSword());
+        recipe.setOutput(new CopperSword(hud.getPlayScreen()));
         recipes.add(recipe);
 
         rowCount = 4;

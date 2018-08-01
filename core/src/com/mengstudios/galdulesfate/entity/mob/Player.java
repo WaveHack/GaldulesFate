@@ -7,6 +7,8 @@ import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.entity.Inventory;
 import com.mengstudios.galdulesfate.item.tool.CopperAxe;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
+import com.mengstudios.galdulesfate.item.tool.weapon.Bow;
+import com.mengstudios.galdulesfate.item.tool.weapon.projectile.WoodenArrow;
 import com.mengstudios.galdulesfate.world.World;
 
 public class Player extends Mob {
@@ -43,8 +45,10 @@ public class Player extends Mob {
         stateTimer = 0;
 
         inventory = new Inventory(36);
-        inventory.add(new CopperPickaxe());
-        inventory.add(new CopperAxe());
+        inventory.add(new CopperPickaxe(world.getPlayScreen()));
+        inventory.add(new CopperAxe(world.getPlayScreen()));
+        inventory.add(new Bow(world.getPlayScreen()));
+        inventory.addResource(new WoodenArrow(50));
     }
 
     @Override

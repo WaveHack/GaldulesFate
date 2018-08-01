@@ -4,12 +4,18 @@ import com.badlogic.gdx.math.Polygon;
 import com.mengstudios.galdulesfate.entity.Entity;
 import com.mengstudios.galdulesfate.entity.mob.Mob;
 import com.mengstudios.galdulesfate.item.Item;
+import com.mengstudios.galdulesfate.screen.PlayScreen;
 
 public class Tool extends Item {
     protected Polygon boundingPolygon;
     protected int level;
+    protected float knockback;
 
     protected int damage;
+
+    public Tool(PlayScreen playScreen) {
+        super(playScreen);
+    }
 
     @Override
     public void update(float delta) {
