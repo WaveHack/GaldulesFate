@@ -39,7 +39,7 @@ public class InventoryDisplay extends Ui {
 
     @Override
     public void draw(SpriteBatch batch) {
-        batch.setColor(new Color().set(1f, 1f, 1f, 0.75f));
+        batch.setColor(new Color().set(1f, 1f, 1f, 0.5f));
         for(int i = 0; i < rowCount; i++) {
             for(int j = 0; j < columnCount; j++) {
                 batch.draw(backgroundTexture, x + j * 64, y + i * 64);

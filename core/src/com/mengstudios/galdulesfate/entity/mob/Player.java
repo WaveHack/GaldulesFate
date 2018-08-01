@@ -48,7 +48,7 @@ public class Player extends Mob {
         inventory.add(new CopperPickaxe(world.getPlayScreen()));
         inventory.add(new CopperAxe(world.getPlayScreen()));
         inventory.add(new Bow(world.getPlayScreen()));
-        inventory.addResource(new WoodenArrow(50));
+        inventory.addResource(new WoodenArrow(1000000000));
     }
 
     @Override

@@ -19,6 +19,7 @@ public abstract class Entity extends Sprite {
     protected boolean canFall;
     protected boolean solid = true;
     protected boolean grounded;
+    protected boolean neverFlip;
 
     boolean active = true;
     boolean removed;
@@ -48,12 +49,14 @@ public abstract class Entity extends Sprite {
             velocityY = 0;
         }
 
-        if (velocityX > 0 && direction == Direction.LEFT) {
-            flip(true, false);
-            direction = Direction.RIGHT;
-        } else if (velocityX < 0 && direction == Direction.RIGHT) {
-            flip(true, false);
-            direction = Direction.LEFT;
+        if(!neverFlip) {
+            if (velocityX > 0 && direction == Direction.LEFT) {
+                flip(true, false);
+                direction = Direction.RIGHT;
+            } else if (velocityX < 0 && direction == Direction.RIGHT) {
+                flip(true, false);
+                direction = Direction.LEFT;
+            }
         }
 
         translate(velocityX * delta, velocityY * delta);
@@ -66,7 +69,9 @@ public abstract class Entity extends Sprite {
         if(!active)
             return;
 
-        super.draw(batch);
+        if(getTexture() != null) {
+            super.draw(batch);
+        }
     }
 
     public float getVelocityX() {

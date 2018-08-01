@@ -4,10 +4,12 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Array;
+import com.mengstudios.galdulesfate.MathExtended;
 import com.mengstudios.galdulesfate.entity.interactiveentity.InteractiveEntity;
 import com.mengstudios.galdulesfate.entity.interactiveentity.ItemEntity;
 import com.mengstudios.galdulesfate.entity.mob.Mob;
 import com.mengstudios.galdulesfate.entity.mob.Player;
+import com.mengstudios.galdulesfate.entity.tile.Tile;
 import com.mengstudios.galdulesfate.item.Item;
 import com.mengstudios.galdulesfate.item.tool.Tool;
 import com.mengstudios.galdulesfate.item.tool.weapon.RangedWeapon;
@@ -23,10 +25,15 @@ public class EntityManager {
     private Array<Entity> entities;
     private Array<Entity> entitiesToRemove;
     private Array<Entity> inactiveEntities;
+    private Array<Tile> tiles;
+    private Array<Tile> tilesToRemove;
     private Array<InteractiveEntity> interactiveEntities;
     private Array<InteractiveEntity> interactiveEntitiesToRemove;
     private Array<Mob> mobs;
     private Array<Mob> mobsToRemove;
+
+    private int activeMobCount;
+    private int maxActiveMobs = 30;
 
     public EntityManager(World world) {
         this.world = world;
@@ -39,6 +46,8 @@ public class EntityManager {
         entities = new Array<>();
         entitiesToRemove = new Array<>();
         inactiveEntities = new Array<>();
+        tiles = new Array<>();
+        tilesToRemove = new Array<>();
         interactiveEntities = new Array<>();
         interactiveEntitiesToRemove = new Array<>();
         mobs = new Array<>();
@@ -63,6 +72,20 @@ public class EntityManager {
         }
         entities.removeAll(entitiesToRemove, true);
         entitiesToRemove.clear();
+    }
+
+    public void updateTiles(float delta) {
+        for(Tile tile: tiles) {
+            tile.update(delta);
+            if(!tile.isActive()) {
+                inactiveEntities.add(tile);
+                entitiesToRemove.add(tile);
+            }
+            if(tile.isRemoved())
+                entitiesToRemove.add(tile);
+        }
+        tiles.removeAll(tilesToRemove, true);
+        tilesToRemove.clear();
     }
 
     public void updateInteractiveEntities(float delta) {
@@ -93,12 +116,15 @@ public class EntityManager {
         }
         mobs.removeAll(mobsToRemove, true);
         mobsToRemove.clear();
+
+        activeMobCount = mobs.size;
     }
 
     public void update(float delta) {
         player.update(delta);
 
         updateEntities(delta);
+        updateTiles(delta);
         updateInteractiveEntities(delta);
         updateMobs(delta);
 
@@ -121,16 +147,17 @@ public class EntityManager {
         checkCollisions();
     }
 
+    public void drawEntities(SpriteBatch batch, Array entities1) {
+        for(int i = 0; i < entities1.size; i++) {
+            ((Entity) entities1.get(i)).draw(batch);
+        }
+    }
+
     public void render(SpriteBatch batch) {
-        for(Entity entity: entities) {
-            entity.draw(batch);
-        }
-        for(InteractiveEntity interactiveEntity: interactiveEntities) {
-            interactiveEntity.draw(batch);
-        }
-        for(Mob mob: mobs) {
-            mob.draw(batch);
-        }
+        drawEntities(batch, tiles);
+        drawEntities(batch, interactiveEntities);
+        drawEntities(batch, entities);
+        drawEntities(batch, mobs);
         player.draw(batch);
 
         if(playScreen.getHud().getInventoryDisplay().getSelectedItem() != null) {
@@ -143,71 +170,108 @@ public class EntityManager {
         return entity1.getBoundingRectangle().overlaps(entity2.getBoundingRectangle());
     }
 
+    public void checkEntityCollisions(Entity entity) {
+        for(Entity entity1: entities) {
+            if(!entity1.isActive())
+                continue;
+            if(entity1 instanceof ProjectileEntity) {
+                if(collides(entity1, entity)) {
+                    entity1.remove();
+                }
+            }
+            if(!collides(entity1, entity) || !entity.isSolid())
+                continue;
+
+            if(entity1.getPx() + entity1.getWidth() <= entity.getX()) {
+                entity1.setX(entity.getX() - entity1.getWidth());
+            } else if(entity1.getPx() >= entity.getX() + entity.getWidth()) {
+                entity1.setX(entity.getX() + entity.getWidth());
+            } else if(entity1.getPy() + entity1.getHeight() <= entity.getY()) {
+                entity1.setY(entity.getY() - entity1.getHeight());
+                entity1.setVelocityY(0);
+            } else if(entity1.getPy() >= entity.getY() + entity.getHeight()) {
+                entity1.setY(entity.getY() + entity.getHeight());
+            }
+        }
+    }
+
+    public void checkMobCollisions(Entity entity) {
+        for(Mob mob: mobs) {
+            if(!mob.isActive())
+                continue;
+            if(entity instanceof ProjectileEntity) {
+                if(collides(mob, entity)) {
+                    ((ProjectileEntity) entity).hurt(mob);
+                    entity.remove();
+                }
+            }
+            if(!collides(mob, entity) || !entity.isSolid())
+                continue;
+
+            if(mob.getPx() + mob.getWidth() <= entity.getX()) {
+                mob.setX(entity.getX() - mob.getWidth());
+            } else if(mob.getPx() >= entity.getX() + entity.getWidth()) {
+                mob.setX(entity.getX() + entity.getWidth());
+            } else if(mob.getPy() + mob.getHeight() <= entity.getY()) {
+                mob.setY(entity.getY() - mob.getHeight());
+                mob.setVelocityY(0);
+            } else if(mob.getPy() >= entity.getY() + entity.getHeight()) {
+                mob.setY(entity.getY() + entity.getHeight());
+                //mob.setVelocity(player.getVelocityX(), 0f);
+                mob.setGrounded(true);
+            }
+        }
+    }
+
+    public void checkInteractiveEntityCollisions(Entity entity) {
+        for(InteractiveEntity interactiveEntity: interactiveEntities) {
+            if(!(interactiveEntity instanceof ItemEntity))
+                continue;
+            if(!interactiveEntity.isActive())
+                continue;
+            if(!collides(interactiveEntity, entity) || !entity.isSolid())
+                continue;
+
+            if(interactiveEntity.getPx() + interactiveEntity.getWidth() <= entity.getX()) {
+                interactiveEntity.setX(entity.getX() - interactiveEntity.getWidth());
+            } else if(interactiveEntity.getPx() >= entity.getX() + entity.getWidth()) {
+                interactiveEntity.setX(entity.getX() + entity.getWidth());
+            } else if(interactiveEntity.getPy() + interactiveEntity.getHeight() <= entity.getY()) {
+                interactiveEntity.setY(entity.getY() - interactiveEntity.getHeight());
+                interactiveEntity.setVelocityY(0);
+            } else if(interactiveEntity.getPy() >= entity.getY() + entity.getHeight()) {
+                interactiveEntity.setY(entity.getY() + entity.getHeight());
+                //interactiveEntity.setVelocity(player.getVelocityX(), 0f);
+                ((ItemEntity) interactiveEntity).setGrounded(true);
+            }
+        }
+    }
+
     public void checkCollisions() {
         player.setGrounded(false);
-        for (Entity entity: entities) {
-            if(collides(player, entity) && entity.isSolid()) {
-                if (player.getPx() + player.getWidth() <= entity.getX()) {
-                    player.setX(entity.getX() - player.getWidth());
-                } else if (player.getPx() >= entity.getX() + entity.getWidth()) {
-                    player.setX(entity.getX() + entity.getWidth());
-                } else if (player.getPy() + player.getHeight() <= entity.getY()) {
-                    player.setY(entity.getY() - player.getHeight());
+        for (Tile tile: tiles) {
+            if(collides(player, tile) && tile.isSolid()) {
+                if (player.getPx() + player.getWidth() <= tile.getX()) {
+                    player.setX(tile.getX() - player.getWidth());
+                } else if (player.getPx() >= tile.getX() + tile.getWidth()) {
+                    player.setX(tile.getX() + tile.getWidth());
+                } else if (player.getPy() + player.getHeight() <= tile.getY()) {
+                    player.setY(tile.getY() - player.getHeight());
                     player.setVelocityY(0);
-                } else if (player.getPy() >= entity.getY() + entity.getHeight()) {
-                    player.setY(entity.getY() + entity.getHeight());
+                } else if (player.getPy() >= tile.getY() + tile.getHeight()) {
+                    player.setY(tile.getY() + tile.getHeight());
                     //player.setVelocity(player.getVelocityX(), 0f);
                     player.setGrounded(true);
                 }
             }
 
-            for(Mob mob: mobs) {
-                if(!mob.isActive())
-                    continue;
-                if(entity instanceof ProjectileEntity) {
-                    if(collides(mob, entity)) {
-                        ((ProjectileEntity) entity).hurt(mob);
-                        entity.remove();
-                    }
-                }
-                if(!collides(mob, entity) || !entity.isSolid())
-                    continue;
+            checkEntityCollisions(tile);
+            checkMobCollisions(tile);
+            checkInteractiveEntityCollisions(tile);
+        }
 
-                if(mob.getPx() + mob.getWidth() <= entity.getX()) {
-                    mob.setX(entity.getX() - mob.getWidth());
-                } else if(mob.getPx() >= entity.getX() + entity.getWidth()) {
-                    mob.setX(entity.getX() + entity.getWidth());
-                } else if(mob.getPy() + mob.getHeight() <= entity.getY()) {
-                    mob.setY(entity.getY() - mob.getHeight());
-                    mob.setVelocityY(0);
-                } else if(mob.getPy() >= entity.getY() + entity.getHeight()) {
-                    mob.setY(entity.getY() + entity.getHeight());
-                    //mob.setVelocity(player.getVelocityX(), 0f);
-                    mob.setGrounded(true);
-                }
-            }
-
-            for(InteractiveEntity interactiveEntity: interactiveEntities) {
-                if(!(interactiveEntity instanceof ItemEntity))
-                    continue;
-                if(!interactiveEntity.isActive())
-                    continue;
-                if(!collides(interactiveEntity, entity) || !entity.isSolid())
-                    continue;
-
-                if(interactiveEntity.getPx() + interactiveEntity.getWidth() <= entity.getX()) {
-                    interactiveEntity.setX(entity.getX() - interactiveEntity.getWidth());
-                } else if(interactiveEntity.getPx() >= entity.getX() + entity.getWidth()) {
-                    interactiveEntity.setX(entity.getX() + entity.getWidth());
-                } else if(interactiveEntity.getPy() + interactiveEntity.getHeight() <= entity.getY()) {
-                    interactiveEntity.setY(entity.getY() - interactiveEntity.getHeight());
-                    interactiveEntity.setVelocityY(0);
-                } else if(interactiveEntity.getPy() >= entity.getY() + entity.getHeight()) {
-                    interactiveEntity.setY(entity.getY() + entity.getHeight());
-                    //interactiveEntity.setVelocity(player.getVelocityX(), 0f);
-                    ((ItemEntity) interactiveEntity).setGrounded(true);
-                }
-            }
+        for(Entity entity: entities) {
+            checkMobCollisions(entity);
         }
 
         for (InteractiveEntity entity: interactiveEntities) {
@@ -323,7 +387,9 @@ public class EntityManager {
     }
 
     public void addEntity(Entity entity) {
-        if(entity instanceof InteractiveEntity) {
+        if(entity instanceof Tile) {
+            tiles.add((Tile) entity);
+        } else if(entity instanceof InteractiveEntity) {
             if(world.isCreated()) {
                 ((InteractiveEntity) entity).create();
             }
@@ -337,5 +403,13 @@ public class EntityManager {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public int getActiveMobCount() {
+        return activeMobCount;
+    }
+
+    public boolean canAddMob() {
+        return activeMobCount < maxActiveMobs;
     }
 }

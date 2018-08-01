@@ -12,6 +12,9 @@ import com.mengstudios.galdulesfate.entity.Entity;
 import com.mengstudios.galdulesfate.world.World;
 
 public abstract class Mob extends Entity {
+    public enum MobType {PIG, COW}
+    MobType mobType;
+
     public enum State {STANDING, WALKING, JUMPING, DYING}
     State previousState = State.STANDING;
     State state = State.STANDING;
@@ -35,6 +38,12 @@ public abstract class Mob extends Entity {
         super(world, x, y);
         solid = true;
         ai = new Ai(this);
+
+        if(this instanceof Pig) {
+            mobType = MobType.PIG;
+        } else if(this instanceof Cow) {
+            mobType = MobType.COW;
+        }
     }
 
     @Override
@@ -172,5 +181,9 @@ public abstract class Mob extends Entity {
     public void setBoundingPolygon(Rectangle rectangle) {
         boundingPolygon = new Polygon(new float[]{0, 0, rectangle.width, 0, rectangle.width, rectangle.height, 0, rectangle.height});
         boundingPolygon.setPosition(rectangle.getX(), rectangle.getY());
+    }
+
+    public MobType getMobType() {
+        return mobType;
     }
 }

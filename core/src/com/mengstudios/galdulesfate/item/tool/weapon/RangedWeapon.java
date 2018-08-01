@@ -54,8 +54,8 @@ public class RangedWeapon extends Weapon {
             playScreen.getWorld().getEntityManager().addEntity(
                     new ProjectileEntity(playScreen.getWorld(),
                             (Projectile) playScreen.getPlayer().getInventory().findResourceItem(projectile),
-                            playScreen.getPlayer().getX(),
-                            playScreen.getPlayer().getY(),
+                            playScreen.getPlayer().getX() + playScreen.getPlayer().getWidth() / 2,
+                            playScreen.getPlayer().getY() + playScreen.getPlayer().getHeight() / 2,
                             (float) (Math.cos(Math.toRadians(unprojectedRotation)) * 600),
                             (float) (Math.sin(Math.toRadians(unprojectedRotation)) * 600)));
             playScreen.getPlayer().getInventory().removeResource(projectile, 1);

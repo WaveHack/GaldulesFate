@@ -8,7 +8,9 @@ import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.CopperR
 import com.mengstudios.galdulesfate.entity.interactiveentity.tree.GiantTree;
 import com.mengstudios.galdulesfate.entity.interactiveentity.tree.OakTree;
 import com.mengstudios.galdulesfate.entity.mob.Cow;
+import com.mengstudios.galdulesfate.entity.mob.Mob;
 import com.mengstudios.galdulesfate.entity.mob.Pig;
+import com.mengstudios.galdulesfate.entity.mob.Spawner;
 import com.mengstudios.galdulesfate.entity.tile.DirtTile;
 import com.mengstudios.galdulesfate.entity.tile.GrassTile;
 
@@ -19,7 +21,7 @@ public class WorldGenerator {
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 5, 5, 0, 6, 0, 0, 4, 0, 3, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 10, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 5, 5, 0, 6, 0, 0, 4, 0, 3, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 111, 0, 0, 0, 0, 0, 0, 0, 0,
                            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -91,6 +93,12 @@ public class WorldGenerator {
                         break;
                     case 12:
                         world.getEntityManager().addEntity(new Campfire(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                        break;
+                    case 110:
+                        world.getEntityManager().addEntity(new Spawner(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j), Mob.MobType.PIG));
+                        break;
+                    case 111:
+                        world.getEntityManager().addEntity(new Spawner(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j), Mob.MobType.COW));
                         break;
                 }
             }

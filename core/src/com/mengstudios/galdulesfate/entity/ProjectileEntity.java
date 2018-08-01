@@ -11,14 +11,25 @@ public class ProjectileEntity extends Entity {
         super(world, x, y);
         solid = false;
         canFall = true;
+        neverFlip = true;
         this.projectile = projectile;
         setRegion(projectile.getRegion());
         setBounds(x, y, projectile.getRegion().getRegionWidth(), projectile.getRegion().getRegionHeight());
         setVelocity(velocityX, velocityY);
     }
 
+    @Override
+    public void update(float delta) {
+        super.update(delta);
+        setRotation((float) Math.toDegrees(Math.atan2(velocityY, velocityX) - 45));
+    }
+
     public void hurt(Mob mob) {
         mob.takeDamage(projectile.getDamage());
         remove();
+    }
+
+    public Projectile getProjectile() {
+        return projectile;
     }
 }
