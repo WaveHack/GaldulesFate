@@ -25,6 +25,7 @@ public class Assets {
     public static Texture OAK_TREE;
     public static Texture PIG;
     public static Texture PLAYER;
+    public static Texture WORKBENCH;
 
     public static Texture BOW;
     public static Texture COOKED_MEAT;
@@ -82,16 +83,17 @@ public class Assets {
         assetManager.load("title_screen_background.png", Texture.class);
         assetManager.load("sky.png", Texture.class);
 
-        assetManager.load("entity/anvil.png", Texture.class);
-        assetManager.load("entity/campfire.png", Texture.class);
-        assetManager.load("entity/copper_ore_rocks.png", Texture.class);
-        assetManager.load("entity/cow.png", Texture.class);
-        assetManager.load("entity/empty_rocks.png", Texture.class);
-        assetManager.load("entity/furnace.png", Texture.class);
-        assetManager.load("entity/giant_tree.png", Texture.class);
-        assetManager.load("entity/oak_tree.png", Texture.class);
-        assetManager.load("entity/pig.png", Texture.class);
-        assetManager.load("entity/player.png", Texture.class);
+        assetManager.load("entity/interactiveentity/anvil.png", Texture.class);
+        assetManager.load("entity/interactiveentity/campfire.png", Texture.class);
+        assetManager.load("entity/interactiveentity/copper_ore_rocks.png", Texture.class);
+        assetManager.load("entity/interactiveentity/empty_rocks.png", Texture.class);
+        assetManager.load("entity/interactiveentity/furnace.png", Texture.class);
+        assetManager.load("entity/interactiveentity/giant_tree.png", Texture.class);
+        assetManager.load("entity/interactiveentity/oak_tree.png", Texture.class);
+        assetManager.load("entity/interactiveentity/workbench.png", Texture.class);
+        assetManager.load("entity/mob/cow.png", Texture.class);
+        assetManager.load("entity/mob/pig.png", Texture.class);
+        assetManager.load("entity/mob/player.png", Texture.class);
 
         assetManager.load("item/bow.png", Texture.class);
         assetManager.load("item/cooked_meat.png", Texture.class);
@@ -139,16 +141,17 @@ public class Assets {
         TITLE_SCREEN_BACKGROUND = assetManager.get("title_screen_background.png");
         SKY = assetManager.get("sky.png");
 
-        ANVIL = assetManager.get("entity/anvil.png");
-        CAMPFIRE = assetManager.get("entity/campfire.png");
-        COPPER_ORE_ROCKS = assetManager.get("entity/copper_ore_rocks.png");
-        COW = assetManager.get("entity/cow.png");
-        EMPTY_ROCKS = assetManager.get("entity/empty_rocks.png");
-        FURNACE = assetManager.get("entity/furnace.png");
-        GIANT_TREE = assetManager.get("entity/giant_tree.png");
-        OAK_TREE = assetManager.get("entity/oak_tree.png");
-        PIG = assetManager.get("entity/pig.png");
-        PLAYER = assetManager.get("entity/player.png");
+        ANVIL = assetManager.get("entity/interactiveentity/anvil.png");
+        CAMPFIRE = assetManager.get("entity/interactiveentity/campfire.png");
+        COPPER_ORE_ROCKS = assetManager.get("entity/interactiveentity/copper_ore_rocks.png");
+        EMPTY_ROCKS = assetManager.get("entity/interactiveentity/empty_rocks.png");
+        FURNACE = assetManager.get("entity/interactiveentity/furnace.png");
+        GIANT_TREE = assetManager.get("entity/interactiveentity/giant_tree.png");
+        OAK_TREE = assetManager.get("entity/interactiveentity/oak_tree.png");
+        WORKBENCH = assetManager.get("entity/interactiveentity/workbench.png");
+        COW = assetManager.get("entity/mob/cow.png");
+        PIG = assetManager.get("entity/mob/pig.png");
+        PLAYER = assetManager.get("entity/mob/player.png");
 
         BOW = assetManager.get("item/bow.png");
         COOKED_MEAT = assetManager.get("item/cooked_meat.png");

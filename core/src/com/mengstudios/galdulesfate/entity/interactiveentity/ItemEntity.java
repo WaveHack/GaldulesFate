@@ -7,7 +7,6 @@ import com.mengstudios.galdulesfate.world.World;
 
 public class ItemEntity extends InteractiveEntity {
     Item item;
-    boolean grounded;
 
     public ItemEntity(World world, Item item, float x, float y) {
         super(world, x, y);
@@ -41,9 +40,5 @@ public class ItemEntity extends InteractiveEntity {
             world.getPlayer().getInventory().add(item);
         }
         remove();
-    }
-
-    public void setGrounded(boolean grounded) {
-        this.grounded = grounded;
     }
 }

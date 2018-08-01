@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.mengstudios.galdulesfate.entity.interactiveentity.Anvil;
 import com.mengstudios.galdulesfate.entity.interactiveentity.Campfire;
 import com.mengstudios.galdulesfate.entity.interactiveentity.Furnace;
+import com.mengstudios.galdulesfate.entity.interactiveentity.Workbench;
 import com.mengstudios.galdulesfate.entity.interactiveentity.mineralrock.CopperRock;
 import com.mengstudios.galdulesfate.entity.interactiveentity.tree.GiantTree;
 import com.mengstudios.galdulesfate.entity.interactiveentity.tree.OakTree;
@@ -21,7 +22,7 @@ public class WorldGenerator {
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 5, 5, 0, 6, 0, 0, 4, 0, 3, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 111, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 10, 10, 0, 11, 0, 0, 4, 0, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 111, 0, 0, 0, 0, 0, 0, 0, 0,
                            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -80,19 +81,22 @@ public class WorldGenerator {
                         world.getEntityManager().addEntity(new Furnace(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
                         break;
                     case 5:
-                        world.getEntityManager().addEntity(new CopperRock(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                        world.getEntityManager().addEntity(new Workbench(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
                         break;
-                    case 6:
-                        world.getEntityManager().addEntity(new GiantTree(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                    case 9:
+                        world.getEntityManager().addEntity(new Campfire(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
                         break;
                     case 10:
-                        world.getEntityManager().addEntity(new Pig(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j) + 64));
+                        world.getEntityManager().addEntity(new CopperRock(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
                         break;
                     case 11:
-                        world.getEntityManager().addEntity(new Cow(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j) + 64));
+                        world.getEntityManager().addEntity(new GiantTree(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
                         break;
-                    case 12:
-                        world.getEntityManager().addEntity(new Campfire(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j)));
+                    case 30:
+                        world.getEntityManager().addEntity(new Pig(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j) + 64));
+                        break;
+                    case 31:
+                        world.getEntityManager().addEntity(new Cow(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j) + 64));
                         break;
                     case 110:
                         world.getEntityManager().addEntity(new Spawner(world, 64 * i, 64 * (tiles.length / CHUNK_SIZE - j), Mob.MobType.PIG));

@@ -95,6 +95,10 @@ public abstract class Entity extends Sprite {
         this.velocityY = velocityY;
     }
 
+    public void setGrounded(boolean grounded) {
+        this.grounded = grounded;
+    }
+
     public float getPx() {
         return px;
     }

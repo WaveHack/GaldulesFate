@@ -80,6 +80,10 @@ public class Item {
         batch.draw(region, inventoryX + column * 64, inventoryY + row * 64);
     }
 
+    public void touchDown(int screenX, int screenY) {
+
+    }
+
     public TextureRegion getRegion() {
         return region;
     }

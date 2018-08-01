@@ -230,7 +230,7 @@ public class EntityManager {
                 continue;
             if(!interactiveEntity.isActive())
                 continue;
-            if(!collides(interactiveEntity, entity) || !entity.isSolid())
+            if(!collides(interactiveEntity, entity))
                 continue;
 
             if(interactiveEntity.getPx() + interactiveEntity.getWidth() <= entity.getX()) {
@@ -364,6 +364,10 @@ public class EntityManager {
         Vector3 screenCoords = world.getCamera().unproject(new Vector3(screenX, screenY, 0));
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
+
+        if(playScreen.getHud().getInventoryDisplay().getSelectedItem() != null) {
+            playScreen.getHud().getInventoryDisplay().getSelectedItem().touchDown(screenX, screenY);
+        }
 
         for(InteractiveEntity entity: interactiveEntities) {
             if(!entity.isActive())
