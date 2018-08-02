@@ -28,6 +28,7 @@ public class Assets {
     public static Texture WORKBENCH;
 
     public static Texture BOW;
+    public static Texture COOKED_BACON;
     public static Texture COOKED_MEAT;
     public static Texture COPPER_BAR;
     public static Texture COPPER_ORE;
@@ -35,6 +36,7 @@ public class Assets {
     public static Texture COPPER_PICKAXE;
     public static Texture COPPER_SWORD;
     public static Texture OAK_WOOD;
+    public static Texture RAW_BACON;
     public static Texture RAW_BEEF;
     public static Texture WOODEN_ARROW;
 
@@ -96,6 +98,7 @@ public class Assets {
         assetManager.load("entity/mob/player.png", Texture.class);
 
         assetManager.load("item/bow.png", Texture.class);
+        assetManager.load("item/cooked_bacon.png", Texture.class);
         assetManager.load("item/cooked_meat.png", Texture.class);
         assetManager.load("item/copper_bar.png", Texture.class);
         assetManager.load("item/copper_ore.png", Texture.class);
@@ -103,6 +106,7 @@ public class Assets {
         assetManager.load("item/copper_pickaxe.png", Texture.class);
         assetManager.load("item/copper_sword.png", Texture.class);
         assetManager.load("item/oak_wood.png", Texture.class);
+        assetManager.load("item/raw_bacon.png", Texture.class);
         assetManager.load("item/raw_beef.png", Texture.class);
         assetManager.load("item/wooden_arrow.png", Texture.class);
 
@@ -154,6 +158,7 @@ public class Assets {
         PLAYER = assetManager.get("entity/mob/player.png");
 
         BOW = assetManager.get("item/bow.png");
+        COOKED_BACON = assetManager.get("item/cooked_bacon.png");
         COOKED_MEAT = assetManager.get("item/cooked_meat.png");
         COPPER_BAR = assetManager.get("item/copper_bar.png");
         COPPER_ORE = assetManager.get("item/copper_ore.png");
@@ -161,6 +166,7 @@ public class Assets {
         COPPER_PICKAXE = assetManager.get("item/copper_pickaxe.png");
         COPPER_SWORD = assetManager.get("item/copper_sword.png");
         OAK_WOOD = assetManager.get("item/oak_wood.png");
+        RAW_BACON = assetManager.get("item/raw_bacon.png");
         RAW_BEEF = assetManager.get("item/raw_beef.png");
         WOODEN_ARROW = assetManager.get("item/wooden_arrow.png");
 

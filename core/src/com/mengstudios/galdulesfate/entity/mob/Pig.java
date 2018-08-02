@@ -5,10 +5,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 import com.mengstudios.galdulesfate.Assets;
+import com.mengstudios.galdulesfate.entity.interactiveentity.ItemEntity;
+import com.mengstudios.galdulesfate.item.resourceitem.food.RawBacon;
 import com.mengstudios.galdulesfate.world.World;
 
 public class Pig extends Mob {
-    boolean hurtSoundIsPlaying;
+    private boolean hurtSoundIsPlaying;
 
     public Pig(World world, float x, float y) {
         super(world, x, y);
@@ -64,6 +66,12 @@ public class Pig extends Mob {
             return;
         }
 
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                world.getEntityManager().addEntity(new ItemEntity(world, new RawBacon(), getX(), getY()));
+            }
+        }, 1f);
         super.die();
         Assets.PIG_DEATH_SOUND.play(0.5f);
     }
