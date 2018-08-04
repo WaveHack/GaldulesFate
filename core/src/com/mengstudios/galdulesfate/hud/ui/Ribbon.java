@@ -20,7 +20,7 @@ public class Ribbon extends Ui {
         buttons = new Array<>();
 
         inventoryButton = new Button();
-        inventoryButton.setTextures(Assets.BOX, Assets.BOX);
+        inventoryButton.setTextures(Assets.UI_BOX, Assets.UI_BOX);
         inventoryButton.setPosition(inventoryDisplay.getX() - 64, inventoryDisplay.getY() + inventoryDisplay.height - 64);
         inventoryButton.setOnClickListener(new Button.OnClickListener() {
             @Override

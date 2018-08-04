@@ -25,7 +25,7 @@ public class InventoryDisplay extends Ui {
     public InventoryDisplay(Hud hud, Inventory inventory) {
         super(hud);
         
-        backgroundTexture = Assets.BOX;
+        backgroundTexture = Assets.UI_BOX;
         
         x = GaldulesFate.WIDTH - width - 20;
         y = GaldulesFate.HEIGHT - height - 20;
