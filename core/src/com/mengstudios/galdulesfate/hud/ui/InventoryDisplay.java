@@ -12,6 +12,7 @@ public class InventoryDisplay extends Ui {
     protected Inventory inventory;
 
     protected Item selectedItem;
+    protected boolean selectedItemRemoved;
 
     protected int rowCount = 4;
     protected int columnCount = 9;
@@ -34,6 +35,17 @@ public class InventoryDisplay extends Ui {
 
     @Override
     public void update(float delta) {
+        selectedItemRemoved = true;
+        for(int i = 0; i < inventory.getItems().length; i++) {
+            if(inventory.getItems()[i] == selectedItem) {
+                selectedItemRemoved = false;
+                break;
+            }
+        }
+        if(selectedItemRemoved) {
+            selectedItem = null;
+        }
+
         if(selectedItem != null) {
             selectedItem.update(delta);
         }
@@ -42,15 +54,13 @@ public class InventoryDisplay extends Ui {
     @Override
     public void draw(SpriteBatch batch) {
         batch.setColor(new Color().set(1f, 1f, 1f, 0.5f));
-        if(open) {
-            for (int i = 0; i < rowCount; i++) {
-                for (int j = 0; j < columnCount; j++) {
-                    batch.draw(backgroundTexture, x + j * 64, y + i * 64);
-                }
+        for (int i = 0; i < rowCount; i++) {
+            if (!open && i != rowCount - 1) {
+                continue;
             }
-        } else {
+
             for (int j = 0; j < columnCount; j++) {
-                batch.draw(backgroundTexture, x + j * 64, y + (rowCount - 1) * 64);
+                batch.draw(backgroundTexture, x + j * 64, y + i * 64);
             }
         }
         batch.setColor(Color.WHITE);
