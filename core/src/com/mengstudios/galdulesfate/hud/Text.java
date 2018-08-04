@@ -26,7 +26,7 @@ public class Text implements Disposable {
         if (text != null) {
             font.draw(batch, text, x, y);
         } else {
-            Gdx.app.log("Text", "no text string set!");
+            //Gdx.app.log("Text", "no text string set!");
         }
     }
 

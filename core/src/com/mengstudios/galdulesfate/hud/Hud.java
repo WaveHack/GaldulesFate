@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.hud.ui.InventoryDisplay;
+import com.mengstudios.galdulesfate.hud.ui.Ribbon;
 import com.mengstudios.galdulesfate.hud.ui.StatusDisplay;
 import com.mengstudios.galdulesfate.hud.ui.Ui;
 import com.mengstudios.galdulesfate.screen.PlayScreen;
@@ -19,8 +20,8 @@ public class Hud implements InputProcessor {
     private ExtendViewport viewport;
     private OrthographicCamera camera;
 
+    private Ribbon ribbon;
     private StatusDisplay statusDisplay;
-    private InventoryDisplay inventoryDisplay;
 
     private Array<Ui> uis;
     private Array<Ui> uisToRemove;
@@ -34,8 +35,8 @@ public class Hud implements InputProcessor {
         camera.setToOrtho(false);
         viewport = new ExtendViewport(GaldulesFate.WIDTH, GaldulesFate.HEIGHT, camera);
 
+        ribbon = new Ribbon(this);
         statusDisplay = new StatusDisplay(this);
-        inventoryDisplay = new InventoryDisplay(this, playScreen.getPlayer().getInventory());
 
         uis = new Array<>();
         uisToRemove = new Array<>();
@@ -48,8 +49,8 @@ public class Hud implements InputProcessor {
     public void update(float delta) {
         camera.update();
 
+        ribbon.update(delta);
         statusDisplay.update(delta);
-        inventoryDisplay.update(delta);
         if(GaldulesFate.mobile) {
             mobileControls.update(delta);
         }
@@ -66,8 +67,8 @@ public class Hud implements InputProcessor {
     }
 
     public void draw(SpriteBatch batch) {
+        ribbon.draw(batch);
         statusDisplay.draw(batch);
-        inventoryDisplay.draw(batch);
         for(Ui ui: uis) {
             if(ui.isHidden())
                 continue;
@@ -96,7 +97,7 @@ public class Hud implements InputProcessor {
     }
 
     public InventoryDisplay getInventoryDisplay() {
-        return inventoryDisplay;
+        return ribbon.getInventoryDisplay();
     }
 
     public PlayScreen getPlayScreen() {
@@ -200,8 +201,8 @@ public class Hud implements InputProcessor {
             }
         }
 
+        ribbon.touchDown(screenX, screenY, pointer, button);
         statusDisplay.touchDown(screenX, screenY, pointer, button);
-        inventoryDisplay.touchDown(screenX, screenY, pointer, button);
         for(Ui ui: uis) {
             if(ui.isHidden())
                 continue;
@@ -217,8 +218,8 @@ public class Hud implements InputProcessor {
         screenX = Math.round(screenCoords.x);
         screenY = Math.round(screenCoords.y);
 
+        ribbon.touchUp(screenX, screenY, pointer, button);
         statusDisplay.touchUp(screenX, screenY, pointer, button);
-        inventoryDisplay.touchUp(screenX, screenY, pointer, button);
         return false;
     }
 

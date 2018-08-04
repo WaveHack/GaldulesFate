@@ -19,6 +19,8 @@ public class InventoryDisplay extends Ui {
     protected int width = columnCount * 64;
     protected int height = rowCount * 64;
 
+    protected boolean open = true;
+
     public InventoryDisplay(Hud hud, Inventory inventory) {
         super(hud);
         
@@ -40,9 +42,15 @@ public class InventoryDisplay extends Ui {
     @Override
     public void draw(SpriteBatch batch) {
         batch.setColor(new Color().set(1f, 1f, 1f, 0.5f));
-        for(int i = 0; i < rowCount; i++) {
-            for(int j = 0; j < columnCount; j++) {
-                batch.draw(backgroundTexture, x + j * 64, y + i * 64);
+        if(open) {
+            for (int i = 0; i < rowCount; i++) {
+                for (int j = 0; j < columnCount; j++) {
+                    batch.draw(backgroundTexture, x + j * 64, y + i * 64);
+                }
+            }
+        } else {
+            for (int j = 0; j < columnCount; j++) {
+                batch.draw(backgroundTexture, x + j * 64, y + (rowCount - 1) * 64);
             }
         }
         batch.setColor(Color.WHITE);
@@ -63,6 +71,18 @@ public class InventoryDisplay extends Ui {
                 break;
             }
         }
+    }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void open() {
+        open = true;
+    }
+
+    public void close() {
+        open = false;
     }
 
     public Item getSelectedItem() {
@@ -100,11 +120,13 @@ public class InventoryDisplay extends Ui {
     }
 
     public void touchUp(int screenX, int screenY, int pointer, int button) {
-        if(screenX > x && screenX < x + width
-                && screenY > y && screenY < y + height){
+        if(isTouched(screenX, screenY)){
             for(int i = 0; i < rowCount * columnCount; i++) {
                 int row = i / columnCount;
                 int column = i % columnCount;
+                if(!open && row < rowCount - 1) {
+                    continue;
+                }
                 if(screenX > x + column * 64 && screenX < x + column * 64 + 64
                         && screenY > y + row * 64 && screenY < y + row * 64 + 64) {
                     Item selectedItemTemp = inventory.getItems()[((rowCount - 1 - row) * columnCount + column)];
@@ -123,7 +145,11 @@ public class InventoryDisplay extends Ui {
     }
     
     public boolean isTouched(int screenX, int screenY) {
+        if(open) {
+            return screenX > x && screenX < x + width
+                    && screenY > y && screenY < y + height;
+        }
         return screenX > x && screenX < x + width
-                && screenY > y && screenY < y + height;
+                && screenY > y + height - 64 && screenY < y + height;
     }
 }

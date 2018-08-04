@@ -47,12 +47,13 @@ public class Assets {
     public static Texture ABILITY_BUTTON_UP;
     public static Texture BUTTON_DOWN;
     public static Texture BUTTON_UP;
+    public static Texture BOX;
     public static Texture FURNACE_ARROW;
     public static Texture FURNACE_UI;
     public static Texture HEALTH_BAR_BACK;
     public static Texture HEALTH_BAR_FRONT;
     public static Texture HIGHLIGHT;
-    public static Texture BOX;
+    public static Texture INVENTORY_BUTTON;
     public static Texture MANA_BAR_BACK;
     public static Texture MANA_BAR_FRONT;
     public static Texture STATUS_TABLE;
@@ -123,6 +124,7 @@ public class Assets {
         assetManager.load("ui/health_bar_back.png", Texture.class);
         assetManager.load("ui/health_bar_front.png", Texture.class);
         assetManager.load("ui/highlight.png", Texture.class);
+        assetManager.load("ui/inventory_button.png", Texture.class);
         assetManager.load("ui/mana_bar_back.png", Texture.class);
         assetManager.load("ui/mana_bar_front.png", Texture.class);
         assetManager.load("ui/status_table.png", Texture.class);
@@ -183,6 +185,7 @@ public class Assets {
         HEALTH_BAR_BACK = assetManager.get("ui/health_bar_back.png");
         HEALTH_BAR_FRONT = assetManager.get("ui/health_bar_front.png");
         HIGHLIGHT = assetManager.get("ui/highlight.png");
+        INVENTORY_BUTTON = assetManager.get("ui/inventory_button.png");
         MANA_BAR_BACK = assetManager.get("ui/mana_bar_back.png");
         MANA_BAR_FRONT = assetManager.get("ui/mana_bar_front.png");
         STATUS_TABLE = assetManager.get("ui/status_table.png");
