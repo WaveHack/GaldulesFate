@@ -48,7 +48,6 @@ public class Assets {
     public static Texture BUTTON_DOWN;
     public static Texture BUTTON_UP;
     public static Texture BOX;
-    public static Texture FURNACE_ARROW;
     public static Texture FURNACE_UI;
     public static Texture HEALTH_BAR_BACK;
     public static Texture HEALTH_BAR_FRONT;
@@ -56,6 +55,7 @@ public class Assets {
     public static Texture INVENTORY_BUTTON;
     public static Texture MANA_BAR_BACK;
     public static Texture MANA_BAR_FRONT;
+    public static Texture PROGRESS_BAR_SHORT;
     public static Texture STATUS_TABLE;
     public static Texture TOUCHPAD_BACKGROUND;
     public static Texture TOUCHPAD_KNOB;
@@ -119,7 +119,6 @@ public class Assets {
         assetManager.load("ui/ui_box.png", Texture.class);
         assetManager.load("ui/button_down.png", Texture.class);
         assetManager.load("ui/button_up.png", Texture.class);
-        assetManager.load("ui/furnace_arrow.png", Texture.class);
         assetManager.load("ui/furnace_ui.png", Texture.class);
         assetManager.load("ui/health_bar_back.png", Texture.class);
         assetManager.load("ui/health_bar_front.png", Texture.class);
@@ -127,6 +126,7 @@ public class Assets {
         assetManager.load("ui/inventory_button.png", Texture.class);
         assetManager.load("ui/mana_bar_back.png", Texture.class);
         assetManager.load("ui/mana_bar_front.png", Texture.class);
+        assetManager.load("ui/progress_bar_short.png", Texture.class);
         assetManager.load("ui/status_table.png", Texture.class);
         assetManager.load("ui/touchpad_background.png", Texture.class);
         assetManager.load("ui/touchpad_knob.png", Texture.class);
@@ -180,7 +180,6 @@ public class Assets {
         BOX = assetManager.get("ui/ui_box.png");
         BUTTON_DOWN = assetManager.get("ui/button_down.png");
         BUTTON_UP = assetManager.get("ui/button_up.png");
-        FURNACE_ARROW = assetManager.get("ui/furnace_arrow.png");
         FURNACE_UI = assetManager.get("ui/furnace_ui.png");
         HEALTH_BAR_BACK = assetManager.get("ui/health_bar_back.png");
         HEALTH_BAR_FRONT = assetManager.get("ui/health_bar_front.png");
@@ -188,6 +187,7 @@ public class Assets {
         INVENTORY_BUTTON = assetManager.get("ui/inventory_button.png");
         MANA_BAR_BACK = assetManager.get("ui/mana_bar_back.png");
         MANA_BAR_FRONT = assetManager.get("ui/mana_bar_front.png");
+        PROGRESS_BAR_SHORT = assetManager.get("ui/progress_bar_short.png");
         STATUS_TABLE = assetManager.get("ui/status_table.png");
         TOUCHPAD_BACKGROUND = assetManager.get("ui/touchpad_background.png");
         TOUCHPAD_KNOB = assetManager.get("ui/touchpad_knob.png");

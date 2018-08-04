@@ -6,9 +6,9 @@ import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.hud.AbilityButton;
-import com.mengstudios.galdulesfate.hud.HealthBar;
+import com.mengstudios.galdulesfate.hud.slider.HealthBar;
 import com.mengstudios.galdulesfate.hud.Hud;
-import com.mengstudios.galdulesfate.hud.ManaBar;
+import com.mengstudios.galdulesfate.hud.slider.ManaBar;
 
 public class StatusDisplay extends Ui {
     private static final float PADDING_X = 10;

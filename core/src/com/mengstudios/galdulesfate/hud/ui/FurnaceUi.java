@@ -1,18 +1,18 @@
 package com.mengstudios.galdulesfate.hud.ui;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.hud.Hud;
-import com.mengstudios.galdulesfate.hud.Slider;
+import com.mengstudios.galdulesfate.hud.slider.ProgressBar;
+import com.mengstudios.galdulesfate.hud.slider.Slider;
 import com.mengstudios.galdulesfate.item.resourceitem.Bar;
 import com.mengstudios.galdulesfate.item.resourceitem.CopperBar;
 import com.mengstudios.galdulesfate.item.resourceitem.CopperOre;
 import com.mengstudios.galdulesfate.item.resourceitem.Ore;
 
 public class FurnaceUi extends Ui {
-    private Slider arrowProgress;
+    private Slider progressBar;
 
     private boolean justShown;
     private Ore ore;
@@ -29,27 +29,22 @@ public class FurnaceUi extends Ui {
 
         justShown = true;
 
-        arrowProgress = new Slider(2);
-        arrowProgress.setShowText(false);
-        arrowProgress.setMinColor(Color.WHITE);
-        arrowProgress.setMaxColor(Color.WHITE);
-        arrowProgress.setBackFull(Assets.FURNACE_ARROW);
-        arrowProgress.setValue(0);
-        arrowProgress.setPosition(x + 88, y + 40);
+        progressBar = new ProgressBar(2);
+        progressBar.setPosition(x + 88, y + 40);
     }
 
     @Override
     public void update(float delta) {
-        arrowProgress.update(delta);
+        progressBar.update(delta);
 
         justShown = false;
 
         if(smelting) {
-            arrowProgress.changeValue(delta);
+            progressBar.changeValue(delta);
         }
 
-        if(arrowProgress.getValue() >= arrowProgress.getMaxValue()) {
-            arrowProgress.setValue(0);
+        if(progressBar.getValue() >= progressBar.getMaxValue()) {
+            progressBar.setValue(0);
 
             ore.changeCount(-1);
             if(ore.getCount() == 0) {
@@ -76,7 +71,7 @@ public class FurnaceUi extends Ui {
         if(bar != null) {
             bar.renderUi(batch, x + backgroundTexture.getWidth() - 64 - 10, y + 16);
         }
-        arrowProgress.draw(batch);
+        progressBar.draw(batch);
     }
 
     @Override
