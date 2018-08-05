@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.entity.Inventory;
+import com.mengstudios.galdulesfate.item.resourceitem.food.RawBeef;
 import com.mengstudios.galdulesfate.item.tool.CopperAxe;
 import com.mengstudios.galdulesfate.item.tool.CopperPickaxe;
 import com.mengstudios.galdulesfate.item.tool.weapon.Bow;

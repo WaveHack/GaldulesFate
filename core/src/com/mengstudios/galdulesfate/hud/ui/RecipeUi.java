@@ -1,16 +1,24 @@
 package com.mengstudios.galdulesfate.hud.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.mengstudios.galdulesfate.crafting.Recipe;
 import com.mengstudios.galdulesfate.entity.Inventory;
 import com.mengstudios.galdulesfate.hud.Hud;
+import com.mengstudios.galdulesfate.hud.slider.ProgressBar;
 import com.mengstudios.galdulesfate.item.Item;
 
 public class RecipeUi extends InventoryDisplay {
+    ProgressBar progressBar;
+
     protected boolean justShown;
     protected Array<Recipe> recipes;
     protected int touchedItemIndex;
+
+    protected boolean makingRecipe;
+
+    protected boolean soundIsPlaying;
 
     public RecipeUi(Hud hud, Inventory inventory) {
         super(hud, inventory);
@@ -19,6 +27,19 @@ public class RecipeUi extends InventoryDisplay {
     @Override
     public void update(float delta) {
         justShown = false;
+
+        if(progressBar != null) {
+            progressBar.update(delta);
+
+            if(makingRecipe) {
+                progressBar.changeValue(delta);
+            }
+
+            if(progressBar.hasFullProgress()) {
+                progressBar.setValue(0);
+                makeRecipe();
+            }
+        }
     }
 
     @Override
@@ -27,6 +48,10 @@ public class RecipeUi extends InventoryDisplay {
 
         if(selectedItem != null) {
             drawRecipeCosts(batch);
+        }
+
+        if(progressBar != null) {
+            progressBar.draw(batch);
         }
     }
 
@@ -57,13 +82,27 @@ public class RecipeUi extends InventoryDisplay {
         touchedItemIndex = getTouchedIndex(screenX, screenY);
         if(selectedItem == getTouchedItem(screenX, screenY)) {
             if(recipes.get(touchedItemIndex).canCraft(hud.getPlayScreen().getPlayer())) {
-                recipes.get(touchedItemIndex).craft(hud.getPlayScreen().getPlayer());
-                recipes.get(touchedItemIndex).deductCosts(hud.getPlayScreen().getPlayer());
+                startRecipe();
             }
         } else {
             selectedItem = getTouchedItem(screenX, screenY);
         }
         //Gdx.app.log("AnvilUi", Boolean.toString(recipes.get(touchedIndex).canCraft(hud.getPlayScreen().getPlayer())));
+    }
+
+    public void startRecipe() {
+        if(progressBar != null) {
+            makingRecipe = true;
+        } else {
+            makeRecipe();
+        }
+    }
+
+    public void makeRecipe() {
+        recipes.get(touchedItemIndex).craft(hud.getPlayScreen().getPlayer());
+        recipes.get(touchedItemIndex).deductCosts(hud.getPlayScreen().getPlayer());
+
+        makingRecipe = false;
     }
 
     @Override

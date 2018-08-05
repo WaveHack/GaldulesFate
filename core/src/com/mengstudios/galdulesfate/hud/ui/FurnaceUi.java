@@ -5,14 +5,13 @@ import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.hud.Hud;
 import com.mengstudios.galdulesfate.hud.slider.ProgressBar;
-import com.mengstudios.galdulesfate.hud.slider.Slider;
 import com.mengstudios.galdulesfate.item.resourceitem.Bar;
 import com.mengstudios.galdulesfate.item.resourceitem.CopperBar;
 import com.mengstudios.galdulesfate.item.resourceitem.CopperOre;
 import com.mengstudios.galdulesfate.item.resourceitem.Ore;
 
 public class FurnaceUi extends Ui {
-    private Slider progressBar;
+    private ProgressBar progressBar;
 
     private boolean justShown;
     private Ore ore;
@@ -30,7 +29,7 @@ public class FurnaceUi extends Ui {
         justShown = true;
 
         progressBar = new ProgressBar(2);
-        progressBar.setPosition(x + 88, y + 40);
+        progressBar.setPosition(x + 86, y + 38);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class FurnaceUi extends Ui {
             progressBar.changeValue(delta);
         }
 
-        if(progressBar.getValue() >= progressBar.getMaxValue()) {
+        if(progressBar.hasFullProgress()) {
             progressBar.setValue(0);
 
             ore.changeCount(-1);

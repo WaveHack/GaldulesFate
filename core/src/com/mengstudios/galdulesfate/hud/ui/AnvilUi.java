@@ -1,10 +1,12 @@
 package com.mengstudios.galdulesfate.hud.ui;
 
 import com.badlogic.gdx.utils.Array;
+import com.mengstudios.galdulesfate.Assets;
 import com.mengstudios.galdulesfate.GaldulesFate;
 import com.mengstudios.galdulesfate.crafting.Recipe;
 import com.mengstudios.galdulesfate.entity.Inventory;
 import com.mengstudios.galdulesfate.hud.Hud;
+import com.mengstudios.galdulesfate.hud.slider.ProgressBar;
 import com.mengstudios.galdulesfate.item.resourceitem.CopperBar;
 import com.mengstudios.galdulesfate.item.resourceitem.Wood;
 import com.mengstudios.galdulesfate.item.tool.CopperAxe;
@@ -46,7 +48,24 @@ public class AnvilUi extends RecipeUi {
 
         x = GaldulesFate.WIDTH / 2 - width / 2;
         y = GaldulesFate.HEIGHT / 2 - height / 2;
+
+        progressBar = new ProgressBar(2.5f);
+        progressBar.setPosition(x + width / 2, y - 32);
     }
 
+    @Override
+    public void startRecipe() {
+        super.startRecipe();
+        if(!soundIsPlaying) {
+            Assets.ANVIL_SOUND.loop();
+            soundIsPlaying = true;
+        }
+    }
 
+    @Override
+    public void makeRecipe() {
+        super.makeRecipe();
+        Assets.ANVIL_SOUND.stop();
+        soundIsPlaying = false;
+    }
 }
