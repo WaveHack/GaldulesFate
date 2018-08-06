@@ -116,6 +116,16 @@ public abstract class Mob extends Entity {
         return region;
     }
 
+    public static Mob getMobFromType(MobType type, World world, float x, float y) {
+        switch (type) {
+            case PIG:
+                return new Pig(world, x, y);
+            case COW:
+                return new Cow(world, x, y);
+        }
+        return null;
+    }
+
     public void setState(State state) {
         this.state = state;
     }

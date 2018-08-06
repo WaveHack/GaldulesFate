@@ -34,7 +34,6 @@ public class EntityManager {
     private Array<Mob> mobsToRemove;
 
     private int activeMobCount;
-    private int maxActiveMobs = 30;
 
     public EntityManager(World world) {
         this.world = world;
@@ -422,9 +421,5 @@ public class EntityManager {
 
     public int getActiveMobCount() {
         return activeMobCount;
-    }
-
-    public boolean canAddMob() {
-        return activeMobCount < maxActiveMobs;
     }
 }

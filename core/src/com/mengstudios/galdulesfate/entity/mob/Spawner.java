@@ -25,18 +25,12 @@ public class Spawner extends Entity{
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
-                    if(!world.getEntityManager().canAddMob()) {
+                    if(world.getEntityManager().getActiveMobCount() > 10) {
                         return;
                     }
 
-                    switch (mobType) {
-                        case PIG:
-                            world.getEntityManager().addEntity(new Pig(world, getX(), getY()));
-                            break;
-                        case COW:
-                            world.getEntityManager().addEntity(new Cow(world, getX(), getY()));
-                            break;
-                    }
+                    world.getEntityManager().addEntity(Mob.getMobFromType(mobType, world, getX(), getY()));
+
                     spawning = true;
                 }
             }, MathExtended.getFloatBetween(10, 30));
