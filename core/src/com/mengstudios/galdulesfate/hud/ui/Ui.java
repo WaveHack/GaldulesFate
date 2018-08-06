@@ -6,13 +6,13 @@ import com.mengstudios.galdulesfate.hud.Hud;
 
 public class Ui {
     protected Hud hud;
-    protected Texture backgroundTexture;
+    Texture backgroundTexture;
     protected float x;
     protected float y;
-    protected boolean hidden;
-    protected boolean removed;
+    private boolean hidden;
+    private boolean removed;
 
-    public Ui(Hud hud) {
+    Ui(Hud hud) {
         this.hud = hud;
     }
 
@@ -21,7 +21,9 @@ public class Ui {
     }
 
     public void draw(SpriteBatch batch) {
-        batch.draw(backgroundTexture, x, y);
+        if(backgroundTexture != null) {
+            batch.draw(backgroundTexture, x, y);
+        }
     }
 
     public void remove() {
@@ -44,7 +46,7 @@ public class Ui {
         return hidden;
     }
 
-    public boolean touchIn(int screenX, int screenY, float x, float y, float width, float height) {
+    boolean touchIn(int screenX, int screenY, float x, float y, float width, float height) {
         return screenX > x && screenX < x + width && screenY > y && screenY < y + height;
     }
 

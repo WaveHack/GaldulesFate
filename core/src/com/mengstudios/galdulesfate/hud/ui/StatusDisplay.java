@@ -12,8 +12,8 @@ import com.mengstudios.galdulesfate.hud.slider.ManaBar;
 
 public class StatusDisplay extends Ui {
     private static final float PADDING_X = 10;
-    private static final float PADDING_X2 = 20;
     private static final float PADDING_Y = 10;
+    private static final float PADDING_Y_SMALL = 5;
 
     private HealthBar healthBar;
     private ManaBar manaBar;
@@ -22,25 +22,25 @@ public class StatusDisplay extends Ui {
 
     public StatusDisplay(Hud hud) {
         super(hud);
-
-        backgroundTexture = Assets.STATUS_TABLE;
         
-        x = GaldulesFate.WIDTH / 2 - Assets.STATUS_TABLE.getWidth() / 2;
-        y = 20;
+        x = 20;
+        y = GaldulesFate.HEIGHT - 20;
 
         healthBar = new HealthBar(hud.getPlayScreen().getWorld().getPlayer().getMaxHealth());
         healthBar.setHealth(hud.getPlayScreen().getWorld().getPlayer().getHealth());
-        healthBar.setPosition(x + PADDING_X, y + backgroundTexture.getHeight() - PADDING_Y - healthBar.getHeight());
+        healthBar.setPosition(x, y - PADDING_Y - healthBar.getHeight());
 
         manaBar = new ManaBar(hud.getPlayScreen().getWorld().getPlayer().getMaxMana());
         manaBar.setMana(hud.getPlayScreen().getWorld().getPlayer().getMana());
-        manaBar.setPosition(x + backgroundTexture.getWidth() - PADDING_X - manaBar.getWidth(), y + backgroundTexture.getHeight() - PADDING_Y - healthBar.getHeight());
+        manaBar.setPosition(x, y - PADDING_Y - healthBar.getHeight() - PADDING_Y - manaBar.getHeight());
 
         abilityButtons = new Array<>();
-        for(int i = 0; i < 10; i++) {
+        for(int i = 0; i < 9; i++) {
             abilityButtons.add(new AbilityButton());
             abilityButtons.get(i).setText(Integer.toString((i + 1) % 10));
-            abilityButtons.get(i).setPosition(x + PADDING_X + i * (abilityButtons.get(i).getWidth() + PADDING_X2), y + PADDING_Y);
+            abilityButtons.get(i).setPosition(
+                    GaldulesFate.WIDTH - PADDING_X - ((64 + PADDING_X) * 9) + ((64 + PADDING_X) * i),
+                    y - 64);
         }
     }
 
@@ -60,7 +60,7 @@ public class StatusDisplay extends Ui {
         healthBar.draw(batch);
         manaBar.draw(batch);
 
-        for(int i = 0; i < 10; i++) {
+        for(int i = 0; i < abilityButtons.size; i++) {
             abilityButtons.get(i).draw(batch);
         }
         batch.setColor(Color.WHITE);
@@ -76,10 +76,9 @@ public class StatusDisplay extends Ui {
         }
     }
 
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public void touchUp(int screenX, int screenY, int pointer, int button) {
         for(AbilityButton abilityButton: abilityButtons) {
             abilityButton.touchUp(screenX, screenY);
         }
-        return false;
     }
 }

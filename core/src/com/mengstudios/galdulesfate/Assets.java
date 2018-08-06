@@ -226,13 +226,10 @@ public class Assets {
 
         TITLE_FONT = fontGenerator.generateFont(fontParameter);
 
-        fontParameter.size = 10;
-
-        ABILITY_BUTTON_FONT = fontGenerator.generateFont(fontParameter);
-
         fontParameter.size = 12;
 
         SLIDER_FONT = fontGenerator.generateFont(fontParameter);
+        ABILITY_BUTTON_FONT = SLIDER_FONT;
 
         fontParameter.size = 14;
 

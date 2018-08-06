@@ -141,9 +141,6 @@ public class Hud implements InputProcessor {
         if(keycode == Input.Keys.NUM_9) {
             getAbilityButtons().get(8).press();
         }
-        if(keycode == Input.Keys.NUM_0) {
-            getAbilityButtons().get(9).press();
-        }
 
         return false;
     }
@@ -176,9 +173,6 @@ public class Hud implements InputProcessor {
         }
         if(keycode == Input.Keys.NUM_9) {
             getAbilityButtons().get(8).release();
-        }
-        if(keycode == Input.Keys.NUM_0) {
-            getAbilityButtons().get(9).release();
         }
 
         return false;

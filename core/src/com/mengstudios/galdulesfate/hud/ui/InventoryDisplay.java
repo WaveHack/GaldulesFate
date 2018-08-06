@@ -28,7 +28,7 @@ public class InventoryDisplay extends Ui {
         backgroundTexture = Assets.UI_BOX;
         
         x = GaldulesFate.WIDTH - width - 20;
-        y = GaldulesFate.HEIGHT - height - 20;
+        y = GaldulesFate.HEIGHT - height - 64 - 20 - 10;
 
         this.inventory = inventory;
     }
