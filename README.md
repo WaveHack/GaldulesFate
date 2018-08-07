@@ -10,7 +10,7 @@ You can contact me at jimsu2012@gmail.com.
 
 The programming may be really bad. I've tried my best as a high school student who is entirely self-taught. I've run out of time to work on it, as the school year is starting soon and I will have lots of AP classes and extracirriculars to worry about.
 
-I would be really glad for anybody who helps out with anything in the game. I've worked on it for over a month and I really don't want it to die.
+I would be really glad for anybody who helps out with anything in the game. I've worked on it for over a month (I added git later) and I really don't want it to die.
 
 ## What should be done on the Game
 
